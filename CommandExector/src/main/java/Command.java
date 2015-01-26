@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 public class Command {
 
     /**
-     * command to be executed
+     * Command to be executed
      */
     private String command;
 
@@ -34,6 +34,11 @@ public class Command {
         return execute();
     }
 
+    /**
+     * Start a new process with the provided command
+     *
+     * @return exit code for process
+     */
     public int execute() {
         String line;
         Process p;
