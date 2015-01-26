@@ -2,9 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by constantin on 26.01.2015.
- */
 public class Command {
 
     /**

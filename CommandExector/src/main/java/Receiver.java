@@ -5,9 +5,6 @@ import com.rabbitmq.client.QueueingConsumer;
 
 import java.io.IOException;
 
-/**
- * Created by constantin on 26.01.2015.
- */
 public class Receiver {
     private Channel channel;
     QueueingConsumer consumer;
