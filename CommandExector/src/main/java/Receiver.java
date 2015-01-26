@@ -11,6 +11,9 @@ public class Receiver {
     private final static String HOST_NAME = "localhost";
     private final static String QUEUE_NAME = "task_queue";
 
+    /**
+     * set parameters for RabbitMQ receiver
+     */
     public Receiver() {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(HOST_NAME);
@@ -38,12 +41,15 @@ public class Receiver {
         }
     }
 
+    /**
+     * Listen for messages
+     */
     public void startReceiving() {
         while (true) {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
-                doWork(message);
+                executeCommand(message);
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 System.out.println("[X] Done");
             } catch (InterruptedException e) {
@@ -54,7 +60,13 @@ public class Receiver {
         }
     }
 
-    private void doWork(String command) throws InterruptedException {
+    /**
+     * Start a command with received message
+     *
+     * @param command terminal command that will be executed
+     * @throws InterruptedException
+     */
+    private void executeCommand(String command) throws InterruptedException {
         Command cmd = new Command(command);
         cmd.execute();
     }
