@@ -8,6 +8,8 @@ public class Job {
     private String xmlDocument;
     private String jsonDocument;
 
+    public Job() {}
+
     public Job(String clientId, String command) {
         this.clientId = clientId;
         this.command = command;
