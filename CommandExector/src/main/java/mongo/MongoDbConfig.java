@@ -1,5 +1,7 @@
 package mongo;
 
+import config.ConfigExtractor;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -30,20 +32,13 @@ public class MongoDbConfig {
      * read configuration data for mongoDB
      */
     public MongoDbConfig() {
-        InputStream in = getClass().getResourceAsStream(configFile);
-        Properties configProp = new Properties();
-        try {
-            configProp.load(in);
-            ip = configProp.getProperty("mongoHost");
-            port =  Integer.parseInt(configProp.getProperty("mongoPort"));
+        ip = ConfigExtractor.getProperty("mongoHost");
 
-        } catch (NumberFormatException nfe) {
-            System.err.println("Port is not a integer, please check config.properties.");
+        try {
+            port = Integer.parseInt(ConfigExtractor.getProperty("mongoPort"));
+        }
+        catch (NumberFormatException nfe) {
             nfe.printStackTrace();
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-
 }
