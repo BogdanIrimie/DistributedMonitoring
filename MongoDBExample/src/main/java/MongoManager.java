@@ -8,16 +8,20 @@ public class MongoManager {
     private MongoClient mongoClient = null;
     private DBCollection results = null;
     private DB db = null;
+    private static MongoDbConfig mongoConfig = new MongoDbConfig();
 
     public MongoManager() {
-        this("192.168.56.101");
+        this(mongoConfig.getIp());
     }
 
+
     public MongoManager(String ip) {
-        this(ip, 27017);
+        this(ip, mongoConfig.getPort());
     }
 
     public MongoManager(String ip, int port) {
+
+
         try {
             mongoClient = new MongoClient(ip, port);
             System.out.println("Connecton was established!");
