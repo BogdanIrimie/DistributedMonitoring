@@ -7,3 +7,5 @@
 
 #IntelliJ
 .idea/
+target/
+*.iml
