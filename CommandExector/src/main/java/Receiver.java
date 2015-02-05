@@ -2,14 +2,16 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
+import datamodel.Command;
 
 import java.io.IOException;
 
 public class Receiver {
     private Channel channel;
-    QueueingConsumer consumer;
+    private QueueingConsumer consumer;
     private final static String HOST_NAME = "localhost";
     private final static String QUEUE_NAME = "task_queue";
+    RabbitMqConfig rmqConf = new RabbitMqConfig();
 
     /**
      * set parameters for RabbitMQ receiver
@@ -67,7 +69,7 @@ public class Receiver {
      * @throws InterruptedException
      */
     private void executeCommand(String command) throws InterruptedException {
-        Command cmd = new Command(command);
-        cmd.execute();
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.execute(new Command(command));
     }
 }
