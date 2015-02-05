@@ -1,21 +1,33 @@
 package datamodel;
 
-import java.util.UUID;
-
 public class Job {
 
-    private String uuid;
+    private String _id;
+    private String clientId;
     private String command;
-    private String linkToXml;
-    private String linkToJson;
+    private String xmlDocument;
+    private String jsonDocument;
 
-    public Job(String command) {
-        uuid = UUID.randomUUID().toString().replace("-", "");
+    public Job(String clientId, String command) {
+        this.clientId = clientId;
         this.command = command;
     }
 
-    public String getUuid() {
-        return uuid;
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 
     public String getCommand() {
@@ -26,19 +38,20 @@ public class Job {
         this.command = command;
     }
 
-    public String getLinkToXml() {
-        return linkToXml;
+    public String getXmlDocument() {
+        return xmlDocument;
     }
 
-    public void setLinkToXml(String linkToXml) {
-        this.linkToXml = linkToXml;
+    public void setXmlDocument(String xmlDocument) {
+        this.xmlDocument = xmlDocument;
     }
 
-    public String getLinkToJson() {
-        return linkToJson;
+    public String getJsonDocument() {
+        return jsonDocument;
     }
 
-    public void setLinkToJson(String linkToJson) {
-        this.linkToJson = linkToJson;
+    public void setJsonDocument(String jsonDocument) {
+        this.jsonDocument = jsonDocument;
     }
+
 }
