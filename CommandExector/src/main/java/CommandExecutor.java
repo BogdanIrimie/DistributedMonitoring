@@ -1,48 +1,23 @@
+import datamodel.Command;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Command {
-
-    /**
-     * Command to be executed
-     */
-    private String command;
-
-
-    public Command() {
-        command = null;
-    }
-
-    public Command(String cmd) {
-        command = cmd;
-    }
-
-    public String getCommand() {
-        return command;
-    }
-
-    public void setCommand(String cmd) {
-        command = cmd;
-    }
-
-    public int execute(String cmd) {
-        setCommand(cmd);
-        return execute();
-    }
+public class CommandExecutor {
 
     /**
      * Start a new process with the provided command
      *
      * @return exit code for process
      */
-    public int execute() {
+    public int execute(Command command) {
         String line;
         Process p;
         int returnValue = -1;
 
         try {
-            p = Runtime.getRuntime().exec(command);
+            p = Runtime.getRuntime().exec(command.getCommand());
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
