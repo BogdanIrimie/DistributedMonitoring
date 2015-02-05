@@ -38,7 +38,7 @@ public class MongoManager {
      * @param jsonString the json to be saved in the db
      * @return the ID of the saved object
      */
-    public String saveJson(String jsonString) {
+    public String pushJson(String jsonString) {
         Object jsonObj = JSON.parse(jsonString);
         DBObject dbObj = (DBObject)jsonObj;
         results.insert(dbObj);
@@ -51,7 +51,7 @@ public class MongoManager {
      * @param id id of the record in db
      * @return Json with the db data for the provided id
      */
-    public String retrieveJsonById (String id) {
+    public String pullJsonById(String id) {
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(id));
         DBObject dbObj = results.findOne(query);
