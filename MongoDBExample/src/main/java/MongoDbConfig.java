@@ -34,8 +34,8 @@ public class MongoDbConfig {
         Properties configProp = new Properties();
         try {
             configProp.load(in);
-            ip = configProp.getProperty("host");
-            port =  Integer.parseInt(configProp.getProperty("port"));
+            ip = configProp.getProperty("mongoHost");
+            port =  Integer.parseInt(configProp.getProperty("mongoPort"));
 
         } catch (NumberFormatException nfe) {
             System.err.println("Port is not a integer, please check config.properties.");
