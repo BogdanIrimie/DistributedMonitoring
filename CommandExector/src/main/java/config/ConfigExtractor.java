@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigExtractor {
-    private final String configFile = "conf.properties";
+    private final String configFile = "../conf.properties";
     private static Properties configProp;
     private static ConfigExtractor configInstance = null;
 
@@ -23,7 +23,7 @@ public class ConfigExtractor {
 
     public static String getProperty(String property) {
         if (configInstance == null) {
-            new ConfigExtractor();
+            configInstance = new ConfigExtractor();
         }
 
         return configProp.getProperty(property);
