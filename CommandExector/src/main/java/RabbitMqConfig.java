@@ -4,6 +4,10 @@ public class RabbitMqConfig {
     private String host = null;
     private String queue = null;
 
+    public RabbitMqConfig() {
+        host = ConfigExtractor.getProperty("rabbitHost");
+        queue = ConfigExtractor.getProperty("rabbitQueue");
+    }
 
     public String getHost() {
         return host;
@@ -13,8 +17,4 @@ public class RabbitMqConfig {
         return queue;
     }
 
-    public RabbitMqConfig() {
-        host = ConfigExtractor.getProperty("rabbitHost");
-        queue = ConfigExtractor.getProperty("rabbitQueue");
-    }
 }

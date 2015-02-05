@@ -31,8 +31,8 @@ public class Sender {
             }
             channel.basicPublish("", QUEUE_NAME,
                     MessageProperties.PERSISTENT_TEXT_PLAIN, /*(message + i).getBytes()*/
-                    ObjToJsonConvertor.map(new Job("ls -l")).getBytes());
-                    //"nmap -T4 -A -v info.uvt.ro".getBytes());
+                    //ObjToJsonConvertor.map(new Job("ls -l")).getBytes());
+                    "nmap -T4 -A -v info.uvt.ro".getBytes());
                     Thread.sleep(50);
         }
 
@@ -62,4 +62,5 @@ public class Sender {
         }
         return words.toString();
     }
+
 }

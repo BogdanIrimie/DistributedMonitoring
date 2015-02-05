@@ -11,7 +11,7 @@ public class Receiver {
     private QueueingConsumer consumer;
     private final String hostName;
     private final String queueName;
-    RabbitMqConfig rmqConf = new RabbitMqConfig();
+    private RabbitMqConfig rmqConf = new RabbitMqConfig();
 
     /**
      * set parameters for RabbitMQ receiver
@@ -75,4 +75,5 @@ public class Receiver {
         CommandExecutor cmd = new CommandExecutor();
         cmd.execute(new Command(command));
     }
+
 }
