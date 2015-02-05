@@ -9,16 +9,19 @@ import java.io.IOException;
 public class Receiver {
     private Channel channel;
     private QueueingConsumer consumer;
-    private final static String HOST_NAME = "localhost";
-    private final static String QUEUE_NAME = "task_queue";
+    private final String hostName;
+    private final String queueName;
     RabbitMqConfig rmqConf = new RabbitMqConfig();
 
     /**
      * set parameters for RabbitMQ receiver
      */
     public Receiver() {
+        hostName = rmqConf.getHost();
+        queueName = rmqConf.getQueue();
+        
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost(HOST_NAME);
+        factory.setHost(hostName);
         Connection connection = null;
         try {
             connection = factory.newConnection();
@@ -32,10 +35,10 @@ public class Receiver {
 
             channel.basicQos(prefetchCount);
             boolean durable = true;
-            channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
+            channel.queueDeclare(queueName, durable, false, false, null);
             consumer = new QueueingConsumer(channel);
             boolean autoAck = false;
-            channel.basicConsume(QUEUE_NAME, autoAck, consumer);
+            channel.basicConsume(queueName, autoAck, consumer);
 
 
         } catch (IOException e) {
