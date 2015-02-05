@@ -2,7 +2,9 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
+import convertors.JobConverter;
 import datamodel.Command;
+import datamodel.Job;
 
 import java.io.IOException;
 
@@ -54,7 +56,10 @@ public class Receiver {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
-                executeCommand(message);
+
+                Job job = JobConverter.jsonStringToJob(message);
+                executeCommand(job.getCommand());
+
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 System.out.println("[X] Done");
             } catch (InterruptedException e) {

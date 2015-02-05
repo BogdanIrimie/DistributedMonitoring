@@ -2,7 +2,6 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
-import org.ietf.jgss.MessageProp;
 
 import java.io.IOException;
 import java.util.Random;
@@ -32,7 +31,8 @@ public class Sender {
             channel.basicPublish("", QUEUE_NAME,
                     MessageProperties.PERSISTENT_TEXT_PLAIN, /*(message + i).getBytes()*/
                     //ObjToJsonConvertor.map(new Job("ls -l")).getBytes());
-                    "nmap -T4 -A -v info.uvt.ro".getBytes());
+                    JobConverter.jobToJsonString(new Job("13", "nmap -T4 -A -v info.uvt.ro")).getBytes());
+                    //"nmap -T4 -A -v info.uvt.ro".getBytes());
                     Thread.sleep(50);
         }
 
