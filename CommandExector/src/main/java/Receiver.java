@@ -5,6 +5,7 @@ import com.rabbitmq.client.QueueingConsumer;
 import convertors.JobConverter;
 import datamodel.Command;
 import datamodel.Job;
+import mongo.MongoManager;
 
 import java.io.IOException;
 
@@ -58,7 +59,11 @@ public class Receiver {
                 String message = new String(delivery.getBody());
 
                 Job job = JobConverter.jsonStringToJob(message);
-                executeCommand(job.getCommand());
+
+
+                MongoManager mm = new MongoManager();
+                mm.pullJsonById(job.getId());
+                //executeCommand(job.getCommand());
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 System.out.println("[X] Done");
