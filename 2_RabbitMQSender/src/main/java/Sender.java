@@ -2,6 +2,11 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
+import convertors.JobConverter;
+import convertors.MeasurementConvertor;
+import datamodel.Measurement;
+import datamodel.Job;
+import mongo.MongoManager;
 
 import java.io.IOException;
 import java.util.Random;
@@ -28,10 +33,21 @@ public class Sender {
             for (int j = 0; j < rand.nextInt(5); j++) {
                 message += ".";
             }
+
+            Measurement measurement = new Measurement("13", "nmap -T4 -A -v info.uvt.ro");
+            String measurementString = MeasurementConvertor.measurementToJsonString(measurement);
+
+            //put data in DB
+            MongoManager mm = new MongoManager();
+            String id = mm.pushJson(measurementString);
+            String jsonRepresentation = mm.pullJsonById(id);
+            System.out.println(jsonRepresentation);
+            mm.closeConnection();
+
             channel.basicPublish("", QUEUE_NAME,
                     MessageProperties.PERSISTENT_TEXT_PLAIN, /*(message + i).getBytes()*/
                     //ObjToJsonConvertor.map(new Job("ls -l")).getBytes());
-                    JobConverter.jobToJsonString(new Job("13", "nmap -T4 -A -v info.uvt.ro")).getBytes());
+                    JobConverter.jobToJsonString(new Job(id)).getBytes());
                     //"nmap -T4 -A -v info.uvt.ro".getBytes());
                     Thread.sleep(50);
         }
