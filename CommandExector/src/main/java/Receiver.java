@@ -3,8 +3,10 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import convertors.JobConverter;
+import convertors.MeasurementConvertor;
 import datamodel.Command;
 import datamodel.Job;
+import datamodel.Measurement;
 import mongo.MongoManager;
 
 import java.io.IOException;
@@ -62,8 +64,9 @@ public class Receiver {
 
 
                 MongoManager mm = new MongoManager();
-                mm.pullJsonById(job.getId());
-                //executeCommand(job.getCommand());
+                String measurementString = mm.pullJsonById(job.getId());
+                Measurement measurement = MeasurementConvertor.jsonStringToMeasurement(measurementString);
+                executeCommand(measurement.getCommand());
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 System.out.println("[X] Done");
