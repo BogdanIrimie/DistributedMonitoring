@@ -1,3 +1,6 @@
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -8,6 +11,7 @@ import datamodel.Command;
 import datamodel.Job;
 import datamodel.Measurement;
 import mongo.MongoManager;
+import org.bson.types.ObjectId;
 
 import java.io.IOException;
 
@@ -65,6 +69,11 @@ public class Receiver {
 
                 MongoManager mm = new MongoManager();
                 String measurementString = mm.pullJsonById(job.getId());
+                mm.closeConnection();
+
+                // ugly remove of oid
+                measurementString = measurementString.replace("{ \"$oid\" : \""  + job.getId() + "\"}", "\"" + job.getId() + "\"");
+
                 Measurement measurement = MeasurementConvertor.jsonStringToMeasurement(measurementString);
                 executeCommand(measurement.getCommand());
 
