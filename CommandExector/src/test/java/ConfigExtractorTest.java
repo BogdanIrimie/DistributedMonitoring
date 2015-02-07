@@ -1,4 +1,5 @@
 import config.ConfigExtractor;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
@@ -17,6 +18,22 @@ public class ConfigExtractorTest {
         }
 
         assertTrue(propertyCount > 0);
+    }
+
+    @Test
+    public void testValueForAllProperties() {
+        Enumeration<String> properties = ConfigExtractor.getPropertyList();
+        boolean allPropertiesInitialized = true;
+
+        while (properties.hasMoreElements()) {
+            String propertyName = properties.nextElement();
+            String propertyValue = ConfigExtractor.getProperty(propertyName);
+            if (propertyValue ==  null) {
+                allPropertiesInitialized = false;
+            }
+        }
+
+        assertTrue(allPropertiesInitialized);
     }
 
 }
