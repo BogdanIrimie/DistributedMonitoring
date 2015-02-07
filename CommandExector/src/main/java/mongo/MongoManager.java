@@ -22,8 +22,6 @@ public class MongoManager {
     }
 
     public MongoManager(String ip, int port) {
-
-
         try {
             mongoClient = new MongoClient(ip, port);
             System.out.println("Connecton was established!");
@@ -60,12 +58,11 @@ public class MongoManager {
         return dbObj.toString();
     }
 
-
-
     public void closeConnection() {
         if (mongoClient!= null) {
             mongoClient.close();
             System.out.println("Connection was closed!");
         }
     }
+
 }

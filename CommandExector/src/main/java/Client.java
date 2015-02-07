@@ -6,7 +6,5 @@ public class Client {
         Receiver rec = new Receiver();
         rec.startReceiving();
 
-        //MongoManager mm = new MongoManager();
-
     }
 }

@@ -15,6 +15,9 @@ import rabbit.RabbitMqConfig;
 
 import java.io.IOException;
 
+/**
+ * Received messages that come from a queue
+ */
 public class Receiver {
     private Channel channel;
     private QueueingConsumer consumer;
@@ -23,7 +26,7 @@ public class Receiver {
     private RabbitMqConfig rmqConf = new RabbitMqConfig();
 
     /**
-     * set parameters for RabbitMQ receiver
+     * Set parameters for RabbitMQ receiver
      */
     public Receiver() {
         hostName = rmqConf.getHost();

@@ -2,6 +2,9 @@ package rabbit;
 
 import config.ConfigExtractor;
 
+/**
+ * Extract configuration data for RabbitMQ
+ */
 public class RabbitMqConfig {
     private String host = null;
     private String queue = null;
