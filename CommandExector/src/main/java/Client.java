@@ -1,4 +1,4 @@
-import mongo.MongoManager;
+import rabbit.Receiver;
 
 public class Client {
     public static void main(String[] args) {

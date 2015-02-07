@@ -1,3 +1,5 @@
+package rabbit;
+
 import config.ConfigExtractor;
 
 public class RabbitMqConfig {

@@ -1,6 +1,5 @@
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.util.JSON;
+package rabbit;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -11,7 +10,7 @@ import datamodel.Command;
 import datamodel.Job;
 import datamodel.Measurement;
 import mongo.MongoManager;
-import org.bson.types.ObjectId;
+import rabbit.RabbitMqConfig;
 
 import java.io.IOException;
 
