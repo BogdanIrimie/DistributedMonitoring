@@ -6,8 +6,8 @@ import datamodel.Measurement;
 
 import java.io.IOException;
 
-public class MeasurementConvertor {
-    private static ObjectMapper mapper= new ObjectMapper();;
+public class MeasurementConverter {
+    private static ObjectMapper mapper= new ObjectMapper();
 
     public static String measurementToJsonString(Measurement measurement) {
         String objToJson = null;

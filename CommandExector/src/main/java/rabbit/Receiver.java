@@ -5,13 +5,12 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import convertors.JobConverter;
-import convertors.MeasurementConvertor;
+import convertors.MeasurementConverter;
 import datamodel.Command;
 import datamodel.Job;
 import datamodel.Measurement;
 import executors.CommandExecutor;
 import mongo.MongoManager;
-import rabbit.RabbitMqConfig;
 
 import java.io.IOException;
 
@@ -77,7 +76,7 @@ public class Receiver {
                 // ugly remove of oid
                 measurementString = measurementString.replace("{ \"$oid\" : \""  + job.getId() + "\"}", "\"" + job.getId() + "\"");
 
-                Measurement measurement = MeasurementConvertor.jsonStringToMeasurement(measurementString);
+                Measurement measurement = MeasurementConverter.jsonStringToMeasurement(measurementString);
                 executeCommand(measurement.getCommand());
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);

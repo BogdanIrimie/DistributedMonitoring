@@ -10,7 +10,7 @@ import java.io.IOException;
  * Convert to and from Job to Json
  */
 public class JobConverter {
-    private static ObjectMapper mapper= new ObjectMapper();;
+    private static ObjectMapper mapper= new ObjectMapper();
 
     /**
      * Convert Job object to json.
