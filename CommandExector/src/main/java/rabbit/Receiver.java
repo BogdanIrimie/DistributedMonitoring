@@ -9,6 +9,7 @@ import convertors.MeasurementConvertor;
 import datamodel.Command;
 import datamodel.Job;
 import datamodel.Measurement;
+import executors.CommandExecutor;
 import mongo.MongoManager;
 import rabbit.RabbitMqConfig;
 
