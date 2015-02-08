@@ -20,6 +20,7 @@ import java.io.IOException;
 public class Receiver {
     private Channel channel;
     private QueueingConsumer consumer;
+    private Connection connection;
     private final String hostName;
     private final String queueName;
     private RabbitMqConfig rmqConf = new RabbitMqConfig();
@@ -33,7 +34,7 @@ public class Receiver {
         
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(hostName);
-        Connection connection = null;
+
         try {
             connection = factory.newConnection();
             channel = connection.createChannel();
@@ -65,9 +66,7 @@ public class Receiver {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
-
                 Job job = JobConverter.jsonStringToJob(message);
-
 
                 MongoManager mm = new MongoManager();
                 String measurementString = mm.pullJsonById(job.getId());
@@ -98,6 +97,17 @@ public class Receiver {
     private void executeCommand(String command) throws InterruptedException {
         CommandExecutor cmd = new CommandExecutor();
         cmd.execute(new Command(command));
+    }
+
+    /**
+     * Close receiving connection.
+     */
+    public void closeConnection() {
+        try {
+            connection.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -6,12 +6,11 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 import convertors.JobConverter;
 import convertors.MeasurementConverter;
-import datamodel.Measurement;
 import datamodel.Job;
+import datamodel.Measurement;
 import mongo.MongoManager;
 
 import java.io.IOException;
-import java.util.Random;
 
 
 public class Sender {
