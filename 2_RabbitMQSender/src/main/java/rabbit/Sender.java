@@ -11,7 +11,6 @@ import datamodel.Job;
 import mongo.MongoManager;
 
 import java.io.IOException;
-import java.util.Random;
 
 
 public class Sender {
@@ -21,6 +20,9 @@ public class Sender {
     private RabbitMqConfig rmq = new RabbitMqConfig();
     private Channel channel;
 
+    /**
+     * Set parameters for RabbitMQ sender
+     */
     public Sender() {
         hostName = rmq.getHost();
         queueName = rmq.getQueue();
@@ -40,6 +42,11 @@ public class Sender {
 
     }
 
+    /**
+     * Send messages over queue and DB.
+     * @param clientId id of the client
+     * @param message command to be executed
+     */
     public void Send (String clientId, String message) {
         Measurement measurement = new Measurement(clientId, message);
         String measurementString = MeasurementConverter.measurementToJsonString(measurement);
@@ -49,12 +56,11 @@ public class Sender {
         String id = mm.pushJson(measurementString);
         String jsonRepresentation = mm.pullJsonById(id);
         System.out.println(jsonRepresentation);
-        mm.closeConnection();;
+        mm.closeConnection();
 
         try {
             channel.basicPublish("", queueName,
-                    MessageProperties.PERSISTENT_TEXT_PLAIN, /*(message + i).getBytes()*/
-                    //ObjToJsonConvertor.map(new Job("ls -l")).getBytes());
+                    MessageProperties.PERSISTENT_TEXT_PLAIN,
                     JobConverter.jobToJsonString(new Job(id)).getBytes());
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,6 +74,9 @@ public class Sender {
 
     }
 
+    /**
+     * Close connection used for sending messages.
+     */
     public void closeConnection() {
 
         try {
