@@ -1,5 +1,8 @@
 package datamodel;
 
+/**
+ * Model for data in DB
+ */
 public class Measurement {
     private String _id;
     private String clientId;

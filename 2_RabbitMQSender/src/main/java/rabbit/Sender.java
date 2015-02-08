@@ -1,9 +1,11 @@
+package rabbit;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 import convertors.JobConverter;
-import convertors.MeasurementConvertor;
+import convertors.MeasurementConverter;
 import datamodel.Measurement;
 import datamodel.Job;
 import mongo.MongoManager;
@@ -15,6 +17,12 @@ import java.util.Random;
 public class Sender {
 
     private final static String QUEUE_NAME = "task_queue";
+
+
+
+    public Sender() {
+
+    }
 
     public static void main(String[] args) throws IOException, InterruptedException {
         ConnectionFactory factory = new ConnectionFactory();
@@ -35,14 +43,14 @@ public class Sender {
             }
 
             Measurement measurement = new Measurement("13", "nmap -T4 -A -v info.uvt.ro");
-            String measurementString = MeasurementConvertor.measurementToJsonString(measurement);
+            String measurementString = MeasurementConverter.measurementToJsonString(measurement);
 
             //put data in DB
             MongoManager mm = new MongoManager();
             String id = mm.pushJson(measurementString);
             String jsonRepresentation = mm.pullJsonById(id);
             System.out.println(jsonRepresentation);
-            mm.closeConnection();
+            mm.closeConnection();;
 
             channel.basicPublish("", QUEUE_NAME,
                     MessageProperties.PERSISTENT_TEXT_PLAIN, /*(message + i).getBytes()*/
