@@ -11,7 +11,7 @@ public class RabbitMqConfig {
 
     public RabbitMqConfig() {
         host = ConfigExtractor.getProperty("rabbitHost");
-        queue = ConfigExtractor.getProperty("rabbitQueue");
+        queue = ConfigExtractor.getProperty("rabbitReceiveQueue");
     }
 
     public String getHost() {
