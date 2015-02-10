@@ -22,7 +22,7 @@ public class Sender {
 
     public Sender() {
         hostName = rmq.getHost();
-        queueName = rmq.getQueue();
+        queueName = rmq.getSendQueue();
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(hostName);
@@ -39,22 +39,12 @@ public class Sender {
 
     }
 
-    public void Send (String clientId, String message) {
-        Measurement measurement = new Measurement(clientId, message);
-        String measurementString = MeasurementConverter.measurementToJsonString(measurement);
-
-        //put data in DB
-        MongoManager mm = new MongoManager();
-        String id = mm.pushJson(measurementString);
-        String jsonRepresentation = mm.pullJsonById(id);
-        System.out.println(jsonRepresentation);
-        mm.closeConnection();;
+    public void Send(Job job) {
 
         try {
             channel.basicPublish("", queueName,
-                    MessageProperties.PERSISTENT_TEXT_PLAIN, /*(message + i).getBytes()*/
-                    //ObjToJsonConvertor.map(new Job("ls -l")).getBytes());
-                    JobConverter.jobToJsonString(new Job(id)).getBytes());
+                    MessageProperties.PERSISTENT_TEXT_PLAIN,
+                    JobConverter.jobToJsonString(job).getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
