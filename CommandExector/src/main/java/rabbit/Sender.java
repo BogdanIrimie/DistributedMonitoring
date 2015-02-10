@@ -59,17 +59,12 @@ public class Sender {
             e.printStackTrace();
         }
 
-        try {
-            channel.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public void closeConnection() {
 
         try {
+            channel.close();
             connection.close();
         } catch (IOException e) {
             e.printStackTrace();

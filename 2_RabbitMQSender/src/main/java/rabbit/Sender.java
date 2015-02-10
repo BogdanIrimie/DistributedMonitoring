@@ -66,12 +66,6 @@ public class Sender {
             e.printStackTrace();
         }
 
-        try {
-            channel.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     /**
@@ -80,6 +74,7 @@ public class Sender {
     public void closeConnection() {
 
         try {
+            channel.close();
             connection.close();
         } catch (IOException e) {
             e.printStackTrace();
