@@ -7,19 +7,24 @@ import config.ConfigExtractor;
  */
 public class RabbitMqConfig {
     private String host = null;
-    private String queue = null;
+    private String receiveQueue = null;
+    private String sendQueue = null;
 
     public RabbitMqConfig() {
         host = ConfigExtractor.getProperty("rabbitHost");
-        queue = ConfigExtractor.getProperty("rabbitReceiveQueue");
+        receiveQueue = ConfigExtractor.getProperty("rabbitReceiveQueue");
+        sendQueue = ConfigExtractor.getProperty("rabbitSendQueue");
     }
 
     public String getHost() {
         return host;
     }
 
-    public String getQueue() {
-        return queue;
+    public String getReceiveQueue() {
+        return receiveQueue;
     }
 
+    public String getSendQueue() {
+        return sendQueue;
+    }
 }

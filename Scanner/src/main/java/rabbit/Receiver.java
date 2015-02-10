@@ -30,7 +30,7 @@ public class Receiver {
      */
     public Receiver() {
         hostName = rmqConf.getHost();
-        queueName = rmqConf.getQueue();
+        queueName = rmqConf.getReceiveQueue();
         
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(hostName);
@@ -62,6 +62,7 @@ public class Receiver {
      * Listen for messages
      */
     public void startReceiving() {
+        Sender sender = new Sender();
         while (true) {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
@@ -79,6 +80,9 @@ public class Receiver {
 
                 mm.updateJsonWithId(job.getId(), "xmlDocument", xmlResult);
                 mm.closeConnection();
+
+                // send job over the queue
+                sender.Send(job);
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 System.out.println("[X] Done");
