@@ -16,19 +16,20 @@ public class CommandExecutor {
      *
      * @return exit code for process
      */
-    public int execute(Command command) {
+    public String execute(Command command) {
         String line;
         Process p;
-        int returnValue = -1;
+        StringBuilder commandOutput = new StringBuilder();
 
         try {
             p = Runtime.getRuntime().exec(command.getCommand());
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = br.readLine()) != null) {
+                commandOutput.append(line);
                 System.out.println(line);
             }
             p.waitFor();
-            returnValue = p.exitValue();
+            p.exitValue();  // throw some error if exit value is incorrect
             p.destroy();
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,6 +37,6 @@ public class CommandExecutor {
             e.printStackTrace();
         }
 
-        return returnValue;
+        return commandOutput.toString();
     }
 }
