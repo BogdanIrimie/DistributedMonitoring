@@ -104,6 +104,7 @@ public class Receiver {
      */
     public void closeConnection() {
         try {
+            channel.close();
             connection.close();
         } catch (IOException e) {
             e.printStackTrace();
