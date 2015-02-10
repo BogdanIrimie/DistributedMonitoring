@@ -12,7 +12,9 @@ import mongo.MongoManager;
 
 import java.io.IOException;
 
-
+/**
+ * Send messages over queue
+ */
 public class Sender {
     private final String hostName;
     private final String queueName;
