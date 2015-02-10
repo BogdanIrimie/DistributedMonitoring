@@ -70,13 +70,15 @@ public class Receiver {
 
                 MongoManager mm = new MongoManager();
                 String measurementString = mm.pullJsonById(job.getId());
-                mm.closeConnection();
 
                 // ugly remove of oid
                 measurementString = measurementString.replace("{ \"$oid\" : \""  + job.getId() + "\"}", "\"" + job.getId() + "\"");
 
                 Measurement measurement = MeasurementConverter.jsonStringToMeasurement(measurementString);
-                executeCommand(measurement.getCommand());
+                String xmlResult = executeCommand(measurement.getCommand());
+
+                mm.updateJsonWithId(job.getId(), "xmlDocument", xmlResult);
+                mm.closeConnection();
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 System.out.println("[X] Done");
@@ -94,9 +96,9 @@ public class Receiver {
      * @param command terminal command that will be executed
      * @throws InterruptedException
      */
-    private void executeCommand(String command) throws InterruptedException {
+    private String executeCommand(String command) throws InterruptedException {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.execute(new Command(command));
+        return cmd.execute(new Command(command));
     }
 
     /**
