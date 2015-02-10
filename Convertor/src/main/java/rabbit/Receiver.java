@@ -11,6 +11,9 @@ import datamodel.Job;
 import datamodel.Measurement;
 import executors.CommandExecutor;
 import mongo.MongoManager;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.XML;
 
 import java.io.IOException;
 
@@ -77,9 +80,9 @@ public class Receiver {
 
                 Measurement measurement = MeasurementConverter.jsonStringToMeasurement(measurementString);
                 // --- ToDo --- convert xml to json
-                String xmlResult = executeCommand(measurement.getCommand());
+                String jsonResult = convertXmlToJson(measurement.getXmlDocument());
 
-                mm.updateJsonWithId(job.getId(), "xmlDocument", xmlResult);
+                mm.updateJsonWithId(job.getId(), "jsonDocument", jsonResult);
                 mm.closeConnection();
 
                 // send job over the queue
@@ -104,6 +107,18 @@ public class Receiver {
     private String executeCommand(String command) throws InterruptedException {
         CommandExecutor cmd = new CommandExecutor();
         return cmd.execute(new Command(command));
+    }
+
+    private String convertXmlToJson(String xmlString) {
+        String jsonString = null;
+        try {
+            JSONObject jsonObj = XML.toJSONObject(xmlString);
+            jsonString = jsonObj.toString();
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonString;
     }
 
     /**
