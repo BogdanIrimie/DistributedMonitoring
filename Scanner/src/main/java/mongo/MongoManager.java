@@ -58,6 +58,19 @@ public class MongoManager {
         return dbObj.toString();
     }
 
+    public void updateJsonWithId(String id, String field,  String value) {
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(id));
+
+        BasicDBObject updateDocument = new BasicDBObject();
+        updateDocument.append("$set", new BasicDBObject().append(field, value));
+
+        results.update(query, updateDocument);
+    }
+
+    /**
+     * Close connection to DB
+     */
     public void closeConnection() {
         if (mongoClient!= null) {
             mongoClient.close();
