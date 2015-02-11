@@ -7,14 +7,9 @@ import com.rabbitmq.client.QueueingConsumer;
 import convertors.JobConverter;
 import convertors.MeasurementConverter;
 import convertors.XmlToJsonConverter;
-import datamodel.Command;
 import datamodel.Job;
 import datamodel.Measurement;
-import executors.CommandExecutor;
 import mongo.MongoManager;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.XML;
 
 import java.io.IOException;
 
