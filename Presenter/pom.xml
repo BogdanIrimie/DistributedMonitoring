@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>Presenter</groupId>
+    <artifactId>Presenter</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <jacksonVersion>2.5.0</jacksonVersion>
+        <rabbitMqVersion>3.4.3</rabbitMqVersion>
+        <mongoDbVersion>2.12.5</mongoDbVersion>
+        <junitVersion>4.12</junitVersion>
+        <jsonOrgVersion>20140107</jsonOrgVersion>
+    </properties>
+
+
+    <dependencies>
+
+        <!-- message queue -->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>${rabbitMqVersion}</version>
+        </dependency>
+
+        <!-- noSQL DB -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>${mongoDbVersion}</version>
+        </dependency>
+
+        <!-- Jackson dependencies -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jacksonVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jacksonVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jacksonVersion}</version>
+        </dependency>
+        <!-- End of Jackson dependencies -->
+
+
+        <!-- JUnit-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junitVersion}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>
