@@ -6,6 +6,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import convertors.JobConverter;
 import convertors.MeasurementConverter;
+import convertors.XmlToJsonConverter;
 import datamodel.Command;
 import datamodel.Job;
 import datamodel.Measurement;
@@ -79,8 +80,7 @@ public class Receiver {
                 measurementString = measurementString.replace("{ \"$oid\" : \""  + job.getId() + "\"}", "\"" + job.getId() + "\"");
 
                 Measurement measurement = MeasurementConverter.jsonStringToMeasurement(measurementString);
-                // --- ToDo --- convert xml to json
-                String jsonResult = convertXmlToJson(measurement.getXmlDocument());
+                String jsonResult = XmlToJsonConverter.convertXmlToJson(measurement.getXmlDocument());
 
                 mm.updateJsonWithId(job.getId(), "jsonDocument", jsonResult);
                 mm.closeConnection();
@@ -96,29 +96,6 @@ public class Receiver {
                 e.printStackTrace();
             }
         }
-    }
-
-    /**
-     * Start a command with received message
-     *
-     * @param command terminal command that will be executed
-     * @throws InterruptedException
-     */
-    private String executeCommand(String command) throws InterruptedException {
-        CommandExecutor cmd = new CommandExecutor();
-        return cmd.execute(new Command(command));
-    }
-
-    private String convertXmlToJson(String xmlString) {
-        String jsonString = null;
-        try {
-            JSONObject jsonObj = XML.toJSONObject(xmlString);
-            jsonString = jsonObj.toString();
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return jsonString;
     }
 
     /**
