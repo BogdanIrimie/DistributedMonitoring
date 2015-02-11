@@ -6,6 +6,9 @@ import org.bson.types.ObjectId;
 
 import java.net.UnknownHostException;
 
+/**
+ * Manage interactions with DB
+ */
 public class MongoManager {
     private MongoClient mongoClient = null;
     private DBCollection results = null;
@@ -58,6 +61,13 @@ public class MongoManager {
         return dbObj.toString();
     }
 
+    /**
+     * Update a given field for a record with a given id
+     *
+     * @param id of the record that will be updated
+     * @param field that will be updated
+     * @param value new value for field
+     */
     public void updateJsonWithId(String id, String field,  String value) {
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(id));

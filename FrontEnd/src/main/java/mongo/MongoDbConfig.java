@@ -2,6 +2,9 @@ package mongo;
 
 import config.ConfigExtractor;
 
+/**
+ * Extract configuration data for MongoDB
+ */
 public class MongoDbConfig {
     private final String configFile = "conf.properties";
     private String ip;

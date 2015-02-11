@@ -12,7 +12,9 @@ import mongo.MongoManager;
 
 import java.io.IOException;
 
-
+/**
+ * Send Job to the next queue
+ */
 public class Sender {
     private final String hostName;
     private final String queueName;
@@ -39,8 +41,12 @@ public class Sender {
 
     }
 
+    /**
+     * Send job over the queue
+     *
+     * @param job contains details about the job
+     */
     public void Send(Job job) {
-
         try {
             channel.basicPublish("", queueName,
                     MessageProperties.PERSISTENT_TEXT_PLAIN,
@@ -48,18 +54,18 @@ public class Sender {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
+    /**
+     * Close queue connection
+     */
     public void closeConnection() {
-
         try {
             channel.close();
             connection.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }

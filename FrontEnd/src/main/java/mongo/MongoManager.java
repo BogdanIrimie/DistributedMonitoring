@@ -6,6 +6,9 @@ import org.bson.types.ObjectId;
 
 import java.net.UnknownHostException;
 
+/**
+ * Manage interactions with DB
+ */
 public class MongoManager {
     private MongoClient mongoClient = null;
     private DBCollection results = null;
@@ -22,8 +25,6 @@ public class MongoManager {
     }
 
     public MongoManager(String ip, int port) {
-
-
         try {
             mongoClient = new MongoClient(ip, port);
             System.out.println("Connecton was established!");
@@ -60,12 +61,14 @@ public class MongoManager {
         return dbObj.toString();
     }
 
-
-
+    /**
+     * Close connection to DB
+     */
     public void closeConnection() {
         if (mongoClient!= null) {
             mongoClient.close();
             System.out.println("Connection was closed!");
         }
     }
+
 }
