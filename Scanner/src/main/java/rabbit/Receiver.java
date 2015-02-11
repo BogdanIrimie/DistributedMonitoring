@@ -10,6 +10,7 @@ import datamodel.Command;
 import datamodel.Job;
 import datamodel.Measurement;
 import executors.CommandExecutor;
+import executors.ResultFormat;
 import mongo.MongoManager;
 
 import java.io.IOException;
@@ -102,7 +103,7 @@ public class Receiver {
      */
     private String executeCommand(String command) throws InterruptedException {
         CommandExecutor cmd = new CommandExecutor();
-        return cmd.execute(new Command(command));
+        return cmd.execute(new Command(command), ResultFormat.XML);
     }
 
     /**

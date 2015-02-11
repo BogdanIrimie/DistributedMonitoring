@@ -16,10 +16,21 @@ public class CommandExecutor {
      *
      * @return exit code for process
      */
-    public String execute(Command command) {
+    public String execute(Command command, ResultFormat format) {
         String line;
         Process p;
         StringBuilder commandOutput = new StringBuilder();
+
+        switch (format) {
+            case STANDARD:
+                break;
+            case XML:
+                if (!command.getCommand().contains("-oX -")) {
+                    String newCommand = command.getCommand() + " -oX -";
+                    command.setCommand(newCommand);
+                }
+                break;
+        }
 
         try {
             p = Runtime.getRuntime().exec(command.getCommand());
