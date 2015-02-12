@@ -103,7 +103,7 @@ public class Receiver {
      */
     private String executeCommand(String command) throws InterruptedException {
         CommandExecutor cmd = new CommandExecutor();
-        return cmd.execute(new Command(command), ResultFormat.XML);
+        return cmd.execute(new Command(command));
     }
 
     /**

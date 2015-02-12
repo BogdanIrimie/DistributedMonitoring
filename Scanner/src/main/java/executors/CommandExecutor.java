@@ -14,23 +14,14 @@ public class CommandExecutor {
     /**
      * Start a new process with the provided command
      *
-     * @return exit code for process
+     * @return command output
      */
-    public String execute(Command command, ResultFormat format) {
+    public String execute(Command command) {
         String line;
         Process p;
         StringBuilder commandOutput = new StringBuilder();
 
-        switch (format) {
-            case STANDARD:
-                break;
-            case XML:
-                if (!command.getCommand().contains("-oX -")) {
-                    String newCommand = command.getCommand() + " -oX -";
-                    command.setCommand(newCommand);
-                }
-                break;
-        }
+        processCommand(command);
 
         try {
             p = Runtime.getRuntime().exec(command.getCommand());
@@ -50,4 +41,24 @@ public class CommandExecutor {
 
         return commandOutput.toString();
     }
+
+    private void processCommand(Command command) {
+        ResultFormat format = ResultFormat.STANDARD;
+
+        if (command.getCommand().matches("^nmap.*")) {
+            format = ResultFormat.XML;
+        }
+
+        switch (format) {
+            case STANDARD:
+                break;
+            case XML:
+                if (!command.getCommand().contains("-oX -")) {
+                    String newCommand = command.getCommand() + " -oX -";
+                    command.setCommand(newCommand);
+                }
+                break;
+        }
+    }
+
 }
