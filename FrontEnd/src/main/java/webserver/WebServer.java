@@ -8,10 +8,14 @@ import rabbit.Sender;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
 public class WebServer {
+
+    private final String CHARSET = StandardCharsets.UTF_8.name();
 
     public WebServer() {
         this(8000);
@@ -37,8 +41,8 @@ public class WebServer {
             String paramQuery = t.getRequestURI().getQuery();
             Map<String, String> params = queryToMap(paramQuery);
 
-            String id = params.get("id");
-            String command = params.get("command");
+            String id = URLDecoder.decode(params.get("id"), CHARSET);
+            String command = URLDecoder.decode(params.get("command"), CHARSET);
 
             if ((id != null) && (command != null)) {
                 response = "Request valid, processing will start soon.";
