@@ -13,7 +13,7 @@ import mongo.MongoManager;
 import java.io.IOException;
 
 /**
- * Send messages over queue
+ * send messages over queue
  */
 public class Sender {
     private final String hostName;
@@ -45,11 +45,11 @@ public class Sender {
     }
 
     /**
-     * Send messages over queue and DB.
+     * send messages over queue and DB.
      * @param clientId id of the client
      * @param message command to be executed
      */
-    public void Send (String clientId, String message) {
+    public void send(String clientId, String message) {
         Measurement measurement = new Measurement(clientId, message);
         String measurementString = MeasurementConverter.measurementToJsonString(measurement);
 
