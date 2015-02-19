@@ -76,8 +76,12 @@ public class Receiver {
 
                 Measurement measurement = MeasurementConverter.jsonStringToMeasurement(measurementString);
 
-                //System.out.println(measurement.getJsonDocument());
-                RequestSenderWithMessage.sendRequest("http://localhost:8008/jobFinished", measurement.getJsonDocument());
+                if (measurement.getResponseAddress() != null && measurement.getResponseAddress().trim().length() > 0) {
+                    RequestSenderWithMessage.sendRequest(measurement.getResponseAddress(), measurement.getJsonDocument());
+                }
+                else {
+                    System.out.println(measurement.getJsonDocument());
+                }
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 System.out.println("[X] Done");

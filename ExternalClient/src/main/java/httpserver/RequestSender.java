@@ -22,7 +22,7 @@ public class RequestSender {
             query = String.format("id=%s&command=%s&responseAddress=%s",
                     URLEncoder.encode(id, charset),
                     URLEncoder.encode(command, charset),
-                    URLEncoder.encode(responseAddress, charset));
+                    responseAddress != null ? URLEncoder.encode(responseAddress, charset) : "");
 
             URLConnection connection = new URL(url + "?" + query).openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
