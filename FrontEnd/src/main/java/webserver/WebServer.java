@@ -43,7 +43,7 @@ public class WebServer {
 
             String id = URLDecoder.decode(params.get("id"), CHARSET);
             String command = URLDecoder.decode(params.get("command"), CHARSET);
-            String responseAddress = URLDecoder.decode(params.get("responseaddress"), CHARSET);
+            String responseAddress = URLDecoder.decode(params.get("responseAddress"), CHARSET);
 
             if ((id != null) && (command != null)) {
                 response = "Request valid, processing will start soon.";

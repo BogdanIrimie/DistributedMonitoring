@@ -19,7 +19,7 @@ public class RequestSender {
         String query = null;
 
         try {
-            query = String.format("id=%s&command=%s&responseAddress",
+            query = String.format("id=%s&command=%s&responseAddress=%s",
                     URLEncoder.encode(id, charset),
                     URLEncoder.encode(command, charset),
                     URLEncoder.encode(responseAddress, charset));
