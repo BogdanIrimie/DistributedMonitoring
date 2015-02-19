@@ -6,15 +6,17 @@ package datamodel;
 public class Measurement {
     private String _id;
     private String clientId;
+    private String responseAddress;
     private String command;
     private String xmlDocument;
     private String jsonDocument;
 
     public Measurement() {}
 
-    public Measurement(String clientId, String command) {
+    public Measurement(String clientId, String command, String responseAddress) {
         this.clientId = clientId;
         this.command = command;
+        this.responseAddress = responseAddress;
     }
 
 
@@ -40,6 +42,14 @@ public class Measurement {
 
     public void setCommand(String command) {
         this.command = command;
+    }
+
+    public String getResponseAddress() {
+        return responseAddress;
+    }
+
+    public void setResponseAddress(String responseAddress) {
+        this.responseAddress = responseAddress;
     }
 
     public String getXmlDocument() {
