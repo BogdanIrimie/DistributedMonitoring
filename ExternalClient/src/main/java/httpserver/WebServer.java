@@ -23,7 +23,7 @@ public class WebServer {
         server.createContext("/jobFinished", new MyHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
-        System.out.println("Server started and listening on port 8008.");
+        System.out.println("Server started listening on port 8008.");
     }
 
     class MyHandler implements HttpHandler {

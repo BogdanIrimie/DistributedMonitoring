@@ -77,7 +77,7 @@ public class Receiver {
                 Measurement measurement = MeasurementConverter.jsonStringToMeasurement(measurementString);
 
                 //System.out.println(measurement.getJsonDocument());
-                RequestSenderWithMessage.sendRequest("http://localhost:8008/jobFinished", "This is it!");
+                RequestSenderWithMessage.sendRequest("http://localhost:8008/jobFinished", measurement.getJsonDocument());
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 System.out.println("[X] Done");
