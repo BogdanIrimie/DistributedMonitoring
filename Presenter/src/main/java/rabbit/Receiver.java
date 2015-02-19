@@ -8,6 +8,7 @@ import convertors.JobConverter;
 import convertors.MeasurementConverter;
 import datamodel.Job;
 import datamodel.Measurement;
+import httpmanager.RequestSenderWithMessage;
 import mongo.MongoManager;
 
 import java.io.IOException;
@@ -74,8 +75,9 @@ public class Receiver {
                 measurementString = measurementString.replace("{ \"$oid\" : \""  + job.getId() + "\"}", "\"" + job.getId() + "\"");
 
                 Measurement measurement = MeasurementConverter.jsonStringToMeasurement(measurementString);
-                System.out.println(measurement.getJsonDocument());
 
+                //System.out.println(measurement.getJsonDocument());
+                RequestSenderWithMessage.sendRequest("http://localhost:8008/jobFinished", "This is it!");
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 System.out.println("[X] Done");
