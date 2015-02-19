@@ -49,8 +49,8 @@ public class Sender {
      * @param clientId id of the client
      * @param message command to be executed
      */
-    public void send(String clientId, String message) {
-        Measurement measurement = new Measurement(clientId, message);
+    public void send(String clientId, String message, String responseAddress) {
+        Measurement measurement = new Measurement(clientId, message, responseAddress);
         String measurementString = MeasurementConverter.measurementToJsonString(measurement);
 
         //put data in DB

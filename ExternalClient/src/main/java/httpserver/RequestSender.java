@@ -14,14 +14,15 @@ public class RequestSender {
     public RequestSender() {
     }
 
-    public static void sendRequest(String url, String id, String command) {
+    public static void sendRequest(String url, String id, String command, String responseAddress) {
         String charset = StandardCharsets.UTF_8.name();
         String query = null;
 
         try {
-            query = String.format("id=%s&command=%s",
+            query = String.format("id=%s&command=%s&responseAddress",
                     URLEncoder.encode(id, charset),
-                    URLEncoder.encode(command, charset));
+                    URLEncoder.encode(command, charset),
+                    URLEncoder.encode(responseAddress, charset));
 
             URLConnection connection = new URL(url + "?" + query).openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
