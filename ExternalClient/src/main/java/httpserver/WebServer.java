@@ -1,4 +1,4 @@
-package webserver;
+package httpserver;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -6,8 +6,6 @@ import com.sun.net.httpserver.HttpServer;
 
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.util.HashMap;
-import java.util.Map;
 
 public class WebServer {
 
