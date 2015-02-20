@@ -11,7 +11,7 @@ Install NMap (https://nmap.org/download.html)
 
 (optional) Install mViewer to inspect database (https://github.com/Imaginea/mViewer)
 
-(testing) Install RESTHEART for rest communication with MongoDB https://github.com/SoftInstigate/RESTHeart/releases
+(testing) Install RESTHEART for rest communication with MongoDB (https://github.com/SoftInstigate/RESTHeart/releases)
 
 #Use cases & examples
 
