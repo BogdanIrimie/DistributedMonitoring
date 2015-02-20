@@ -31,7 +31,7 @@ public class WebServer {
         server.createContext("/job", new MyHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
-        System.out.println("Server started and listening on port 8000. Example of request: /job?id=13&command=nmap%20info.uvt.ro&responseaddress=http://localhost:8008/jobFinished");
+        System.out.println("Server started and listening on port 8000. Example of request: /job?id=13&command=nmap%20info.uvt.ro&responseAddress=http://localhost:8008/jobFinished");
     }
 
     class MyHandler implements HttpHandler {
