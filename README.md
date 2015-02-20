@@ -13,10 +13,10 @@ Install NMap (https://nmap.org/download.html)
 
 #Use cases & examples
 
-Scan target for open ports: nmap <ip>
+Scan target for open ports: nmap \<ip\>
 ex: nmap info.uvt.ro
 
-Scan a class of ips: nmap <ipClass>
+Scan a class of ips: nmap \<ipClass\>
 ex: nmap 192.168.1.0/24 
 
 Scan for OS detection
