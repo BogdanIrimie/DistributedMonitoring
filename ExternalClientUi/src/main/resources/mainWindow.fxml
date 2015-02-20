@@ -12,7 +12,7 @@
             <Label text="Command" prefWidth="100"/>
             <TextField fx:id="command" prefWidth="200" />
         </HBox>
-        <TextArea fx:id="results" prefWidth="200" prefHeight="200"/>
+        <TextArea fx:id="results" prefWidth="400" prefHeight="400"/>
         <Button fx:id="runCommand" text="Run Command" onAction="#runCommand"/>
     </VBox>
 

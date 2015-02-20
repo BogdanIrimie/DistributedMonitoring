@@ -8,5 +8,16 @@
     <artifactId>ExternalClientUi</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <jsonOrgVersion>20140107</jsonOrgVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${jsonOrgVersion}</version>
+        </dependency>
+    </dependencies>
 
 </project>

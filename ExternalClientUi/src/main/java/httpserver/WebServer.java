@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import javafx.application.Platform;
 import javafx.scene.control.TextArea;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,7 +57,8 @@ public class WebServer {
                 @Override
                 public void run() {
                     // update UI:
-                    results.setText(receivedData.toString());
+                    JSONObject json = new JSONObject(receivedData.toString());
+                    results.setText(json.toString(4));
                 }
             });
 
