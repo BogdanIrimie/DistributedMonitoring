@@ -46,14 +46,14 @@ public class WebServer {
             String responseAddress = URLDecoder.decode(params.get("responseAddress"), CHARSET);
 
             if ((id != null) && (command != null)) {
-                response = "Request valid, processing will start soon.";
+                response = "Request valid, processing will start soon.\n";
                 t.sendResponseHeaders(202, response.length());
                 Sender sender = new Sender();
                 sender.send(id, command, responseAddress);
                 sender.closeConnection();
             }
             else {
-                response = "Request is invalid, id or command not present. Valid format could be: id=3&command=nmap%20info.uvt.ro";
+                response = "Request is invalid, id or command not present. Valid format could be: id=3&command=nmap%20info.uvt.ro\n";
                 t.sendResponseHeaders(400, response.length());
             }
 
