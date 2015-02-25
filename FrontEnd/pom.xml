@@ -12,6 +12,7 @@
         <jacksonVersion>2.5.0</jacksonVersion>
         <rabbitMqVersion>3.4.3</rabbitMqVersion>
         <mongoDbVersion>2.12.5</mongoDbVersion>
+        <junitVersion>4.12</junitVersion>
     </properties>
 
 
@@ -50,6 +51,15 @@
             <version>${jacksonVersion}</version>
         </dependency>
         <!-- End of Jackson dependencies -->
+
+
+        <!-- JUnit-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junitVersion}</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
