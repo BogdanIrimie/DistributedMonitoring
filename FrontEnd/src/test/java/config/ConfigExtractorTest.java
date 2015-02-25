@@ -1,4 +1,5 @@
-import config.ConfigExtractor;
+package config;
+
 import org.junit.Test;
 
 import java.util.Enumeration;
