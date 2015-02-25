@@ -4,8 +4,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
-import convertors.JobConverter;
-import convertors.MeasurementConverter;
+import converters.JsonConverter;
 import datamodel.Measurement;
 import datamodel.Job;
 import mongo.MongoManager;
@@ -51,7 +50,7 @@ public class Sender {
      */
     public void send(String clientId, String message, String responseAddress) {
         Measurement measurement = new Measurement(clientId, message, responseAddress);
-        String measurementString = MeasurementConverter.measurementToJsonString(measurement);
+        String measurementString = JsonConverter.objectToJsonString(measurement);
 
         //put data in DB
         MongoManager mm = new MongoManager();
@@ -63,7 +62,7 @@ public class Sender {
         try {
             channel.basicPublish("", queueName,
                     MessageProperties.PERSISTENT_TEXT_PLAIN,
-                    JobConverter.jobToJsonString(new Job(id)).getBytes());
+                    JsonConverter.objectToJsonString(new Job(id)).getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
