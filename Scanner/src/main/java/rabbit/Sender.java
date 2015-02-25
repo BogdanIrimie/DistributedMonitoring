@@ -4,11 +4,8 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
-import convertors.JobConverter;
-import convertors.MeasurementConverter;
+import converters.JsonConverter;
 import datamodel.Job;
-import datamodel.Measurement;
-import mongo.MongoManager;
 
 import java.io.IOException;
 
@@ -50,7 +47,7 @@ public class Sender {
         try {
             channel.basicPublish("", queueName,
                     MessageProperties.PERSISTENT_TEXT_PLAIN,
-                    JobConverter.jobToJsonString(job).getBytes());
+                    JsonConverter.objectToJsonString(job).getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }

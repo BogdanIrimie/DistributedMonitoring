@@ -4,8 +4,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
-import convertors.JobConverter;
-import convertors.MeasurementConverter;
+import converters.JsonConverter;
 import datamodel.Command;
 import datamodel.Job;
 import datamodel.Measurement;
@@ -68,7 +67,7 @@ public class Receiver {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
-                Job job = JobConverter.jsonStringToJob(message);
+                Job job = JsonConverter.jsonStringToObject(message, Job.class);
 
                 MongoManager mm = new MongoManager();
                 String measurementString = mm.pullJsonById(job.getId());
@@ -76,7 +75,7 @@ public class Receiver {
                 // ugly remove of oid
                 measurementString = measurementString.replace("{ \"$oid\" : \""  + job.getId() + "\"}", "\"" + job.getId() + "\"");
 
-                Measurement measurement = MeasurementConverter.jsonStringToMeasurement(measurementString);
+                Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
                 String xmlResult = executeCommand(measurement.getCommand());
 
                 mm.updateJsonWithId(job.getId(), "xmlDocument", xmlResult);
