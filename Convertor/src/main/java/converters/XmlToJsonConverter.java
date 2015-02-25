@@ -1,4 +1,4 @@
-package convertors;
+package converters;
 
 import org.json.JSONException;
 import org.json.JSONObject;
