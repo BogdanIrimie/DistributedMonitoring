@@ -6,6 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 public class RabbitMqConfigTest {
 
+    /**
+     * Retrieve host.
+     */
     @Test
     public void retrieveHost() {
         RabbitMqConfig rmqConf = new RabbitMqConfig();
@@ -13,6 +16,9 @@ public class RabbitMqConfigTest {
         assertTrue(host.length() > 0);
     }
 
+    /**
+     * Retrieve send queue name.
+     */
     @Test
     public void retrieveSendQueue() {
         RabbitMqConfig rmqConf = new RabbitMqConfig();
@@ -20,10 +26,14 @@ public class RabbitMqConfigTest {
         assertTrue(queue.length() > 0);
     }
 
+    /**
+     * Retrieve receive queue name
+     */
     @Test
-    public void retrieveRetrieveQueue() {
+    public void retrieveReceiveQueue() {
         RabbitMqConfig rmqConf = new RabbitMqConfig();
         String queue = rmqConf.getReceiveQueue();
         assertTrue(queue.length() > 0);
     }
+
 }
