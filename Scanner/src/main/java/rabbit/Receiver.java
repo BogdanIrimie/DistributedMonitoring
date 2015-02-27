@@ -110,7 +110,9 @@ public class Receiver {
      */
     public void closeConnection() {
         try {
-            connection.close();
+            if (connection.isOpen()) {
+                connection.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

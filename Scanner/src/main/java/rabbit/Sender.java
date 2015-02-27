@@ -58,8 +58,12 @@ public class Sender {
      */
     public void closeConnection() {
         try {
-            channel.close();
-            connection.close();
+            if (channel.isOpen()) {
+                channel.close();
+            }
+            if (connection.isOpen()) {
+                connection.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
