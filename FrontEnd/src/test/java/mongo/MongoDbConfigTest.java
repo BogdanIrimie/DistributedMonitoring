@@ -18,6 +18,9 @@ public class MongoDbConfigTest {
         assertTrue(ip.matches(ipPattern));
     }
 
+    /**
+     * Test of port is valid.
+     */
     @Test
     public void testGetPort() {
         MongoDbConfig mongoDbConfig = new MongoDbConfig();

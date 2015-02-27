@@ -8,6 +8,9 @@ import static org.junit.Assert.assertTrue;
 
 public class MongoManagerTest {
 
+    /**
+     * Test if class "MongoManger" can be instantiated many times, a DB connection must exist
+     */
     @Test
     public void instantiateMongoManagerManyTimes() {
         for (int i = 0; i < 10; i++) {
@@ -15,6 +18,9 @@ public class MongoManagerTest {
         }
     }
 
+    /**
+     * Test if same connection can be closed many times.
+     */
     @Test
     public void closeConnectionMultipleTimes() {
         MongoManager mm = new MongoManager();
@@ -23,6 +29,9 @@ public class MongoManagerTest {
         }
     }
 
+    /**
+     * Test push and pull operations, a DB connection must exist!
+     */
     @Test
     public void testJsonPushAndPull() {
         MongoManager mm = new MongoManager();
@@ -38,6 +47,9 @@ public class MongoManagerTest {
         assertTrue(serializedMeasurement.equals(retrievedMeasurementString));
     }
 
+    /**
+     * Test error in case of wrong id used for pull, a DB connection must exist!
+     */
     @Test
     public void pullJsonWithWrongId() {
         MongoManager mm = new MongoManager();
