@@ -73,9 +73,17 @@ public class Sender {
      * Close connection used for sending messages.
      */
     public void closeConnection() {
-
-
-
+        try {
+            if (channel.isOpen()) {
+                channel.close();
+            }
+            if (connection.isOpen()) {
+                connection.close();
+            }
+        }
+        catch (IOException e) {
+             e.printStackTrace();
+        }
     }
 
 }
