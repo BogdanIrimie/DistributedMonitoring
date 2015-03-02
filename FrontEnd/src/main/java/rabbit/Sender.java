@@ -8,6 +8,8 @@ import converters.JsonConverter;
 import datamodel.Measurement;
 import datamodel.Job;
 import mongo.MongoManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -15,6 +17,7 @@ import java.io.IOException;
  * send messages over queue
  */
 public class Sender {
+    private static final Logger logger = LoggerFactory.getLogger(Sender.class);
     private final String hostName;
     private final String queueName;
     private Connection connection;
@@ -38,7 +41,7 @@ public class Sender {
 
             channel.queueDeclare(queueName, durable, false, false, null);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
 
     }
@@ -64,7 +67,7 @@ public class Sender {
                     MessageProperties.PERSISTENT_TEXT_PLAIN,
                     JsonConverter.objectToJsonString(new Job(id)).getBytes());
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
 
     }
@@ -82,7 +85,7 @@ public class Sender {
             }
         }
         catch (IOException e) {
-             e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 

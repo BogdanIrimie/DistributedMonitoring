@@ -3,6 +3,8 @@ package webserver;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import rabbit.Sender;
 
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.util.Map;
 
 public class WebServer {
 
+    private static final Logger logger = LoggerFactory.getLogger(WebServer.class);
     private final String CHARSET = StandardCharsets.UTF_8.name();
 
     public WebServer() {
@@ -25,13 +28,15 @@ public class WebServer {
         HttpServer server = null;
         try {
             server = HttpServer.create(new InetSocketAddress(port), 0);
+            server.createContext("/job", new MyHandler());
+            server.setExecutor(null); // creates a default executor
+            server.start();
+            logger.info("Server started and listening on port 8000. Example of request: " +
+                    "/job?id=13&command=nmap%20info.uvt.ro&responseAddress=http://localhost:8008/jobFinished");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
-        server.createContext("/job", new MyHandler());
-        server.setExecutor(null); // creates a default executor
-        server.start();
-        System.out.println("Server started and listening on port 8000. Example of request: /job?id=13&command=nmap%20info.uvt.ro&responseAddress=http://localhost:8008/jobFinished");
+
     }
 
     class MyHandler implements HttpHandler {
