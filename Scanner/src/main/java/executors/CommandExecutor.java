@@ -1,6 +1,8 @@
 package executors;
 
 import datamodel.Command;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.io.InputStreamReader;
  * Executes commands in terminal
  */
 public class CommandExecutor {
+    private static final Logger logger = LoggerFactory.getLogger(CommandExecutor.class);
 
     /**
      * Start a new process with the provided command
@@ -28,17 +31,17 @@ public class CommandExecutor {
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = br.readLine()) != null) {
                 commandOutput.append(line);
-                System.out.println(line);
             }
             p.waitFor();
             p.exitValue();  // throw some error if exit value is incorrect
             p.destroy();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
 
+        logger.info("Command output: " + commandOutput.toString());
         return commandOutput.toString();
     }
 

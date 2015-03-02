@@ -11,6 +11,8 @@ import datamodel.Measurement;
 import executors.CommandExecutor;
 import executors.ResultFormat;
 import mongo.MongoManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -18,6 +20,7 @@ import java.io.IOException;
  * Received messages that come from a queue
  */
 public class Receiver {
+    private static final Logger logger = LoggerFactory.getLogger(Receiver.class);
     private Channel channel;
     private QueueingConsumer consumer;
     private Connection connection;
@@ -53,8 +56,9 @@ public class Receiver {
             channel.basicConsume(queueName, autoAck, consumer);
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        catch (IOException e) {
+            logger.error(e.getMessage(), e);
         }
     }
 
@@ -67,6 +71,7 @@ public class Receiver {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
+                logger.info("Received message over queue.");
                 Job job = JsonConverter.jsonStringToObject(message, Job.class);
 
                 MongoManager mm = new MongoManager();
@@ -85,11 +90,11 @@ public class Receiver {
                 sender.Send(job);
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
-                System.out.println("[X] Done");
+                logger.info("Sent message over queue.");
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(), e);
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(), e);
             }
         }
     }
@@ -114,7 +119,7 @@ public class Receiver {
                 connection.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 

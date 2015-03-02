@@ -1,11 +1,14 @@
 package mongo;
 
 import config.ConfigExtractor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Extract configuration data for MongoDB
  */
 public class MongoDbConfig {
+    private static final Logger logger = LoggerFactory.getLogger(MongoDbConfig.class);
     private String ip;
     private int port;
 
@@ -18,7 +21,7 @@ public class MongoDbConfig {
             port = Integer.parseInt(ConfigExtractor.getProperty("mongoPort"));
         }
         catch (NumberFormatException nfe) {
-            nfe.printStackTrace();
+            logger.error(nfe.getMessage(), nfe);
         }
     }
 
