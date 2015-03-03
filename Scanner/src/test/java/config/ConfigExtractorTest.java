@@ -1,12 +1,16 @@
 package config;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Enumeration;
 
 import static org.junit.Assert.assertTrue;
 
 public class ConfigExtractorTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(ConfigExtractorTest.class);
 
     /**
      * Count existing properties.
@@ -55,7 +59,7 @@ public class ConfigExtractorTest {
             assertTrue(true);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             assertTrue(false);
         }
     }

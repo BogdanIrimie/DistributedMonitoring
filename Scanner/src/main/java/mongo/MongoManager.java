@@ -30,7 +30,7 @@ public class MongoManager {
     public MongoManager(String ip, int port) {
         try {
             mongoClient = new MongoClient(ip, port);
-            System.out.println("Connection was established!");
+            logger.info("Connection to DB was established.");
             db = mongoClient.getDB("monitoringResults");
             results = db.getCollection("testData");
         } catch (UnknownHostException e) {
@@ -87,7 +87,7 @@ public class MongoManager {
     public void closeConnection() {
         if (mongoClient!= null) {
             mongoClient.close();
-            logger.info("Connection was closed!");
+            logger.info("Connection was closed.");
         }
     }
 

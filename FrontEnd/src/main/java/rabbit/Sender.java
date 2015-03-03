@@ -58,8 +58,7 @@ public class Sender {
         //put data in DB
         MongoManager mm = new MongoManager();
         String id = mm.pushJson(measurementString);
-        String jsonRepresentation = mm.pullJsonById(id);
-        System.out.println(jsonRepresentation);
+        logger.info("Json pushed in DB: " + measurementString);
         mm.closeConnection();
 
         try {

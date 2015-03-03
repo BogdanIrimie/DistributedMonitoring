@@ -31,7 +31,7 @@ public class RequestSenderWithMessage {
             while ((line = br.readLine()) != null) {
                 responseString.append(line);
             }
-            logger.info(responseString.toString());
+            logger.info("Respons from destination: " + responseString.toString());
 
         } catch (UnsupportedEncodingException e) {
             logger.error(e.getMessage(), e);

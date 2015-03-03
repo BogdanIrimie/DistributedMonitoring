@@ -67,6 +67,7 @@ public class Receiver {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
+                logger.info("Received message over the queue.");
                 Job job = JsonConverter.jsonStringToObject(message, Job.class);
 
                 MongoManager mm = new MongoManager();
@@ -80,13 +81,13 @@ public class Receiver {
 
                 if (measurement.getResponseAddress() != null && measurement.getResponseAddress().trim().length() > 0) {
                     RequestSenderWithMessage.sendRequest(measurement.getResponseAddress(), measurement.getJsonDocument());
+                    logger.info("Results were sent to: " + measurement.getResponseAddress());
                 }
                 else {
                     logger.info(measurement.getJsonDocument());
                 }
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
-                logger.info("Message received!");
             } catch (InterruptedException e) {
                 logger.error(e.getMessage(), e);
             } catch (IOException e) {

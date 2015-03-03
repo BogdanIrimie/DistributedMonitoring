@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 
 import java.net.UnknownHostException;
 
+/**
+ * Manage interactions with DB
+ */
 public class MongoManager {
     private static final Logger logger = LoggerFactory.getLogger(MongoManager.class);
     private MongoClient mongoClient = null;
@@ -27,7 +30,7 @@ public class MongoManager {
     public MongoManager(String ip, int port) {
         try {
             mongoClient = new MongoClient(ip, port);
-            System.out.println("Connection was established!");
+            logger.info("Connection to DB was established.");
             db = mongoClient.getDB("monitoringResults");
             results = db.getCollection("testData");
         } catch (UnknownHostException e) {
@@ -61,23 +64,13 @@ public class MongoManager {
         return dbObj.toString();
     }
 
-    public void updateJsonWithId(String id, String field,  String value) {
-        BasicDBObject query = new BasicDBObject();
-        query.put("_id", new ObjectId(id));
-
-        BasicDBObject updateDocument = new BasicDBObject();
-        updateDocument.append("$set", new BasicDBObject().append(field, value));
-
-        results.update(query, updateDocument);
-    }
-
     /**
      * Close connection to DB
      */
     public void closeConnection() {
         if (mongoClient!= null) {
             mongoClient.close();
-            System.out.println("Connection was closed!");
+            logger.info("Connection to DB was closed.");
         }
     }
 

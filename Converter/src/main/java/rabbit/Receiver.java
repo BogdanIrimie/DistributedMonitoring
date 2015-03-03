@@ -68,6 +68,7 @@ public class Receiver {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
+                logger.info("Received message over the queue");
                 Job job = JsonConverter.jsonStringToObject(message, Job.class);
 
                 MongoManager mm = new MongoManager();
@@ -86,7 +87,7 @@ public class Receiver {
                 sender.Send(job);
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
-                System.out.println("[X] Done");
+                logger.info("Sent message over queue.");
             } catch (InterruptedException e) {
                 logger.error(e.getMessage());
             } catch (IOException e) {
