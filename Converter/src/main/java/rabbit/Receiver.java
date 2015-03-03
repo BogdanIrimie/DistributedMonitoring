@@ -79,6 +79,7 @@ public class Receiver {
 
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
                 String jsonResult = XmlToJsonConverter.convertXmlToJson(measurement.getXmlDocument());
+                logger.info("Converted results: " + jsonResult);
 
                 mm.updateJsonWithId(job.getId(), "jsonDocument", jsonResult);
                 mm.closeConnection();
