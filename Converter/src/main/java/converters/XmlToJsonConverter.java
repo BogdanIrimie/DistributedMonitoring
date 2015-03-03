@@ -3,11 +3,14 @@ package converters;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Convert data from xml to json fromat.
  */
 public class XmlToJsonConverter {
+    private static final Logger logger = LoggerFactory.getLogger(XmlToJsonConverter.class);
 
     /**
      * Converts String in xml format to json format
@@ -22,7 +25,7 @@ public class XmlToJsonConverter {
             jsonString = jsonObj.toString();
         }
         catch (JSONException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         return jsonString;
     }

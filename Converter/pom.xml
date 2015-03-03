@@ -14,6 +14,8 @@
         <mongoDbVersion>2.12.5</mongoDbVersion>
         <junitVersion>4.12</junitVersion>
         <jsonOrgVersion>20140107</jsonOrgVersion>
+        <slf4jVersion>1.7.10</slf4jVersion>
+        <logBackVersion>1.1.2</logBackVersion>
     </properties>
 
 
@@ -68,6 +70,27 @@
             <artifactId>json</artifactId>
             <version>${jsonOrgVersion}</version>
         </dependency>
+
+        <!-- Simple Logging Facade for Java SFL4J -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
+
+        <!-- LOGBack -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logBackVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logBackVersion}</version>
+        </dependency>
+        <!-- End of LOGBack -->
 
     </dependencies>
 

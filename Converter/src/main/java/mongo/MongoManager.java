@@ -3,10 +3,13 @@ package mongo;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.UnknownHostException;
 
 public class MongoManager {
+    private static final Logger logger = LoggerFactory.getLogger(MongoManager.class);
     private MongoClient mongoClient = null;
     private DBCollection results = null;
     private DB db = null;
@@ -28,7 +31,7 @@ public class MongoManager {
             db = mongoClient.getDB("monitoringResults");
             results = db.getCollection("testData");
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 

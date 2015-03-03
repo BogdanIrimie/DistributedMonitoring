@@ -6,11 +6,14 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 import converters.JsonConverter;
 import datamodel.Job;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 
 public class Sender {
+    private static final Logger logger = LoggerFactory.getLogger(Sender.class);
     private final String hostName;
     private final String queueName;
     private Connection connection;
@@ -31,7 +34,7 @@ public class Sender {
 
             channel.queueDeclare(queueName, durable, false, false, null);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
 
     }
@@ -43,7 +46,7 @@ public class Sender {
                     MessageProperties.PERSISTENT_TEXT_PLAIN,
                     JsonConverter.objectToJsonString(job).getBytes());
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
 
     }
@@ -58,7 +61,7 @@ public class Sender {
                 connection.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
 
     }
