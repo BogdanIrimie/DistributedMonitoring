@@ -2,6 +2,8 @@ package converters;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -9,6 +11,7 @@ import java.io.IOException;
  * Convert objects from and to json.
  */
 public class JsonConverter {
+    private static final Logger logger = LoggerFactory.getLogger(JsonConverter.class);
     private static ObjectMapper mapper = new ObjectMapper();
 
     /**
@@ -22,7 +25,7 @@ public class JsonConverter {
         try {
             objToJson = mapper.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         return objToJson;
     }
@@ -41,7 +44,7 @@ public class JsonConverter {
             object = mapper.readValue(jsonString, objClass);
         }
         catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
 
         return object;

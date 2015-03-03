@@ -9,6 +9,8 @@ import datamodel.Job;
 import datamodel.Measurement;
 import httpmanager.RequestSenderWithMessage;
 import mongo.MongoManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -16,6 +18,7 @@ import java.io.IOException;
  * Received messages that come from a queue
  */
 public class Receiver {
+    private static final Logger logger = LoggerFactory.getLogger(Receiver.class);
     private Channel channel;
     private QueueingConsumer consumer;
     private Connection connection;
@@ -52,7 +55,7 @@ public class Receiver {
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 
@@ -79,15 +82,15 @@ public class Receiver {
                     RequestSenderWithMessage.sendRequest(measurement.getResponseAddress(), measurement.getJsonDocument());
                 }
                 else {
-                    System.out.println(measurement.getJsonDocument());
+                    logger.info(measurement.getJsonDocument());
                 }
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
-                System.out.println("[X] Done");
+                logger.info("Message received!");
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(), e);
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(), e);
             }
         }
     }
@@ -101,7 +104,7 @@ public class Receiver {
                 connection.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 

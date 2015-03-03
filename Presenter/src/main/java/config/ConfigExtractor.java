@@ -1,5 +1,8 @@
 package config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
@@ -9,6 +12,7 @@ import java.util.Properties;
  * Extract configuration/properties  from conf.properties
  */
 public class ConfigExtractor {
+    private static final Logger logger = LoggerFactory.getLogger(ConfigExtractor.class);
     private final String configFile = "../conf.properties";
     private static Properties configProp;
     private static ConfigExtractor configInstance = null;
@@ -20,7 +24,7 @@ public class ConfigExtractor {
         try {
             configProp.load(in);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
 
     }

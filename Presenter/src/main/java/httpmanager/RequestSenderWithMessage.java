@@ -1,5 +1,8 @@
 package httpmanager;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -7,6 +10,7 @@ import java.net.URLConnection;
 
 public class RequestSenderWithMessage {
 
+    private static final Logger logger = LoggerFactory.getLogger(RequestSenderWithMessage.class);
     private final static String charset = java.nio.charset.StandardCharsets.UTF_8.name();
 
     public RequestSenderWithMessage() {}
@@ -27,14 +31,14 @@ public class RequestSenderWithMessage {
             while ((line = br.readLine()) != null) {
                 responseString.append(line);
             }
-            System.out.println(responseString.toString());
+            logger.info(responseString.toString());
 
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 }
