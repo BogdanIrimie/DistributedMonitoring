@@ -26,4 +26,24 @@ public class RabbitMqConfigTest {
         assertTrue(queue.length() > 0);
     }
 
+    /*
+     * Retrieve username
+     */
+    @Test
+    public void retrieveUser() {
+        RabbitMqConfig rmqConf = new RabbitMqConfig();
+        String user = rmqConf.getUsername();
+        assertTrue(user.length() > 0);
+    }
+
+    /**
+     * Retrieve password.
+     */
+    @Test
+    public void retrievePassword() {
+        RabbitMqConfig rmqConf = new RabbitMqConfig();
+        String password = rmqConf.getPassword();
+        assertTrue(password.length() > 0);
+    }
+
 }
