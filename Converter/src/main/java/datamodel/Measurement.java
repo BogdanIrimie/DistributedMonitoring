@@ -8,8 +8,8 @@ public class Measurement {
     private String clientId;
     private String responseAddress;
     private String command;
-    private String xmlDocument;
-    private String jsonDocument;
+    private String xmlResult;
+    private String jsonResult;
 
     public Measurement() {}
 
@@ -52,20 +52,20 @@ public class Measurement {
         this.responseAddress = responseAddress;
     }
 
-    public String getXmlDocument() {
-        return xmlDocument;
+    public String getXmlResult() {
+        return xmlResult;
     }
 
-    public void setXmlDocument(String xmlDocument) {
-        this.xmlDocument = xmlDocument;
+    public void setXmlResult(String xmlResult) {
+        this.xmlResult = xmlResult;
     }
 
-    public String getJsonDocument() {
-        return jsonDocument;
+    public String getJsonResult() {
+        return jsonResult;
     }
 
-    public void setJsonDocument(String jsonDocument) {
-        this.jsonDocument = jsonDocument;
+    public void setJsonResult(String jsonResult) {
+        this.jsonResult = jsonResult;
     }
 
 }

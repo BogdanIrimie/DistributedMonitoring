@@ -83,11 +83,11 @@ public class Receiver {
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
 
                 if (measurement.getResponseAddress() != null && measurement.getResponseAddress().trim().length() > 0) {
-                    RequestSenderWithMessage.sendRequest(measurement.getResponseAddress(), measurement.getJsonDocument());
+                    RequestSenderWithMessage.sendRequest(measurement.getResponseAddress(), measurement.getJsonResult());
                     logger.info("Results were sent to: " + measurement.getResponseAddress());
                 }
                 else {
-                    logger.info(measurement.getJsonDocument());
+                    logger.info(measurement.getJsonResult());
                 }
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);

@@ -81,10 +81,10 @@ public class Receiver {
                 String measurementString = mm.pullJsonById(job.getId());
 
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
-                String jsonResult = XmlToJsonConverter.convertXmlToJson(measurement.getXmlDocument());
+                String jsonResult = XmlToJsonConverter.convertXmlToJson(measurement.getXmlResult());
                 logger.info("Converted results: " + jsonResult);
 
-                mm.updateJsonWithId(job.getId(), "jsonDocument", jsonResult);
+                mm.updateJsonWithId(job.getId(), "jsonResult", jsonResult);
                 mm.closeConnection();
 
                 // send job over the queue

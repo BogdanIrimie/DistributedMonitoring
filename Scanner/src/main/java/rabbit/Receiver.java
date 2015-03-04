@@ -77,7 +77,7 @@ public class Receiver {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
-                logger.info("Received message over queue.");
+       logger.info("Received message over queue.");
                 Job job = JsonConverter.jsonStringToObject(message, Job.class);
 
                 MongoManager mm = new MongoManager();
@@ -86,7 +86,7 @@ public class Receiver {
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
                 String xmlResult = executeCommand(measurement.getCommand());
 
-                mm.updateJsonWithId(job.getId(), "xmlDocument", xmlResult);
+                mm.updateJsonWithId(job.getId(), "xmlResult", xmlResult);
                 mm.closeConnection();
 
                 // send job over the queue
