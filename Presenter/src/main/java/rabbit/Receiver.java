@@ -80,9 +80,6 @@ public class Receiver {
                 String measurementString = mm.pullJsonById(job.getId());
                 mm.closeConnection();
 
-                // ugly remove of oid
-                measurementString = measurementString.replace("{ \"$oid\" : \""  + job.getId() + "\"}", "\"" + job.getId() + "\"");
-
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
 
                 if (measurement.getResponseAddress() != null && measurement.getResponseAddress().trim().length() > 0) {

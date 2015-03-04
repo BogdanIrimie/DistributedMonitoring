@@ -83,9 +83,6 @@ public class Receiver {
                 MongoManager mm = new MongoManager();
                 String measurementString = mm.pullJsonById(job.getId());
 
-                // ugly remove of oid
-                measurementString = measurementString.replace("{ \"$oid\" : \""  + job.getId() + "\"}", "\"" + job.getId() + "\"");
-
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
                 String xmlResult = executeCommand(measurement.getCommand());
 

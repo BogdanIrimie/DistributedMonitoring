@@ -4,7 +4,7 @@ package datamodel;
  * Model for data in DB
  */
 public class Measurement {
-    private String _id;
+    private MongoId _id;
     private String clientId;
     private String responseAddress;
     private String command;
@@ -20,11 +20,11 @@ public class Measurement {
     }
 
 
-    public String get_id() {
+    public MongoId get_id() {
         return _id;
     }
 
-    public void set_id(String _id) {
+    public void set_id(MongoId _id) {
         this._id = _id;
     }
 
