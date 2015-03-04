@@ -30,7 +30,6 @@ public class RabbitMqConfig {
         return username;
     }
 
-
     public String getPassword() {
         return password;
     }
