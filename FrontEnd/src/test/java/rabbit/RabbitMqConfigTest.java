@@ -26,7 +26,7 @@ public class RabbitMqConfigTest {
         assertTrue(queue.length() > 0);
     }
 
-    /*
+    /**
      * Retrieve username
      */
     @Test

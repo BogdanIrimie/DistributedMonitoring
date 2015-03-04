@@ -24,6 +24,8 @@ public class Receiver {
     private Connection connection;
     private final String hostName;
     private final String queueName;
+    private final String userName;
+    private final String password;
     private RabbitMqConfig rmqConf = new RabbitMqConfig();
 
     /**
@@ -32,9 +34,13 @@ public class Receiver {
     public Receiver() {
         hostName = rmqConf.getHost();
         queueName = rmqConf.getReceiveQueue();
+        userName = rmqConf.getUsername();
+        password = rmqConf.getPassword();
         
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(hostName);
+        factory.setUsername(userName);
+        factory.setPassword(password);
 
         try {
             connection = factory.newConnection();
