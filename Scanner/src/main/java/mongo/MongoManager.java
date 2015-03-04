@@ -87,7 +87,7 @@ public class MongoManager {
     public void closeConnection() {
         if (mongoClient!= null) {
             mongoClient.close();
-            logger.info("Connection was closed.");
+            logger.info("Connection to DB was closed.");
         }
     }
 
