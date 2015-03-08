@@ -200,7 +200,7 @@
             <use xlink:href="#627174f28b2e49df870049395a84ce0a" xmlns:xlink="http://www.w3.org/1999/xlink" p:name="outArrow1" id="793f563990804ab7a46e9f7c320c1fc7" style="stroke: rgb(102, 102, 102); stroke-opacity: 1; stroke-width: 2;"/>
             <text p:name="text" id="76f793a064534f3d935a31de08f10049" style="fill: rgb(0, 0, 0); fill-opacity: 1; font-family: Helvetica; font-size: 12px; font-weight: normal; font-style: normal; text-decoration: none;">
                 <textPath xlink:href="#627174f28b2e49df870049395a84ce0a" xmlns:xlink="http://www.w3.org/1999/xlink" startOffset="50%" text-anchor="middle" alignment-baseline="middle">
-                    <tspan dy="-4" p:name="textSpan" id="c0d4349e4b7b4c98b16cfd988806d9a1" dx="-16"></tspan>
+                    <tspan dy="-4" p:name="textSpan" id="c0d4349e4b7b4c98b16cfd988806d9a1" dx="-16"/>
                 </textPath>
             </text>
 
@@ -235,7 +235,7 @@
             <use xlink:href="#5b19d54a08584e74866b7c922fb1de14" xmlns:xlink="http://www.w3.org/1999/xlink" p:name="outArrow1" id="985ea02c706a426e882f2d823425d180" style="stroke: rgb(102, 102, 102); stroke-opacity: 1; stroke-width: 2;"/>
             <text p:name="text" id="7e2eafb20f8442d39ab3564c6ee32dff" style="fill: rgb(0, 0, 0); fill-opacity: 1; font-family: Helvetica; font-size: 12px; font-weight: normal; font-style: normal; text-decoration: none;">
                 <textPath xlink:href="#5b19d54a08584e74866b7c922fb1de14" xmlns:xlink="http://www.w3.org/1999/xlink" startOffset="50%" text-anchor="middle" alignment-baseline="middle">
-                    <tspan dy="-4" p:name="textSpan" id="139f7343055a43588c80a07b8811ac50" dx="-16"></tspan>
+                    <tspan dy="-4" p:name="textSpan" id="139f7343055a43588c80a07b8811ac50" dx="-16"/>
                 </textPath>
             </text>
 
@@ -267,7 +267,7 @@
             <use xlink:href="#c5e0fed0bc604aa580a079219d8deed0" xmlns:xlink="http://www.w3.org/1999/xlink" p:name="outArrow1" id="4c804a41cd2e47588d5e227b229d4ed8" style="stroke: rgb(102, 102, 102); stroke-opacity: 1; stroke-width: 2;"/>
             <text p:name="text" id="3c20cd64092248b2967a3daabde4e275" style="fill: rgb(0, 0, 0); fill-opacity: 1; font-family: Helvetica; font-size: 12px; font-weight: normal; font-style: normal; text-decoration: none;">
                 <textPath xlink:href="#c5e0fed0bc604aa580a079219d8deed0" xmlns:xlink="http://www.w3.org/1999/xlink" startOffset="50%" text-anchor="middle" alignment-baseline="middle">
-                    <tspan dy="-4" p:name="textSpan" id="4d1812b8254a45cf860ad8514fdaef0b" dx="-16"></tspan>
+                    <tspan dy="-4" p:name="textSpan" id="4d1812b8254a45cf860ad8514fdaef0b" dx="-16"/>
                 </textPath>
             </text>
 
@@ -279,7 +279,7 @@
             <use xlink:href="#76f2bd6859d8421b8e8dd269b788a33f" xmlns:xlink="http://www.w3.org/1999/xlink" p:name="outArrow1" id="795828f30f7f4d34981fe002dfb07bc8" style="stroke: rgb(102, 102, 102); stroke-opacity: 1; stroke-width: 2;"/>
             <text p:name="text" id="169c24e848ec449e87fe9702a4be63d3" style="fill: rgb(0, 0, 0); fill-opacity: 1; font-family: Helvetica; font-size: 12px; font-weight: normal; font-style: normal; text-decoration: none;">
                 <textPath xlink:href="#76f2bd6859d8421b8e8dd269b788a33f" xmlns:xlink="http://www.w3.org/1999/xlink" startOffset="50%" text-anchor="middle" alignment-baseline="middle">
-                    <tspan dy="-4" p:name="textSpan" id="0bb7a8356e20486c8da9da7523fa0e7f" dx="-16"></tspan>
+                    <tspan dy="-4" p:name="textSpan" id="0bb7a8356e20486c8da9da7523fa0e7f" dx="-16"/>
                 </textPath>
             </text>
 
@@ -395,7 +395,7 @@
             <use xlink:href="#3468e7a119a04539a0d6a565f68fe0a8" xmlns:xlink="http://www.w3.org/1999/xlink" p:name="outArrow1" id="2298227046e642cf824779fbba52bd8a" style="stroke: rgb(102, 102, 102); stroke-opacity: 1; stroke-width: 2;"/>
             <text p:name="text" id="34e7324221174405b694fe92d855bc53" style="fill: rgb(0, 0, 0); fill-opacity: 1; font-family: Helvetica; font-size: 12px; font-weight: normal; font-style: normal; text-decoration: none;">
                 <textPath xlink:href="#3468e7a119a04539a0d6a565f68fe0a8" xmlns:xlink="http://www.w3.org/1999/xlink" startOffset="50%" text-anchor="middle" alignment-baseline="middle">
-                    <tspan dy="-4" p:name="textSpan" id="a52eec1a314d4aa68df1e439a4afdd11" dx="-16"></tspan>
+                    <tspan dy="-4" p:name="textSpan" id="a52eec1a314d4aa68df1e439a4afdd11" dx="-16"/>
                 </textPath>
             </text>
 
@@ -407,15 +407,15 @@
             <use xlink:href="#9d0f164c7e974a9499eb2067ab548b84" xmlns:xlink="http://www.w3.org/1999/xlink" p:name="outArrow1" id="2c52a66a79824e84abde14a010bcc5a8" style="stroke: rgb(102, 102, 102); stroke-opacity: 1; stroke-width: 2;"/>
             <text p:name="text" id="8ba04d28e8174dc2a2b5f51515dc3fd5" style="fill: rgb(0, 0, 0); fill-opacity: 1; font-family: Helvetica; font-size: 12px; font-weight: normal; font-style: normal; text-decoration: none;">
                 <textPath xlink:href="#9d0f164c7e974a9499eb2067ab548b84" xmlns:xlink="http://www.w3.org/1999/xlink" startOffset="50%" text-anchor="middle" alignment-baseline="middle">
-                    <tspan dy="-4" p:name="textSpan" id="bb3a28f7bf4f4ebe80b36f76a3a487ff" dx="-16"></tspan>
+                    <tspan dy="-4" p:name="textSpan" id="bb3a28f7bf4f4ebe80b36f76a3a487ff" dx="-16"/>
                 </textPath>
             </text>
 
-        </g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="Evolus.Common:RichTextBoxV2" id="e05bdeb717fa490fb19948da9092de50" transform="matrix(1,0,0,1,27,936)"><p:metadata><p:property name="width"><![CDATA[200,0]]></p:property><p:property name="fixedWidth"><![CDATA[false]]></p:property><p:property name="textContent"><![CDATA[Client sends a job to the front-end. <br />The <span style="font-weight: bold;">job</span> <span style="font-weight: bold;">contain</span> the <span style="font-weight: bold;">URL</span> he want to be notified when the job is finished<strong><br /><br /></strong>Data is stored in the DB, only URLs to the data are passed in the queues.<br /><br />When the job is finished, a POST request is sent back to the client.<br /><br />After every operation, we can save the state in the DB, so we can know in <br />what state is a job at a given time (or we could keep a history of the states and the time-stamp) <br />]]></p:property><p:property name="textFont"><![CDATA[sans-serif|normal|normal|13px|none]]></p:property><p:property name="textColor"><![CDATA[#000000FF]]></p:property><p:property name="customStyle"><![CDATA[
+        </g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="Evolus.Common:RichTextBoxV2" id="e05bdeb717fa490fb19948da9092de50" transform="matrix(1,0,0,1,6,941)"><p:metadata><p:property name="width"><![CDATA[200,0]]></p:property><p:property name="fixedWidth"><![CDATA[false]]></p:property><p:property name="textContent"><![CDATA[The client sends a job to the front-end. <br />The <span style="font-weight: bold;">job</span> <span style="font-weight: bold;">contains</span> a <span style="font-weight: bold;">client id</span>, the <span style="font-weight: bold;">command</span> to be executed and the <span style="font-weight: bold;">URL</span> where to notify the client when the job is finished<strong>.<br /><br /></strong>Data is stored in the DB, only ids to the documents are passed in the queues.<br /><br />When the job is finished, a POST request is sent back to the client (the URL that was provided in the job request).<br /><br />After every operation, we can save the state in the DB, so we can know in <br />what state is a job at a given time (or we could keep a history of the states and the timestamp) <br />]]></p:property><p:property name="textFont"><![CDATA[sans-serif|normal|normal|13px|none]]></p:property><p:property name="textColor"><![CDATA[#000000FF]]></p:property><p:property name="customStyle"><![CDATA[
                 ]]></p:property></p:metadata>
 
-            <foreignObject x="0" y="0" width="628" height="153" p:name="htmlObject" id="5e172af7d46c4025b0b5391711dc4ac9" style="color: rgb(0, 0, 0); opacity: 1; font-family: sans-serif; font-size: 13px; font-weight: normal; font-style: normal; text-decoration: none;">
-                <div xmlns="http://www.w3.org/1999/xhtml" p:name="textDiv" id="68cb0bb40ce946aeab720c5cc55d6bb8" style="display: inline-block; white-space: nowrap; text-decoration: none;"><div xmlns="http://www.w3.org/1999/xhtml">Client sends a job to the front-end. <br />The <span style="font-weight: bold;">job</span> <span style="font-weight: bold;">contain</span> the <span style="font-weight: bold;">URL</span> he want to be notified when the job is finished<strong><br /><br /></strong>Data is stored in the DB, only URLs to the data are passed in the queues.<br /><br />When the job is finished, a POST request is sent back to the client.<br /><br />After every operation, we can save the state in the DB, so we can know in <br />what state is a job at a given time (or we could keep a history of the states and the time-stamp) <br /></div></div>
+            <foreignObject x="0" y="0" width="813" height="153" p:name="htmlObject" id="5e172af7d46c4025b0b5391711dc4ac9" style="color: rgb(0, 0, 0); opacity: 1; font-family: sans-serif; font-size: 13px; font-weight: normal; font-style: normal; text-decoration: none;">
+                <div xmlns="http://www.w3.org/1999/xhtml" p:name="textDiv" id="68cb0bb40ce946aeab720c5cc55d6bb8" style="display: inline-block; white-space: nowrap; text-decoration: none;"><div xmlns="http://www.w3.org/1999/xhtml">The client sends a job to the front-end. <br />The <span style="font-weight: bold;">job</span> <span style="font-weight: bold;">contains</span> a <span style="font-weight: bold;">client id</span>, the <span style="font-weight: bold;">command</span> to be executed and the <span style="font-weight: bold;">URL</span> where to notify the client when the job is finished<strong>.<br /><br /></strong>Data is stored in the DB, only ids to the documents are passed in the queues.<br /><br />When the job is finished, a POST request is sent back to the client (the URL that was provided in the job request).<br /><br />After every operation, we can save the state in the DB, so we can know in <br />what state is a job at a given time (or we could keep a history of the states and the timestamp) <br /></div></div>
             </foreignObject>
         </g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="Evolus.Common:PlainTextV2" id="a8875d2766384ce4bbeea0096bc30c26" transform="matrix(1,0,0,1,243,144)"><p:metadata><p:property name="disabled"><![CDATA[false]]></p:property><p:property name="width"><![CDATA[100,0]]></p:property><p:property name="fixedWidth"><![CDATA[false]]></p:property><p:property name="label"><![CDATA[Pool of front-end machines]]></p:property><p:property name="textColor"><![CDATA[#000000FF]]></p:property><p:property name="textFont"><![CDATA[sans-serif|normal|normal|13px|none]]></p:property><p:property name="textAlign"><![CDATA[0,0]]></p:property></p:metadata>
             <rect x="0" y="0" style="fill: none; stroke: none; visibility: hidden; display: none;" p:name="bgRect" id="7c39e3a3b2d440a981e4bb46bc4b395c" width="0" height="0"/>
