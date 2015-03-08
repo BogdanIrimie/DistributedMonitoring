@@ -12,9 +12,16 @@ public class Controller {
     public TextArea results;
 
     public void runCommand(ActionEvent actionEvent) {
+        results.setText("");
         ws.setResults(results);
-        String commandString = command.getText();
-        RequestSender.sendRequest("http://localhost:8000/job", "13", commandString, "http://localhost:8008/jobFinished");
+        Thread th = new Thread() {
+            @Override
+            public void run() {
+                String commandString = command.getText();
+                RequestSender.sendRequest("http://localhost:8000/job", "13", commandString, "http://localhost:8008/jobFinished");
+            }
+        };
+        th.start();
     }
 
 }
