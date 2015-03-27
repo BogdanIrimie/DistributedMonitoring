@@ -53,11 +53,11 @@ public class Sender {
     }
 
     /**
-     * send messages over queue and DB.
+     * Send messages over queue and DB.
      * @param clientId id of the client
      * @param message command to be executed
      */
-    public void send(String clientId, String message, String responseAddress) {
+    public String send(String clientId, String message, String responseAddress) {
         Measurement measurement = new Measurement(clientId, message, responseAddress);
         String measurementString = JsonConverter.objectToJsonString(measurement);
 
@@ -74,7 +74,7 @@ public class Sender {
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }
-
+        return id;
     }
 
     /**
