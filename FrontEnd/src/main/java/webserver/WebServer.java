@@ -3,6 +3,8 @@ package webserver;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import converters.JsonConverter;
+import datamodel.RequestResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rabbit.Sender;
@@ -50,15 +52,23 @@ public class WebServer {
             String command = URLDecoder.decode(params.get("command"), CHARSET);
             String responseAddress = URLDecoder.decode(params.get("responseAddress"), CHARSET);
 
+            RequestResponse requestResponse = new RequestResponse();
             if ((id != null) && (command != null)) {
                 Sender sender = new Sender();
                 String jobId = sender.send(id, command, responseAddress);
                 sender.closeConnection();
-                response = "Request valid, processing will start soon. Job id is " + jobId + "\n";
+
+                requestResponse.setStatus("valid");
+                requestResponse.setJobId(jobId);
+
+                response = JsonConverter.objectToJsonString(requestResponse);
                 t.sendResponseHeaders(202, response.length());
             }
             else {
-                response = "Request is invalid, id or command not present. Valid format could be: id=3&command=nmap%20info.uvt.ro\n";
+                requestResponse.setStatus("invalid");
+                requestResponse.setJobId(null);
+
+                response = JsonConverter.objectToJsonString(requestResponse);
                 t.sendResponseHeaders(400, response.length());
             }
 
