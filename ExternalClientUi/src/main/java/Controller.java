@@ -28,7 +28,6 @@ public class Controller {
 
                 String requestJsonString = JsonConverter.objectToJsonString(request);
 
-                //RequestSender.sendRequest("http://localhost:8000/job", "13", commandString, "http://localhost:8008/jobFinished");
                 RequestSender.sendRequest("http://localhost:8000/job", request);
             }
         };
