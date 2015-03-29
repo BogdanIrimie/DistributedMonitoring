@@ -1,3 +1,5 @@
+import converters.JsonConverter;
+import datamodel.Request;
 import httpserver.RequestSender;
 import httpserver.WebServer;
 import javafx.event.ActionEvent;
@@ -18,7 +20,16 @@ public class Controller {
             @Override
             public void run() {
                 String commandString = command.getText();
-                RequestSender.sendRequest("http://localhost:8000/job", "13", commandString, "http://localhost:8008/jobFinished");
+
+                Request request = new Request();
+                request.setClientId("13");
+                request.setCommand(commandString);
+                request.setResponseAddress("http://localhost:8008/jobFinished");
+
+                String requestJsonString = JsonConverter.objectToJsonString(request);
+
+                //RequestSender.sendRequest("http://localhost:8000/job", "13", commandString, "http://localhost:8008/jobFinished");
+                RequestSender.sendRequest("http://localhost:8000/job", request);
             }
         };
         th.start();
