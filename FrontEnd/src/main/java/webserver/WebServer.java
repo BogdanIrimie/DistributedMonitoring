@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import converters.JsonConverter;
+import datamodel.Request;
 import datamodel.RequestResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,14 +49,13 @@ public class WebServer {
             String paramQuery = t.getRequestURI().getQuery();
             Map<String, String> params = queryToMap(paramQuery);
 
-            String id = URLDecoder.decode(params.get("id"), CHARSET);
-            String command = URLDecoder.decode(params.get("command"), CHARSET);
-            String responseAddress = URLDecoder.decode(params.get("responseAddress"), CHARSET);
+            String requestJsonString = URLDecoder.decode(params.get("request"), CHARSET);
+            Request request = JsonConverter.jsonStringToObject(requestJsonString, Request.class);
 
             RequestResponse requestResponse = new RequestResponse();
-            if ((id != null) && (command != null)) {
+            if ((request.getClientId() != null) && (request.getCommand() != null)) {
                 Sender sender = new Sender();
-                String jobId = sender.send(id, command, responseAddress);
+                String jobId = sender.send(request);
                 sender.closeConnection();
 
                 requestResponse.setStatus("valid");
