@@ -10,6 +10,7 @@
 
     <properties>
         <jsonOrgVersion>20140107</jsonOrgVersion>
+        <jacksonVersion>2.5.0</jacksonVersion>
     </properties>
 
     <dependencies>
@@ -18,6 +19,26 @@
             <artifactId>json</artifactId>
             <version>${jsonOrgVersion}</version>
         </dependency>
+
+        <!-- Jackson dependencies -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jacksonVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jacksonVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jacksonVersion}</version>
+        </dependency>
+        <!-- End of Jackson dependencies -->
     </dependencies>
 
 </project>
