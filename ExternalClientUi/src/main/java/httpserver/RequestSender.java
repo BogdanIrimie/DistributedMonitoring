@@ -1,5 +1,8 @@
 package httpserver;
 
+import converters.JsonConverter;
+import datamodel.Request;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,7 +39,7 @@ public class RequestSender {
             }
             System.out.println(responseString.toString());
 
-        }catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -45,5 +48,31 @@ public class RequestSender {
         }
     }
 
+    private final static String charset = java.nio.charset.StandardCharsets.UTF_8.name();
 
+    public static void sendRequest(String url, Request request) {
+        String charset = StandardCharsets.UTF_8.name();
+        String requestJsonString = JsonConverter.objectToJsonString(request);
+        String requestParameter = "request=" + requestJsonString;
+
+
+        try {
+            String encodedRequest = URLEncoder.encode(requestParameter, charset);
+
+            URLConnection connection = new URL(url + "?" + encodedRequest).openConnection();
+            connection.setRequestProperty("Accept-Charset", charset);
+
+            InputStream response = connection.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(response));
+            String line;
+            StringBuilder responseString = new StringBuilder();
+            while ((line = br.readLine()) != null) {
+                responseString.append(line);
+            }
+            System.out.println(responseString.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
