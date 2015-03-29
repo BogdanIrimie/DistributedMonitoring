@@ -7,6 +7,7 @@ import com.rabbitmq.client.MessageProperties;
 import converters.JsonConverter;
 import datamodel.Measurement;
 import datamodel.Job;
+import datamodel.Request;
 import mongo.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,11 +55,11 @@ public class Sender {
 
     /**
      * Send messages over queue and DB.
-     * @param clientId id of the client
-     * @param message command to be executed
+     * @param request request from the client
      */
-    public String send(String clientId, String message, String responseAddress) {
-        Measurement measurement = new Measurement(clientId, message, responseAddress);
+    public String send(Request request) {
+        Measurement measurement =
+                new Measurement(request.getClientId(), request.getCommand(), request.getResponseAddress());
         String measurementString = JsonConverter.objectToJsonString(measurement);
 
         //put data in DB
