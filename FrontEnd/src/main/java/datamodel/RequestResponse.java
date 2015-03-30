@@ -5,14 +5,14 @@ package datamodel;
  */
 public class RequestResponse {
 
-    private String status;
+    private Status status;
     private String jobId;
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

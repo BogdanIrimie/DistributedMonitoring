@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpServer;
 import converters.JsonConverter;
 import datamodel.Request;
 import datamodel.RequestResponse;
+import datamodel.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rabbit.Sender;
@@ -58,14 +59,14 @@ public class WebServer {
                 String jobId = sender.send(request);
                 sender.closeConnection();
 
-                requestResponse.setStatus("valid");
+                requestResponse.setStatus(Status.valid);
                 requestResponse.setJobId(jobId);
 
                 response = JsonConverter.objectToJsonString(requestResponse);
                 t.sendResponseHeaders(202, response.length());
             }
             else {
-                requestResponse.setStatus("invalid");
+                requestResponse.setStatus(Status.invalid);
                 requestResponse.setJobId(null);
 
                 response = JsonConverter.objectToJsonString(requestResponse);
