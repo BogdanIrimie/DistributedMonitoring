@@ -6,13 +6,16 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import converters.JsonConverter;
 import converters.XmlToJsonConverter;
+import datamodel.EventHubMessage;
 import datamodel.Job;
 import datamodel.Measurement;
 import mongo.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import processors.EventHubAdapter;
+import processors.TlsEventHubAdapter;
 
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Received messages that come from a queue
@@ -84,7 +87,15 @@ public class Receiver {
                 String jsonResult = XmlToJsonConverter.convertXmlToJson(measurement.getXmlResult());
                 logger.info("Converted results: " + jsonResult);
 
-                mm.updateJsonWithId(job.getId(), "jsonResult", jsonResult);
+                TlsEventHubAdapter tlsAdapter = new TlsEventHubAdapter();
+                String filteredJson = tlsAdapter.process(jsonResult, null);
+
+                EventHubMessage eventHubMessage =
+                        EventHubAdapter.createEventHubMessage(filteredJson, job, measurement);
+
+                String eventHubMessageString = JsonConverter.objectToJsonString(eventHubMessage);
+
+                mm.updateJsonWithId(job.getId(), "jsonResult", eventHubMessageString);
                 mm.closeConnection();
 
                 // send job over the queue
@@ -96,6 +107,8 @@ public class Receiver {
                 logger.error(e.getMessage());
             } catch (IOException e) {
                 logger.error(e.getMessage(), e);
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
             }
         }
     }
