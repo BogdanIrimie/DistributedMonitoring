@@ -17,7 +17,7 @@ public class RequestSender {
     public RequestSender() {
     }
 
-    public static void sendRequest(String url, Request request) {
+    public static String sendRequest(String url, Request request) {
         String charset = StandardCharsets.UTF_8.name();
         String requestJsonString = JsonConverter.objectToJsonString(request);
         String requestParameter = "request=" + requestJsonString;
@@ -36,7 +36,8 @@ public class RequestSender {
             while ((line = br.readLine()) != null) {
                 responseString.append(line);
             }
-            System.out.println(responseString.toString());
+            // System.out.println(responseString.toString());
+            return responseString.toString();
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -45,5 +46,6 @@ public class RequestSender {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "";
     }
 }

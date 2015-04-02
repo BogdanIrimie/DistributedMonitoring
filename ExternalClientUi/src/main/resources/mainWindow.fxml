@@ -12,7 +12,8 @@
             <Label text="Command" prefWidth="80"/>
             <TextField fx:id="command" prefWidth="400" />
         </HBox>
-        <TextArea fx:id="results" prefWidth="480" prefHeight="520" editable="false"/>
+        <TextField fx:id="response" prefWidth="480" editable="false"/>
+        <TextArea fx:id="results" prefWidth="480" prefHeight="480" editable="false"/>
         <Button fx:id="runCommand" text="Run Command" prefWidth="490" onAction="#runCommand"/>
     </VBox>
 
