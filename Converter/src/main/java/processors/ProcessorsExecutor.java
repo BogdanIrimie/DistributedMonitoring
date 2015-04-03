@@ -31,21 +31,23 @@ public class ProcessorsExecutor {
             }
         }
 
-        try {
-            Class<?> cls = Class.forName(measurement.getAdapter());
-            Method method = cls.getDeclaredMethod("adaptMessage", new Class[] {String.class, Measurement.class});
-            Object obj = cls.newInstance();
-            result = (String)method.invoke(obj, new Object[] {result, measurement});
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+        if (measurement.getAdapter() != null) {
+            try {
+                Class<?> cls = Class.forName(measurement.getAdapter());
+                Method method = cls.getDeclaredMethod("adaptMessage", new Class[] {String.class, Measurement.class});
+                Object obj = cls.newInstance();
+                result = (String)method.invoke(obj, new Object[] {result, measurement});
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
 
         return result;
