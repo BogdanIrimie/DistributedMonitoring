@@ -57,8 +57,13 @@ public class WebServer {
                 @Override
                 public void run() {
                     // update UI:
-                    JSONObject json = new JSONObject(receivedData.toString());
-                    results.setText(json.toString(4));
+                    try {
+                        JSONObject json = new JSONObject(receivedData.toString());
+                        results.setText(json.toString(4));
+                    }
+                    catch (Exception e) {
+                        results.setText(receivedData.toString());
+                    }
                 }
             });
 
