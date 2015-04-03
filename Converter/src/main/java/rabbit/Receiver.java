@@ -108,8 +108,6 @@ public class Receiver {
                 logger.error(e.getMessage());
             } catch (IOException e) {
                 logger.error(e.getMessage(), e);
-            } catch (Throwable throwable) {
-                throwable.printStackTrace();
             }
         }
     }
