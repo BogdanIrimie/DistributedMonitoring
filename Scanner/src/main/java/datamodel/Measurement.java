@@ -6,8 +6,10 @@ package datamodel;
 public class Measurement {
     private MongoId _id;
     private String clientId;
-    private String responseAddress;
     private String command;
+    private String responseAddress;
+    private String[] processors;
+    private String adapter;
     private String rawResult;
     private String processedResult;
 
@@ -18,7 +20,6 @@ public class Measurement {
         this.command = command;
         this.responseAddress = responseAddress;
     }
-
 
     public MongoId get_id() {
         return _id;
@@ -50,6 +51,22 @@ public class Measurement {
 
     public void setResponseAddress(String responseAddress) {
         this.responseAddress = responseAddress;
+    }
+
+    public String[] getProcessors() {
+        return processors;
+    }
+
+    public void setProcessors(String[] processors) {
+        this.processors = processors;
+    }
+
+    public String getAdapter() {
+        return adapter;
+    }
+
+    public void setAdapter(String adapter) {
+        this.adapter = adapter;
     }
 
     public String getRawResult() {

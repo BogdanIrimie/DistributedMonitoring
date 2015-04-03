@@ -8,6 +8,8 @@ public class Request {
     private String clientId;
     private String command;
     private String responseAddress;
+    private String[] processors;
+    private String adapter;
 
     public String getClientId() {
         return clientId;
@@ -31,6 +33,22 @@ public class Request {
 
     public void setResponseAddress(String responseAddress) {
         this.responseAddress = responseAddress;
+    }
+
+    public String[] getProcessors() {
+        return processors;
+    }
+
+    public void setProcessors(String[] processors) {
+        this.processors = processors;
+    }
+
+    public String getAdapter() {
+        return adapter;
+    }
+
+    public void setAdapter(String adapter) {
+        this.adapter = adapter;
     }
 
 }
