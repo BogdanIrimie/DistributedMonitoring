@@ -86,9 +86,10 @@ public class Receiver {
                 String measurementString = mm.pullJsonById(job.getId());
 
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
-                String jsonResult = XmlToJsonConverter.convertXmlToJson(measurement.getXmlResult());
+                String jsonResult = XmlToJsonConverter.convertXmlToJson(measurement.getRawResult());
                 logger.info("Converted results: " + jsonResult);
 
+                /*
                 TlsEventHubAdapter tlsAdapter = new TlsEventHubAdapter();
                 String filteredJson = tlsAdapter.process(jsonResult, null);
 
@@ -101,6 +102,8 @@ public class Receiver {
                 String eventHubMessageString = JsonConverter.objectToJsonString(eventHubMessage);
 
                 mm.updateJsonWithId(job.getId(), "jsonResult", eventHubMessageString);
+                */
+                mm.updateJsonWithId(job.getId(), "processedResult", jsonResult);
                 mm.closeConnection();
 
                 // send job over the queue

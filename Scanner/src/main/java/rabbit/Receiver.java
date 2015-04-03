@@ -85,8 +85,7 @@ public class Receiver {
 
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
                 String xmlResult = executeCommand(measurement.getCommand());
-
-                mm.updateJsonWithId(job.getId(), "xmlResult", xmlResult);
+                mm.updateJsonWithId(job.getId(), "rawResult", xmlResult);
                 mm.closeConnection();
 
                 // send job over the queue
