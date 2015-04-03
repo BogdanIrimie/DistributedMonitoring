@@ -1,6 +1,6 @@
 package converter;
 
-import converters.XmlToJsonConverter;
+import processors.XmlToJsonConverter;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -19,7 +19,12 @@ public class XmlToJsonConverterTest {
                 "<heading>Reminder</heading>\n" +
                 "<body>Don't forget me this weekend!</body>\n" +
                 "</note>";
-        String jsonString = XmlToJsonConverter.convertXmlToJson(xmlString);
+        String jsonString = null;
+        try {
+            jsonString = new XmlToJsonConverter().process(xmlString, null);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         String expectedJsonResult = "{\"note\":{\"heading\":\"Reminder\",\"from\":\"Jani\",\"to\":\"Tove\",\"body\":\"Don't forget me this weekend!\"}}";
         assertTrue(expectedJsonResult.equals(expectedJsonResult));
     }
