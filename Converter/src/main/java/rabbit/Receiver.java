@@ -1,5 +1,7 @@
 package rabbit;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -90,8 +92,11 @@ public class Receiver {
                 TlsEventHubAdapter tlsAdapter = new TlsEventHubAdapter();
                 String filteredJson = tlsAdapter.process(jsonResult, null);
 
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode actualObj = mapper.readTree(filteredJson);
+
                 EventHubMessage eventHubMessage =
-                        EventHubAdapter.createEventHubMessage(filteredJson, job, measurement);
+                        EventHubAdapter.createEventHubMessage(actualObj, job, measurement);
 
                 String eventHubMessageString = JsonConverter.objectToJsonString(eventHubMessage);
 

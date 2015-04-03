@@ -1,5 +1,6 @@
 package processors;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import datamodel.EventHubMessage;
 import datamodel.Job;
 import datamodel.Measurement;
@@ -8,7 +9,7 @@ import java.util.Date;
 
 public class EventHubAdapter {
 
-    public static EventHubMessage createEventHubMessage(String data, Job job, Measurement measurement) {
+    public static EventHubMessage createEventHubMessage(JsonNode data, Job job, Measurement measurement) {
         String command = measurement.getCommand();
         String usedTool = command.substring(0, command.indexOf(' '));
 

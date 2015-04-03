@@ -1,6 +1,6 @@
 package datamodel;
 
-import java.util.List;
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * Message compliant with the ones accepted by the event hub
@@ -10,7 +10,7 @@ public class EventHubMessage {
     private String object;
     private String[] labels;
     private String type;
-    private String data;
+    private JsonNode data;
     private String timestamp;
     private String token;
 
@@ -46,11 +46,11 @@ public class EventHubMessage {
         this.type = type;
     }
 
-    public String getData() {
+    public JsonNode getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(JsonNode data) {
         this.data = data;
     }
 
