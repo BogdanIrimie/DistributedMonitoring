@@ -77,7 +77,7 @@ public class Receiver {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
-       logger.info("Received message over queue.");
+                logger.info("Received message over queue.");
                 Job job = JsonConverter.jsonStringToObject(message, Job.class);
 
                 MongoManager mm = new MongoManager();
