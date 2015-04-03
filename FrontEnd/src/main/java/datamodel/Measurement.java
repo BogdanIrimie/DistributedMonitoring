@@ -21,6 +21,14 @@ public class Measurement {
         this.responseAddress = responseAddress;
     }
 
+    public Measurement(String clientId, String command, String responseAddress, String[] processors, String adapter) {
+        this.clientId = clientId;
+        this.command = command;
+        this.responseAddress = responseAddress;
+        this.processors = processors;
+        this.adapter = adapter;
+    }
+
     public MongoId get_id() {
         return _id;
     }
