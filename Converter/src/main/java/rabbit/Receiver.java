@@ -5,14 +5,12 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import converters.JsonConverter;
-import converters.XmlToJsonConverter;
 import datamodel.Job;
 import datamodel.Measurement;
 import mongo.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import processors.EventHubAdapter;
-import processors.TlsFilter;
+import processors.ProcessorsExecutor;
 
 import java.io.*;
 
@@ -83,8 +81,13 @@ public class Receiver {
                 String measurementString = mm.pullJsonById(job.getId());
 
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
+
+                ProcessorsExecutor pe = new ProcessorsExecutor();
+                String processedString = pe.executeProcesses(measurement.getRawResult(), measurement);
+                /*
                 String jsonResult = XmlToJsonConverter.convertXmlToJson(measurement.getRawResult());
                 logger.info("Converted results: " + jsonResult);
+
 
                 TlsFilter tlsFilter = new TlsFilter();
                 String filteredJson = tlsFilter.process(jsonResult, null);
@@ -92,6 +95,8 @@ public class Receiver {
                         new EventHubAdapter().adaptMessage(filteredJson, job, measurement);
 
                 mm.updateJsonWithId(job.getId(), "processedResult", eventHubMessageString);
+                */
+                mm.updateJsonWithId(job.getId(), "processedResult", processedString);
                 mm.closeConnection();
 
                 // send job over the queue
