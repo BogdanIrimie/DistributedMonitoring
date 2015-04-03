@@ -1,5 +1,6 @@
-package converters;
+package processors;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
@@ -9,7 +10,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Convert data from xml to json fromat.
  */
-public class XmlToJsonConverter {
+public class XmlToJsonConverter implements Processor{
     private static final Logger logger = LoggerFactory.getLogger(XmlToJsonConverter.class);
 
     /**
@@ -18,7 +19,8 @@ public class XmlToJsonConverter {
      * @param xmlString contains xml data
      * @return json representation of XML
      */
-    public static String convertXmlToJson(String xmlString) {
+    @Override
+    public String process(String xmlString, JsonNode configuration) throws Throwable {
         String jsonString = null;
         try {
             JSONObject jsonObj = XML.toJSONObject(xmlString);
@@ -29,4 +31,5 @@ public class XmlToJsonConverter {
         }
         return jsonString;
     }
+
 }
