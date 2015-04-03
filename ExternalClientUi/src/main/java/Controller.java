@@ -28,6 +28,8 @@ public class Controller {
                 request.setClientId("13");
                 request.setCommand(commandString);
                 request.setResponseAddress("http://localhost:8008/jobFinished");
+                request.setProcessors(new String[] {"processors.XmlToJsonConverter","processors.TlsFilter"});
+                request.setAdapter("adapters.EventHubAdapter");
 
                 String requestJsonString = JsonConverter.objectToJsonString(request);
 
