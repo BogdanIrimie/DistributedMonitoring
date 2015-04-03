@@ -1,21 +1,18 @@
 package rabbit;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import converters.JsonConverter;
 import converters.XmlToJsonConverter;
-import datamodel.EventHubMessage;
 import datamodel.Job;
 import datamodel.Measurement;
 import mongo.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import processors.EventHubAdapter;
-import processors.TlsEventHubAdapter;
+import processors.TlsFilter;
 
 import java.io.*;
 
@@ -89,21 +86,12 @@ public class Receiver {
                 String jsonResult = XmlToJsonConverter.convertXmlToJson(measurement.getRawResult());
                 logger.info("Converted results: " + jsonResult);
 
-                /*
-                TlsEventHubAdapter tlsAdapter = new TlsEventHubAdapter();
-                String filteredJson = tlsAdapter.process(jsonResult, null);
+                TlsFilter tlsFilter = new TlsFilter();
+                String filteredJson = tlsFilter.process(jsonResult, null);
+                String eventHubMessageString =
+                        new EventHubAdapter().adaptMessage(filteredJson, job, measurement);
 
-                ObjectMapper mapper = new ObjectMapper();
-                JsonNode actualObj = mapper.readTree(filteredJson);
-
-                EventHubMessage eventHubMessage =
-                        EventHubAdapter.createEventHubMessage(actualObj, job, measurement);
-
-                String eventHubMessageString = JsonConverter.objectToJsonString(eventHubMessage);
-
-                mm.updateJsonWithId(job.getId(), "jsonResult", eventHubMessageString);
-                */
-                mm.updateJsonWithId(job.getId(), "processedResult", jsonResult);
+                mm.updateJsonWithId(job.getId(), "processedResult", eventHubMessageString);
                 mm.closeConnection();
 
                 // send job over the queue
