@@ -7,7 +7,7 @@ import datamodel.EventHubMessage;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class TlsEventHubAdapter implements Processor {
+public class TlsFilter implements Processor {
     @Override
     public String  process(String input, JsonNode customConfiguration) throws Throwable {
         ObjectMapper mapper = new ObjectMapper();
