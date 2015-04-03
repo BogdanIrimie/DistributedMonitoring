@@ -20,6 +20,7 @@ public class EventHubAdapter implements Adapter {
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode data = null;
+
         try {
             data = mapper.readTree(filteredJson);
         } catch (IOException e) {

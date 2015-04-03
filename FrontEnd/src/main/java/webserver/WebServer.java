@@ -43,6 +43,9 @@ public class WebServer {
 
     }
 
+    /**
+     * Handle HTTP requests.
+     */
     class MyHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
             String response;
@@ -79,6 +82,12 @@ public class WebServer {
         }
     }
 
+    /**
+     * Return a map with the parameters of the HTTP request.
+     *
+     * @param query HTTP query
+     * @return map with parameter name and value
+     */
     private Map<String, String> queryToMap(String query){
         Map<String, String> result = new HashMap<String, String>();
         for (String param : query.split("&")) {
