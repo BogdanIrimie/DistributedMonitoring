@@ -15,10 +15,15 @@ public class Controller {
     @FXML
     public TextArea results;
 
+    @FXML
+    public void initialize(){
+        ws.setResults(results);
+    }
+
+
     public void runCommand(ActionEvent actionEvent) {
         results.setText("");
         response.setText("");
-        ws.setResults(results);
         Thread th = new Thread() {
             @Override
             public void run() {
