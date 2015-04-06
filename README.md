@@ -35,7 +35,7 @@ Jobs can be submited by making a HTTP request:
 http://<ip>:8000/job?request=<clientRequest>
 ```
 
-clientResponse is a json with the following fields:
+clientResponse is a JSON with the following fields:
 * `clientId` - the id the client provide, it can be used to retrieve all the jobs for a client
 * `command`- the command that will be executed by the system
 * `responseAddress` - is the address where the results will be sent
@@ -44,6 +44,7 @@ clientResponse is a json with the following fields:
 
 ex:
 ```json
+curl -G "http://localhost:8000/job" --data-urlencode 'request=
 {
 	"clientId" : "13",
 	"command" : "nmap 192.168.56.105",
@@ -52,3 +53,5 @@ ex:
 	"adapter" : "processors.EventHubAdapter"
 }
 ```
+
+
