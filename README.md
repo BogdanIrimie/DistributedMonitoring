@@ -45,10 +45,10 @@ clientResponse is a json with the following fields:
 ex:
 ```json
 {
-	“clientId” : “13”,
-	“command” : “nmap 192.168.56.105”,
-	“responseAddress” : “http://192.168.56.101:8008/jobFinished”,
-	“processors” :[“processors.XmlToJsonConverter”,”processors.TlsFilter”],
-	“adapter” : “processors.EventHubAdapter”
+	"clientId" : "13",
+	"command" : "nmap 192.168.56.105",
+	"responseAddress" : "http://192.168.56.101:8008/jobFinished",
+	"processors" :["processors.XmlToJsonConverter","processors.TlsFilter"],
+	"adapter" : "processors.EventHubAdapter"
 }
 ```
