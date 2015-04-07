@@ -1,6 +1,6 @@
 # DistributedMonitoring
 
-We propose a fault tolerant distributed system based on Nmap, and possible other tools, for scanning target hosts and networks. The system will also store the result for later retrieval, audit and statistics purposes.
+We propose a fault tolerant distributed monitoring system based on Nmap, and possible other tools, for scanning target hosts and networks. The system will also store the result for later retrieval, audit and statistics purposes.
 
 ## Set up
 
@@ -8,25 +8,14 @@ Install RabbitMQ server (http://www.rabbitmq.com/download.html)
 
 Install MongoDB (http://www.mongodb.org/downloads)
 
-Install NMap (https://nmap.org/download.html)
+Install Nmap (https://nmap.org/download.html) on every machine that runs a `Scanner` component.
 
-Install JRE 1.8 (http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)
+Install JRE 1.8 (http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) on all the machines that run one of the four components (FrontEnd, Scanner, Converter, Presenter).
 
 ## Configuration
 
 Each of the four components (FrontEnd, Scanner, Converter and Presenter) has their own configuration file (conf.properties). The configuration file contains the ip and port for MongoDB and the ip, queue names and credentials for RabbitMQ.
 
-##Use cases & examples
-
-Scan target for open ports: nmap \<ip\>
-
-ex: nmap http://scanme.nmap.org/
-
-Scan a class of ips: nmap \<ipClass\>
-ex: nmap 192.168.1.0/24 
-
-Scan for OS detection
-ex: nmap -A http://scanme.nmap.org
 
 ##Interacting with the monitoring system
 
@@ -42,7 +31,10 @@ clientResponse is a JSON with the following fields:
 * `processors` - used for filtering and processing of the raw results
 * `adapter` - used for adapting the results for a specific system
 
-ex:
+
+##Examples
+
+###HTTP request
 ```json
 curl -G "http://localhost:8000/job" --data-urlencode 'request=
 {
@@ -54,4 +46,12 @@ curl -G "http://localhost:8000/job" --data-urlencode 'request=
 }
 ```
 
+###Nmap commands
 
+Scan target for open ports:`nmap http://scanme.nmap.org/`
+
+Scan a class of ips: `nmap 192.168.1.0/24` 
+
+Scan for OS detection: `nmap -A http://scanme.nmap.org`
+
+Detect TLS ciphersuite: `nmap --script ssl-enum-ciphers -p 443 google.com`
