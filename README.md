@@ -8,9 +8,9 @@ Install RabbitMQ server (http://www.rabbitmq.com/download.html)
 
 Install MongoDB (http://www.mongodb.org/downloads)
 
-Install Nmap (https://nmap.org/download.html)
+Install Nmap (https://nmap.org/download.html) on every machine that runs a `Scanner` component.
 
-Install JRE 1.8 (http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)
+Install JRE 1.8 (http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) on all the machines that run one of the four components (FrontEnd, Scanner, Converter, Presenter).
 
 ## Configuration
 
