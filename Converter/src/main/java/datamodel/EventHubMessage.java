@@ -11,7 +11,7 @@ public class EventHubMessage {
     private String[] labels;
     private String type;
     private JsonNode data;
-    private String timestamp;
+    private long timestamp;
     private String token;
 
     public String getComponent() {
@@ -54,11 +54,11 @@ public class EventHubMessage {
         this.data = data;
     }
 
-    public String getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
