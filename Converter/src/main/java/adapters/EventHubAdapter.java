@@ -10,9 +10,11 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.UUID;
 
 public class EventHubAdapter implements Adapter {
     private static final Logger logger = LoggerFactory.getLogger(EventHubAdapter.class);
+    public static final UUID uuid = UUID.randomUUID();
 
     public String adaptMessage(String filteredJson, Measurement measurement) {
         String command = measurement.getCommand();
@@ -28,12 +30,12 @@ public class EventHubAdapter implements Adapter {
         }
 
         EventHubMessage eventHubMessage = new EventHubMessage();
-        eventHubMessage.setComponent(null);
+        eventHubMessage.setComponent(uuid.toString());
         eventHubMessage.setObject(usedTool);
         eventHubMessage.setLabels(new String[]{"userId-" + measurement.getClientId()});
         eventHubMessage.setType(null);
         eventHubMessage.setData(data);
-        eventHubMessage.setTimestamp(Long.toString((new Date().getTime()) / 1000));
+        eventHubMessage.setTimestamp((new Date().getTime()) / 1000);
         return JsonConverter.objectToJsonString(eventHubMessage);
     }
 }
