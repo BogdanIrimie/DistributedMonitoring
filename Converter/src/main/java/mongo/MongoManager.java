@@ -28,8 +28,8 @@ public class MongoManager {
         try {
             mongoClient = new MongoClient(ip, port);
             logger.info("Connection to DB was established.");
-            db = mongoClient.getDB("monitoringResults");
-            results = db.getCollection("testData");
+            db = mongoClient.getDB("monitoring");
+            results = db.getCollection("clientRequest");
         } catch (UnknownHostException e) {
             logger.error(e.getMessage(), e);
         }
