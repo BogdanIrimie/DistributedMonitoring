@@ -57,9 +57,9 @@ public class Sender {
      * Send messages over queue and DB.
      * @param request request from the client
      */
-    public String send(Request request) {
+    public String send(Request request, String clientIp) {
         Measurement measurement =
-                new Measurement(request.getClientId(), request.getCommand(),
+                new Measurement(request.getClientId(), clientIp, request.getCommand(),
                         request.getResponseAddress(), request.getProcessors(), request.getAdapter());
         String measurementString = JsonConverter.objectToJsonString(measurement);
 

@@ -6,6 +6,7 @@ package datamodel;
 public class Measurement {
     private MongoId _id;
     private String clientId;
+    private String clientIp;
     private String command;
     private String responseAddress;
     private String[] processors;
@@ -21,13 +22,15 @@ public class Measurement {
         this.responseAddress = responseAddress;
     }
 
-    public Measurement(String clientId, String command, String responseAddress, String[] processors, String adapter) {
+    public Measurement(String clientId, String clientIp, String command, String responseAddress, String[] processors, String adapter) {
         this.clientId = clientId;
+        this.clientIp = clientIp;
         this.command = command;
         this.responseAddress = responseAddress;
         this.processors = processors;
         this.adapter = adapter;
     }
+
 
     public MongoId get_id() {
         return _id;
@@ -43,6 +46,14 @@ public class Measurement {
 
     public void setClientId(String clientId) {
         this.clientId = clientId;
+    }
+
+    public String getClientIp() {
+        return clientIp;
+    }
+
+    public void setClientIp(String clientIp) {
+        this.clientIp = clientIp;
     }
 
     public String getCommand() {

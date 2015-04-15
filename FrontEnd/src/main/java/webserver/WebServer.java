@@ -52,6 +52,8 @@ public class WebServer {
 
             String paramQuery = t.getRequestURI().getQuery();
             Map<String, String> params = queryToMap(paramQuery);
+            String clientIp = t.getRemoteAddress().getAddress().getHostAddress();
+
 
             String requestJsonString = URLDecoder.decode(params.get("request"), CHARSET);
             Request request = JsonConverter.jsonStringToObject(requestJsonString, Request.class);
@@ -59,7 +61,7 @@ public class WebServer {
             RequestResponse requestResponse = new RequestResponse();
             if ((request.getClientId() != null) && (request.getCommand() != null)) {
                 Sender sender = new Sender();
-                String jobId = sender.send(request);
+                String jobId = sender.send(request, clientIp);
                 sender.closeConnection();
 
                 requestResponse.setStatus(Status.valid);
