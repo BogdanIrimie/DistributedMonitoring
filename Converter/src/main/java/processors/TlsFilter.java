@@ -2,10 +2,6 @@ package processors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import datamodel.EventHubMessage;
-
-import java.io.InputStream;
-import java.io.OutputStream;
 
 public class TlsFilter implements Processor {
     @Override

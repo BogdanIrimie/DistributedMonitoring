@@ -38,7 +38,7 @@ public class Controller {
 
                 String requestJsonString = JsonConverter.objectToJsonString(request);
 
-                final String requestResponse = RequestSender.sendRequest("http://localhost:8000/job", request);
+                String requestResponse = RequestSender.sendRequest("http://localhost:8000/job", request);
                 Platform.runLater(new Runnable() {
                     public void run() {
                         response.setText(requestResponse);
