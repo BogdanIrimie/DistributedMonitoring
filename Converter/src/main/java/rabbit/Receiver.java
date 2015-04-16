@@ -84,18 +84,7 @@ public class Receiver {
 
                 ProcessorsExecutor pe = new ProcessorsExecutor();
                 String processedString = pe.executeProcesses(measurement.getRawResult(), measurement);
-                /*
-                String jsonResult = XmlToJsonConverter.convertXmlToJson(measurement.getRawResult());
-                logger.info("Converted results: " + jsonResult);
 
-
-                TlsFilter tlsFilter = new TlsFilter();
-                String filteredJson = tlsFilter.process(jsonResult, null);
-                String eventHubMessageString =
-                        new EventHubAdapter().adaptMessage(filteredJson, job, measurement);
-
-                mm.updateJsonWithId(job.getId(), "processedResult", eventHubMessageString);
-                */
                 mm.updateJsonWithId(job.getId(), "processedResult", processedString);
                 mm.closeConnection();
 
