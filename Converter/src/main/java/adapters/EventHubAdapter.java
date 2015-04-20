@@ -32,7 +32,7 @@ public class EventHubAdapter implements Adapter {
         EventHubMessage eventHubMessage = new EventHubMessage();
         eventHubMessage.setComponent(uuid.toString());
         eventHubMessage.setObject(usedTool);
-        eventHubMessage.setLabels(new String[]{"userId-" + measurement.getClientId()});
+        eventHubMessage.setLabels(new String[]{"userId-" + measurement.getClientId(), "jobId-" + measurement.get_id().get$oid()});
         eventHubMessage.setType("metric");
         eventHubMessage.setData(data);
         eventHubMessage.setTimestamp((new Date().getTime()) / 1000);
