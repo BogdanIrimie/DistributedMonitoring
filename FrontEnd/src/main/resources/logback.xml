@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration>
+    <timestamp key="dateByDay"  datePattern="dd_MM_yyyy"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -8,8 +9,16 @@
         </encoder>
     </appender>
 
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>var/FrontEnd_${dateByDay}.log</file>
+        <encoder>
+            <pattern>[FrontEnd] %d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
     </root>
 
 </configuration>
