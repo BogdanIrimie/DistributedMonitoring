@@ -2,7 +2,7 @@
 
 <configuration>
     <timestamp key="dateByDay"  datePattern="dd_MM_yyyy"/>
-    <property name="pattern" value="[FrontEnd] %d{HH:mm:ss.SSS} %-5level %logger{5} - %msg%n"/>
+    <property name="pattern" value="[FrontEnd] %d{HH:mm:ss.SSS} %-5level %logger{5} JobId =  %mdc{jobId} - %msg%n"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -10,8 +10,9 @@
         </encoder>
     </appender>
 
+
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>var/FrontEnd_${dateByDay}.log</file>
+        <file>../var/FrontEnd_${dateByDay}.log</file>
         <encoder>
             <pattern>${pattern}</pattern>
         </encoder>

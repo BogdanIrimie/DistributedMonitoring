@@ -11,7 +11,7 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>var/Presenter_${dateByDay}.log</file>
+        <file>../var/Presenter_${dateByDay}.log</file>
         <encoder>
             <pattern>${pattern}</pattern>
         </encoder>
