@@ -15,7 +15,7 @@ import java.util.Properties;
  */
 public class ConfigExtractor {
     private static final Logger logger = LoggerFactory.getLogger(ConfigExtractor.class);
-    private final String configFile = "../etc/conf.properties";
+    private final String configFile = "../etc/scConf.properties";
     private final String configFileFallback = "/conf.properties";
     private static Properties configProp;
     private static ConfigExtractor configInstance = null;
