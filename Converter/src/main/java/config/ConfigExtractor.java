@@ -3,6 +3,8 @@ package config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
@@ -13,16 +15,24 @@ import java.util.Properties;
  */
 public class ConfigExtractor {
     private static final Logger logger = LoggerFactory.getLogger(ConfigExtractor.class);
-    private final String configFile = "/conf.properties";
+    private final String configFile = "../etc/conf.properties";
+    private final String configFileFallback = "/conf.properties";
     private static Properties configProp;
     private static ConfigExtractor configInstance = null;
 
     private ConfigExtractor() {
-        InputStream in = getClass().getResourceAsStream(configFile);
+        File conf = new File(configFile);
+        InputStream in = getClass().getResourceAsStream(configFileFallback);;
+
         configProp = new Properties();
 
         try {
-            configProp.load(in);
+            if (conf.exists() && conf.isFile()) {
+                configProp.load(new FileInputStream(configFile));
+            }
+            else {
+                configProp.load(in);
+            }
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }
