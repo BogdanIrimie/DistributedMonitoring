@@ -1,0 +1,9 @@
+#!/bin/sh
+
+export rabbitHost=192.168.56.102;
+export rabbitSendQueue=xmls;
+export rabbitReceiveQueue=commands;
+export rabbitUser=bogdan;
+export rabbitPassword=constantin;
+export mongoHost=192.168.56.101;
+export mongoPort=27017
