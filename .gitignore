@@ -1,4 +1,4 @@
-*.class
+\*.class
 *.log
 
 # Package Files #
@@ -10,3 +10,8 @@
 .idea/
 target/
 *.iml
+
+#Deplyment
+deployment/etc/*
+deployment/var/*
+deployment/lib/*
