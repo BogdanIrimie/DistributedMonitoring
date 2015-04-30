@@ -11,6 +11,7 @@ import datamodel.Request;
 import mongo.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import java.io.IOException;
 
@@ -66,7 +67,9 @@ public class Sender {
         //put data in DB
         MongoManager mm = new MongoManager();
         String id = mm.pushJson(measurementString);
+        MDC.put("jobId", id);
         logger.info("Json pushed in DB: " + measurementString);
+        MDC.remove("jobId");
         mm.closeConnection();
 
         try {
