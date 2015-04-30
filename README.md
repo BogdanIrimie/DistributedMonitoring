@@ -4,11 +4,11 @@ We propose a fault tolerant distributed monitoring system based on Nmap, and pos
 
 ## Set up
 
-Install RabbitMQ server (http://www.rabbitmq.com/download.html)
+Install RabbitMQ server - V3.4.4 or newer (http://www.rabbitmq.com/download.html)
 
-Install MongoDB (http://www.mongodb.org/downloads)
+Install MongoDB - V2.6.3 or newer (http://www.mongodb.org/downloads)
 
-Install Nmap (https://nmap.org/download.html) on every machine that runs a `Scanner` component.
+Install Nmap - V6.40 or newer (https://nmap.org/download.html) on every machine that runs a `Scanner` component.
 
 Install JRE 1.8 (http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) on all the machines that run one of the four components (FrontEnd, Scanner, Converter, Presenter).
 
@@ -42,7 +42,7 @@ curl -G "http://localhost:8000/job" --data-urlencode 'request=
 	"command" : "nmap 192.168.56.105",
 	"responseAddress" : "http://192.168.56.101:8008/jobFinished",
 	"processors" :["processors.XmlToJsonConverter","processors.TlsFilter"],
-	"adapter" : "processors.EventHubAdapter"
+	"adapter" : "adapters.EventHubAdapter"
 }
 ```
 
