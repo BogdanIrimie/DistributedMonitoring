@@ -10,17 +10,23 @@
         </encoder>
     </appender>
 
-
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>../var/FrontEnd_${dateByDay}.log</file>
-        <encoder>
-            <pattern>${pattern}</pattern>
-        </encoder>
+    <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>pid</key>
+            <defaultValue>-1</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+                <file>../var/FrontEnd_${pid}_${dateByDay}.log</file>
+                <encoder>
+                    <pattern>${pattern}</pattern>
+                </encoder>
+            </appender>
+        </sift>
     </appender>
 
     <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+        <appender-ref ref="SIFT" />
     </root>
 
 </configuration>
