@@ -1,6 +1,5 @@
 package adapters;
 
-import datamodel.Job;
 import datamodel.Measurement;
 
 public interface Adapter {
