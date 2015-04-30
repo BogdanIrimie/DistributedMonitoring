@@ -12,6 +12,5 @@ target/
 *.iml
 
 #Deplyment
-deployment/etc/*
-deployment/var/*
-deployment/lib/*
+*.pid
+deployment/specs_monitoring_nmap_*/etc/*
