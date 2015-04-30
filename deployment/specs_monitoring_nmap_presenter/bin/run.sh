@@ -3,7 +3,7 @@
 env=printenv;
 
 mkdir -p ../etc
-exec > ../etc/prConf.properties
+exec > ../etc/conf.properties
 echo '#RabbitMQ connection details'
 $env | grep rabbitHost
 $env | grep prRabbitSendQueue | sed 's/prRabbitSendQueue/rabbitSendQueue/g'
@@ -15,5 +15,5 @@ echo '#MongoDB connection details'
 $env | grep mongoHost
 $env | grep mongoPort
 
-exec > ../lib/prPid
+exec > ../var/specs_monitoring_nmap_presenter.pid
 java -jar ../lib/Presenter.jar & echo $!

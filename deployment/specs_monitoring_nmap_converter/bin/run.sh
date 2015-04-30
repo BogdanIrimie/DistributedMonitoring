@@ -3,7 +3,7 @@
 env=printenv;
 
 mkdir -p ../etc
-exec > ../etc/coConf.properties
+exec > ../etc/conf.properties
 echo '#RabbitMQ connection details'
 $env | grep rabbitHost
 $env | grep coRabbitSendQueue | sed 's/coRabbitSendQueue/rabbitSendQueue/g'
@@ -15,5 +15,5 @@ echo '#MongoDB connection details'
 $env | grep mongoHost
 $env | grep mongoPort
 
-exec > ../lib/coPid
+exec > ../var/specs_monitoring_nmap_converter.pid
 java -jar ../lib/Converter.jar & echo $!
