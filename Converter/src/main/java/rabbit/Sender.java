@@ -14,19 +14,16 @@ import java.io.IOException;
 
 public class Sender {
     private static final Logger logger = LoggerFactory.getLogger(Sender.class);
-    private final String hostName;
     private final String queueName;
-    private final String userName;
-    private final String password;
     private Connection connection;
-    private RabbitMqConfig rmq = new RabbitMqConfig();
     private Channel channel;
 
     public Sender() {
-        hostName = rmq.getHost();
+        RabbitMqConfig rmq = new RabbitMqConfig();
+        String hostName = rmq.getHost();
+        String userName = rmq.getUsername();
+        String password = rmq.getPassword();
         queueName = rmq.getSendQueue();
-        userName = rmq.getUsername();
-        password = rmq.getPassword();
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(hostName);

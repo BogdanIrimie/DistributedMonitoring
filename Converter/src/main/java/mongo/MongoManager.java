@@ -12,7 +12,6 @@ public class MongoManager {
     private static final Logger logger = LoggerFactory.getLogger(MongoManager.class);
     private MongoClient mongoClient = null;
     private DBCollection results = null;
-    private DB db = null;
     private static MongoDbConfig mongoConfig = new MongoDbConfig();
 
     public MongoManager() {
@@ -28,7 +27,7 @@ public class MongoManager {
         try {
             mongoClient = new MongoClient(ip, port);
             logger.info("Connection to DB was established.");
-            db = mongoClient.getDB("monitoring");
+            DB db = mongoClient.getDB("monitoring");
             results = db.getCollection("clientRequest");
         } catch (UnknownHostException e) {
             logger.error(e.getMessage(), e);

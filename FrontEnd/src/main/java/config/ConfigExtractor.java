@@ -15,14 +15,15 @@ import java.util.Properties;
  */
 public class ConfigExtractor {
     private static final Logger logger = LoggerFactory.getLogger(ConfigExtractor.class);
-    private final String configFile = "../etc/conf.properties";
-    private final String configFileFallback = "/conf.properties";
     private static Properties configProp;
     private static ConfigExtractor configInstance = null;
 
     private ConfigExtractor() {
+        String configFile = "../etc/conf.properties";
+        String configFileFallback = "/conf.properties";
+
         File conf = new File(configFile);
-        InputStream in = getClass().getResourceAsStream(configFileFallback);;
+        InputStream in = getClass().getResourceAsStream(configFileFallback);
 
         configProp = new Properties();
 

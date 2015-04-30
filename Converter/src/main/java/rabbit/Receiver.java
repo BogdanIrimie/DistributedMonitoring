@@ -23,20 +23,16 @@ public class Receiver {
     private Channel channel;
     private QueueingConsumer consumer;
     private Connection connection;
-    private final String hostName;
-    private final String queueName;
-    private final String userName;
-    private final String password;
-    private RabbitMqConfig rmqConf = new RabbitMqConfig();
 
     /**
      * Set parameters for RabbitMQ receiver
      */
     public Receiver() {
-        hostName = rmqConf.getHost();
-        queueName = rmqConf.getReceiveQueue();
-        userName = rmqConf.getUsername();
-        password = rmqConf.getPassword();
+        RabbitMqConfig rmqConf = new RabbitMqConfig();
+        String hostName = rmqConf.getHost();
+        String queueName = rmqConf.getReceiveQueue();
+        String userName = rmqConf.getUsername();
+        String password = rmqConf.getPassword();
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(hostName);
