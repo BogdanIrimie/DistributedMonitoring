@@ -2,7 +2,8 @@
 
 <configuration>
     <timestamp key="dateByDay"  datePattern="dd_MM_yyyy"/>
-    <property name="pattern" value="[Scanner] %d{HH:mm:ss.SSS} %-5level %logger{5} - %msg%n" />
+    <property name="pattern" value="[Scanner] %d{HH:mm:ss.SSS} %-5level %logger{5} %mdc - %msg%n" />
+    <property name="componentName" value="specs_monitoring_nmap_scanner" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -10,16 +11,23 @@
         </encoder>
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>../var/Scanner_${dateByDay}.log</file>
-        <encoder>
-            <pattern>${pattern}</pattern>
-        </encoder>
+    <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>pid</key>
+            <defaultValue>-1</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+                <file>../var/${componentName}_${pid}_${dateByDay}.log</file>
+                <encoder>
+                    <pattern>${pattern}</pattern>
+                </encoder>
+            </appender>
+        </sift>
     </appender>
 
     <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+        <appender-ref ref="SIFT" />
     </root>
 
 </configuration>
