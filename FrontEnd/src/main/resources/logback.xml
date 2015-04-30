@@ -14,7 +14,7 @@
     <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
         <discriminator>
             <key>pid</key>
-            <defaultValue>-1</defaultValue>
+            <defaultValue>null</defaultValue>
         </discriminator>
         <sift>
             <appender name="FILE" class="ch.qos.logback.core.FileAppender">
