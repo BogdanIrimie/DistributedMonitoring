@@ -10,6 +10,7 @@ import datamodel.Measurement;
 import mongo.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import processors.ProcessorsExecutor;
 
 import java.io.*;
@@ -74,8 +75,9 @@ public class Receiver {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
-                logger.info("Received message over the queue");
                 Job job = JsonConverter.jsonStringToObject(message, Job.class);
+                MDC.put("jobId", job.getId());
+                logger.info("Received message over the queue");
 
                 MongoManager mm = new MongoManager();
                 String measurementString = mm.pullJsonById(job.getId());
@@ -93,6 +95,7 @@ public class Receiver {
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 logger.info("Sent message over queue.");
+                MDC.remove("jobId");
             } catch (InterruptedException e) {
                 logger.error(e.getMessage());
             } catch (IOException e) {
