@@ -16,6 +16,7 @@
         <jsonOrgVersion>20140107</jsonOrgVersion>
         <slf4jVersion>1.7.10</slf4jVersion>
         <logBackVersion>1.1.2</logBackVersion>
+        <openCsvVersion>3.3</openCsvVersion>
     </properties>
 
 
@@ -91,6 +92,12 @@
             <version>${logBackVersion}</version>
         </dependency>
         <!-- End of LOGBack -->
+
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>${openCsvVersion}</version>
+        </dependency>
 
     </dependencies>
 
