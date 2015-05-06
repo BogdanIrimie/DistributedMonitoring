@@ -11,7 +11,6 @@ import java.util.*;
 
 public class TlsEcrypt2Level implements Processor {
     public static final Logger logger = LoggerFactory.getLogger(TlsEcrypt2Level.class);
-    private static Map<String, Integer> ciphersLevel = new LinkedHashMap<String, Integer>();
     private List<Ciphersuite> ciphersuites;
 
     public TlsEcrypt2Level() {
@@ -45,20 +44,62 @@ public class TlsEcrypt2Level implements Processor {
 
     @Override
     public String process(String textToProcess, JsonNode configuration) throws Throwable {
-        Iterator it = ciphersLevel.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Integer> entry = (Map.Entry<String, Integer>) it.next();
-            String cipher = entry.getKey();
-
-            if (textToProcess != null && textToProcess.contains(cipher)) {
-                int level = entry.getValue();
-                Encrypt2Details encrypt2Details = new Encrypt2Details(cipher, level);
-                return JsonConverter.objectToJsonString(encrypt2Details);
+        int lowestLevel = Integer.MAX_VALUE;
+        Encrypt2Details encrypt2Details = null;
+        for (Ciphersuite ciphersuite : ciphersuites) {
+            String ciphersuiteName = ciphersuite.getName();
+            if (textToProcess.contains(ciphersuiteName)) {
+                int level = computeLevelFromKeyLength(ciphersuite.getBits());
+                if (level < lowestLevel) {
+                    encrypt2Details = new Encrypt2Details(ciphersuite.getSymetricEncryptionAlgorithm(), level);
+                    lowestLevel = level;
+                }
             }
         }
+        if (encrypt2Details != null) {
+            return JsonConverter.objectToJsonString(encrypt2Details);
+        }
+        else {
+            encrypt2Details = new Encrypt2Details(null, -1);
+            return JsonConverter.objectToJsonString(encrypt2Details);
+        }
+    }
 
-        Encrypt2Details encrypt2Details = new Encrypt2Details(null, -1);
-        return JsonConverter.objectToJsonString(encrypt2Details);
+    /**
+     * Computes ecrypt 2 level
+     * @param keyLength length of they key for the symmetric encryption
+     * @return ecrypt 2 level
+     */
+    private int computeLevelFromKeyLength(int keyLength) {
+        if (keyLength < 32) {
+            return 0;
+        }
+        if (keyLength < 64) {
+            return 1;
+        }
+        if (keyLength < 72) {
+            return 2;
+        }
+        if (keyLength < 80) {
+            return 3;
+        }
+        if (keyLength < 96) {
+            return 4;
+        }
+        if (keyLength < 112) {
+            return 5;
+        }
+        if (keyLength < 128) {
+            return 6;
+        }
+        if (keyLength < 256) {
+            return 7;
+        }
+        if (keyLength >= 256) {
+            return 8;
+        }
+
+        return -1;
     }
 
     private class Encrypt2Details {
@@ -87,7 +128,9 @@ public class TlsEcrypt2Level implements Processor {
         }
     }
 
-
+    /**
+     * Represents the model for ciphersuites used in TLS
+     */
     private class Ciphersuite {
         private int cipherId;
         private String name;
