@@ -2,12 +2,18 @@ package processors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import converters.JsonConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
 import java.util.*;
 
 public class TlsEcrypt2Level implements Processor {
+    public static final Logger logger = LoggerFactory.getLogger(TlsEcrypt2Level.class);
     private static Map<String, Integer> ciphersLevel = new LinkedHashMap<String, Integer>();
 
     // the ciphers should be put in descending order of cipherLevel
+    /*
     static {
         ciphersLevel.put("NULL", 0);                // 0 bit
         ciphersLevel.put("RC4_40", 1);              // 40 bit
@@ -24,7 +30,25 @@ public class TlsEcrypt2Level implements Processor {
         ciphersLevel.put("3DES_EDE_CBC", 7);        // 168 bit
         ciphersLevel.put("AES_256_CBC", 8);         // 256 bit
         ciphersLevel.put("CAMELLIA_256_CBC", 8);    // 256 bit
+    }
+    */
 
+    public TlsEcrypt2Level() {
+        // read from file the ciphersuites
+        try {
+            ClassLoader classLoader = getClass().getClassLoader();
+            BufferedReader br = new BufferedReader(new FileReader(classLoader.getResource("ciphersuites.csv").getFile()));
+            String line;
+            br.readLine();  // the first row with column head
+            while ((line = br.readLine()) != null) {
+                String[] columns = line.split(",");
+                ciphersLevel.put(columns[0].trim(), Integer.parseInt(columns[1].trim())); // columns[0] cipher; columns[1] encrypt2level
+            }
+        } catch (FileNotFoundException e) {
+            logger.error(e.getMessage(), e);
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+        }
     }
 
     @Override
