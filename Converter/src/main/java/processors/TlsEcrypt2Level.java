@@ -18,7 +18,7 @@ public class TlsEcrypt2Level implements Processor {
         BufferedReader br = null;
         ciphersuites = new ArrayList<Ciphersuite>();
         try {
-            CSVReader reader = new CSVReader(new FileReader(classLoader.getResource("ciphersuites2.csv").getFile()));
+            CSVReader reader = new CSVReader(new FileReader(classLoader.getResource("ciphersuites.csv").getFile()));
             reader.readNext();
             String[] attributes;
             while ((attributes = reader.readNext()) != null) {
