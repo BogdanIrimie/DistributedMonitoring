@@ -41,7 +41,11 @@ curl -G "http://localhost:8000/job" --data-urlencode 'request=
 	"clientId" : "13",
 	"command" : "nmap 192.168.56.105",
 	"responseAddress" : "http://192.168.56.101:8008/jobFinished",
-	"processors" :["processors.XmlToJsonConverter","processors.TlsFilter"],
+	"processors" :[
+		"processors.XmlToJsonConverter",
+		"processors.TlsCiphersuitesFilter",
+		"processors.TlsEcrypt2Level"
+	],
 	"adapter" : "adapters.EventHubAdapter"
 }
 ```
