@@ -17,16 +17,6 @@ public class RabbitMqConfigTest {
     }
 
     /**
-     * Retrieve send queue name.
-     */
-    @Test
-    public void retrieveSendQueue() {
-        RabbitMqConfig rmqConf = new RabbitMqConfig();
-        String queue = rmqConf.getSendQueue();
-        assertTrue(queue.length() > 0);
-    }
-
-    /**
      * Retrieve receive queue name
      */
     @Test
