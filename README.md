@@ -17,6 +17,7 @@ Install JRE 1.8 (http://www.oracle.com/technetwork/java/javase/downloads/jre8-do
 ### Building the project manually
 
 Install Maven (https://maven.apache.org/download.cgi)
+
 Install JDK 1.8 (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 For every module (FrontEnd, Scanner, Converter and Presenter), navigate to the pom.xml and run mvn `mvn -Dmaven.test.skip=true package` (this will create the jar withought running unit tests)
