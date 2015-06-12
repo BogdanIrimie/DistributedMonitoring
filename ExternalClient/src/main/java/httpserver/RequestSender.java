@@ -1,5 +1,8 @@
 package httpserver;
 
+import converters.JsonConverter;
+import datamodel.Request;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,36 +17,35 @@ public class RequestSender {
     public RequestSender() {
     }
 
-    public static void sendRequest(String url, String id, String command, String responseAddress) {
+    public static String sendRequest(String url, Request request) {
         String charset = StandardCharsets.UTF_8.name();
-        String query = null;
+        String requestJsonString = JsonConverter.objectToJsonString(request);
+        String requestParameter = "request=" + requestJsonString;
+
 
         try {
-            query = String.format("id=%s&command=%s&responseAddress=%s",
-                    URLEncoder.encode(id, charset),
-                    URLEncoder.encode(command, charset),
-                    responseAddress != null ? URLEncoder.encode(responseAddress, charset) : "");
+            String encodedRequest = URLEncoder.encode(requestParameter, charset);
 
-            URLConnection connection = new URL(url + "?" + query).openConnection();
+            URLConnection connection = new URL(url + "?" + encodedRequest).openConnection();
             connection.setRequestProperty("Accept-Charset", charset);
-            InputStream response = connection.getInputStream();
 
+            InputStream response = connection.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(response));
             String line;
             StringBuilder responseString = new StringBuilder();
             while ((line = br.readLine()) != null) {
                 responseString.append(line);
             }
-            System.out.println(responseString.toString());
+            // System.out.println(responseString.toString());
+            return responseString.toString();
 
-        }catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "";
     }
-
-
 }
