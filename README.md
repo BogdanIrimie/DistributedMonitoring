@@ -66,6 +66,9 @@ mongoPort = 27017
 
 If the environment variables are set, simply run `/bin/run.sh` for each component (this will create the configuration files and will start the component, more info can be found on https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Deployment)
 
+##Test/Stress the system
+
+Fallow the guide on https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Testing
 
 ##Interacting with the monitoring system
 
