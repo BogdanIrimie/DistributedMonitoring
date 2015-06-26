@@ -3,6 +3,9 @@ package requests;
 import datamodel.Request;
 import httpserver.RequestSender;
 
+/*
+*   Request ciphersuite list
+* */
 public class CiphersuiteRequest implements Runnable {
 
     public void run() {
