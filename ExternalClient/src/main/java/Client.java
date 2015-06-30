@@ -3,12 +3,11 @@ import requests.CiphersuiteRequest;
 import requests.Ecrypt2LevelRequest;
 import requests.OpenPortRequest;
 
-import java.util.Random;
-
 public class Client {
     public static void main(String[] args) {
         WebServer ws = new WebServer();
 
+        /*
         Random r = new Random();
         for (int i = 0; i < 10; i++) {
             switch (r.nextInt(3)) {
@@ -19,6 +18,19 @@ public class Client {
                 case 2: new Thread(new OpenPortRequest()).start();
                         break;
             }
+        }
+        */
+
+        for (int i = 0; i < 334; i++ ) {
+            new Thread(new CiphersuiteRequest()).start();
+        }
+
+        for (int i = 0; i < 333; i++) {
+            new Thread(new Ecrypt2LevelRequest()).start();
+        }
+
+        for(int i = 0; i < 333; i++ ) {
+            new Thread(new OpenPortRequest()).start();
         }
     }
 }
