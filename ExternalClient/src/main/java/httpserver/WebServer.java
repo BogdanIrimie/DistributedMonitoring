@@ -14,6 +14,8 @@ import java.net.InetSocketAddress;
 public class WebServer {
 
     private static TextArea results = null;
+    private static int resultsCounter = 0;
+    private static long startTime, endTime;
 
     public WebServer() {
         this(8008);
@@ -30,6 +32,7 @@ public class WebServer {
         server.setExecutor(null); // creates a default executor
         server.start();
         System.out.println("Server started listening on port 8008.");
+        startTime = System.currentTimeMillis();
     }
 
     public static TextArea getResults() {
@@ -51,14 +54,19 @@ public class WebServer {
                 receivedData.append(line);
             }
 
-            System.out.println(receivedData.toString());
-
+            //System.out.println(receivedData.toString());
 
             System.out.println("Received data: " + receivedData.toString());
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
             os.close();
+            resultsCounter++;
+            System.out.println("counter is: " + resultsCounter);
+            if (resultsCounter == 1000) {
+                endTime = System.currentTimeMillis();
+                System.out.println("100 results received in " + (endTime - startTime)/1000 + " seconds.");
+            }
         }
     }
 
