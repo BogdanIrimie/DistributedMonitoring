@@ -23,6 +23,7 @@ public class Receiver {
     private Channel channel;
     private QueueingConsumer consumer;
     private Connection connection;
+    private MongoManager mm;
 
     /**
      * Set parameters for RabbitMQ receiver
@@ -56,6 +57,8 @@ public class Receiver {
             boolean autoAck = false;
             channel.basicConsume(queueName, autoAck, consumer);
 
+            // create connection to database
+            mm = new MongoManager();
 
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
@@ -75,7 +78,6 @@ public class Receiver {
                 MDC.put("jobId", job.getId());
                 logger.info("Received message over the queue");
 
-                MongoManager mm = new MongoManager();
                 String measurementString = mm.pullJsonById(job.getId());
 
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
@@ -84,7 +86,6 @@ public class Receiver {
                 String processedString = pe.executeProcesses(measurement.getRawResult(), measurement);
 
                 mm.updateJsonWithId(job.getId(), "processedResult", processedString);
-                mm.closeConnection();
 
                 // send job over the queue
                 sender.Send(job);
@@ -104,6 +105,10 @@ public class Receiver {
      * Close receiving connection.
      */
     public void closeConnection() {
+        // close connection to database
+        mm = new MongoManager();
+
+        // close connection to message queue
         try {
             if (connection.isOpen()) {
                 connection.close();

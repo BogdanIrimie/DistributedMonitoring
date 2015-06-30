@@ -9,7 +9,6 @@ import datamodel.Command;
 import datamodel.Job;
 import datamodel.Measurement;
 import executors.CommandExecutor;
-import executors.ResultFormat;
 import mongo.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +24,7 @@ public class Receiver {
     private Channel channel;
     private QueueingConsumer consumer;
     private Connection connection;
-
+    private MongoManager mm;
     /**
      * Set parameters for RabbitMQ receiver
      */
@@ -58,6 +57,8 @@ public class Receiver {
             boolean autoAck = false;
             channel.basicConsume(queueName, autoAck, consumer);
 
+            // create connection for database
+            mm = new MongoManager();
 
         }
         catch (IOException e) {
@@ -78,13 +79,11 @@ public class Receiver {
                 MDC.put("jobId", job.getId());
                 logger.info("Received message over queue.");
 
-                MongoManager mm = new MongoManager();
                 String measurementString = mm.pullJsonById(job.getId());
 
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
                 String xmlResult = executeCommand(measurement.getCommand());
                 mm.updateJsonWithId(job.getId(), "rawResult", xmlResult);
-                mm.closeConnection();
 
                 // send job over the queue
                 sender.Send(job);
@@ -116,6 +115,10 @@ public class Receiver {
      */
     public void closeConnection() {
         try {
+            // close connection to databse
+            mm.closeConnection();
+
+            // close conection to message queue
             if (connection.isOpen()) {
                 connection.close();
             }

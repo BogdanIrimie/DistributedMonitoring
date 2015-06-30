@@ -23,7 +23,7 @@ public class Sender {
     private final String queueName;
     private Connection connection;
     private Channel channel;
-    MongoManager mm;
+    private MongoManager mm;
     /**
      * Set parameters for RabbitMQ sender
      */
