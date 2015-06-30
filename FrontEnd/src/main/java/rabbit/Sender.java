@@ -23,7 +23,7 @@ public class Sender {
     private final String queueName;
     private Connection connection;
     private Channel channel;
-
+    MongoManager mm;
     /**
      * Set parameters for RabbitMQ sender
      */
@@ -38,6 +38,8 @@ public class Sender {
         factory.setHost(hostName);
         factory.setUsername(userName);
         factory.setPassword(password);
+
+        mm = new MongoManager();
 
         try {
             connection = factory.newConnection();
@@ -62,12 +64,10 @@ public class Sender {
         String measurementString = JsonConverter.objectToJsonString(measurement);
 
         //put data in DB
-        MongoManager mm = new MongoManager();
         String id = mm.pushJson(measurementString);
         MDC.put("jobId", id);
         logger.info("Json pushed in DB: " + measurementString);
         MDC.remove("jobId");
-        mm.closeConnection();
 
         try {
             channel.basicPublish("", queueName,
@@ -84,6 +84,10 @@ public class Sender {
      */
     public void closeConnection() {
         try {
+            // close connection to database
+            mm.closeConnection();
+
+            // close connection to message queue
             if (channel.isOpen()) {
                 channel.close();
             }
