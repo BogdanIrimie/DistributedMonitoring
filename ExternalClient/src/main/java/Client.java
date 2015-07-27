@@ -21,15 +21,15 @@ public class Client {
         }
         */
 
-        for (int i = 0; i < 334; i++ ) {
+        for (int i = 0; i < 4; i++ ) {
             new Thread(new CiphersuiteRequest()).start();
         }
 
-        for (int i = 0; i < 333; i++) {
+        for (int i = 0; i < 3; i++) {
             new Thread(new Ecrypt2LevelRequest()).start();
         }
 
-        for(int i = 0; i < 333; i++ ) {
+        for(int i = 0; i < 3; i++ ) {
             new Thread(new OpenPortRequest()).start();
         }
     }

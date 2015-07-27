@@ -63,9 +63,9 @@ public class WebServer {
             os.close();
             resultsCounter++;
             System.out.println("counter is: " + resultsCounter);
-            if (resultsCounter == 1000) {
+            if (resultsCounter == 10) {
                 endTime = System.currentTimeMillis();
-                System.out.println("1000 results received in " + (endTime - startTime)/1000 + " seconds.");
+                System.out.println("10 results received in " + (endTime - startTime)/1000 + " seconds.");
             }
         }
     }
