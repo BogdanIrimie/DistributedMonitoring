@@ -53,8 +53,8 @@ public class Receiver {
 
             channel.basicQos(prefetchCount);
             boolean durable = true;
-            channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
             channel.queueDeclare(queueName, durable, false, false, null);
+            channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
             channel.queueBind(queueName, EXCHANGE_NAME, "");
             consumer = new QueueingConsumer(channel);
             boolean autoAck = false;

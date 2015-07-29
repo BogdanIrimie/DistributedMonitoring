@@ -39,8 +39,10 @@ public class Sender {
             boolean durable = true;
 
             channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-            //channel.queueDeclare(presenterQueueName, durable, false, false, null);
-            //channel.queueDeclare(remediatorqQueueName, durable, false, false, null);
+            channel.queueDeclare(presenterQueueName, durable, false, false, null);
+            channel.queueDeclare(remediatorqQueueName, durable, false, false, null);
+            channel.queueBind(presenterQueueName, EXCHANGE_NAME, "");
+            channel.queueBind(remediatorqQueueName, EXCHANGE_NAME, "");
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }
