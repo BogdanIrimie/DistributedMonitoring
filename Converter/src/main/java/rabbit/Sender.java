@@ -18,7 +18,7 @@ public class Sender {
     private final String remediatorqQueueName;
     private Connection connection;
     private Channel channel;
-    private static String EXCHANGE_NAME = "presentAndRemediate";
+    private static final String EXCHANGE_NAME = "presentAndRemediate";
 
     public Sender() {
         RabbitMqConfig rmq = new RabbitMqConfig();
@@ -39,8 +39,8 @@ public class Sender {
             boolean durable = true;
 
             channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-            channel.queueDeclare(presenterQueueName, durable, false, false, null);
-            channel.queueDeclare(remediatorqQueueName, durable, false, false, null);
+            //channel.queueDeclare(presenterQueueName, durable, false, false, null);
+            //channel.queueDeclare(remediatorqQueueName, durable, false, false, null);
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }
@@ -50,7 +50,7 @@ public class Sender {
     public void Send(Job job) {
 
         try {
-            channel.basicPublish(EXCHANGE_NAME, presenterQueueName,
+            channel.basicPublish(EXCHANGE_NAME, "",
                     MessageProperties.PERSISTENT_TEXT_PLAIN,
                     JsonConverter.objectToJsonString(job).getBytes());
         } catch (IOException e) {

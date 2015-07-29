@@ -24,6 +24,7 @@ public class Receiver {
     private QueueingConsumer consumer;
     private Connection connection;
     private MongoManager mm;
+    private static final String EXCHANGE_NAME = "presentAndRemediate";
 
     /**
      * Set parameters for RabbitMQ receiver
@@ -52,7 +53,9 @@ public class Receiver {
 
             channel.basicQos(prefetchCount);
             boolean durable = true;
+            channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
             channel.queueDeclare(queueName, durable, false, false, null);
+            channel.queueBind(queueName, EXCHANGE_NAME, "");
             consumer = new QueueingConsumer(channel);
             boolean autoAck = false;
             channel.basicConsume(queueName, autoAck, consumer);
