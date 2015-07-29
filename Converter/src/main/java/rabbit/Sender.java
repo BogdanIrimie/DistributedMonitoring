@@ -14,16 +14,19 @@ import java.io.IOException;
 
 public class Sender {
     private static final Logger logger = LoggerFactory.getLogger(Sender.class);
-    private final String queueName;
+    private final String presenterQueueName;
+    private final String remediatorqQueueName;
     private Connection connection;
     private Channel channel;
+    private static String EXCHANGE_NAME = "presentAndRemediate";
 
     public Sender() {
         RabbitMqConfig rmq = new RabbitMqConfig();
         String hostName = rmq.getHost();
         String userName = rmq.getUsername();
         String password = rmq.getPassword();
-        queueName = rmq.getSendQueue();
+        presenterQueueName = rmq.getPreseneterSendQueue();
+        remediatorqQueueName = rmq.getRemediatorSendQueue();
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(hostName);
@@ -35,7 +38,9 @@ public class Sender {
             channel = connection.createChannel();
             boolean durable = true;
 
-            channel.queueDeclare(queueName, durable, false, false, null);
+            channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+            channel.queueDeclare(presenterQueueName, durable, false, false, null);
+            channel.queueDeclare(remediatorqQueueName, durable, false, false, null);
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }
@@ -45,7 +50,7 @@ public class Sender {
     public void Send(Job job) {
 
         try {
-            channel.basicPublish("", queueName,
+            channel.basicPublish(EXCHANGE_NAME, presenterQueueName,
                     MessageProperties.PERSISTENT_TEXT_PLAIN,
                     JsonConverter.objectToJsonString(job).getBytes());
         } catch (IOException e) {
