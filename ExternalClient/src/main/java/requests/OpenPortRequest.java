@@ -1,7 +1,7 @@
 package requests;
 
 import datamodel.Request;
-import httpserver.RequestSender;
+import httpserver.RequestSenderWithMessage;
 
 public class OpenPortRequest implements Runnable{
 
@@ -14,7 +14,7 @@ public class OpenPortRequest implements Runnable{
         request.setResponseAddress("http://localhost:8008/jobFinished");
         request.setProcessors(new String[]{"processors.XmlToJsonConverter"});
         request.setAdapter("adapters.EventHubAdapter");
-        String requestResponse = RequestSender.sendRequest("http://localhost:8000/job", request);
+        String requestResponse = RequestSenderWithMessage.sendRequest("http://localhost:8080/request", request);
 
     }
 }

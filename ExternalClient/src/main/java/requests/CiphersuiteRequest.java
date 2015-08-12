@@ -1,7 +1,7 @@
 package requests;
 
 import datamodel.Request;
-import httpserver.RequestSender;
+import httpserver.RequestSenderWithMessage;
 
 /*
 *   Request ciphersuite list
@@ -17,6 +17,6 @@ public class CiphersuiteRequest implements Runnable {
         request.setResponseAddress("http://localhost:8008/jobFinished");
         request.setProcessors(new String[]{"processors.XmlToJsonConverter", "processors.TlsCiphersuitesFilter"});
         request.setAdapter("adapters.EventHubAdapter");
-        String requestResponse = RequestSender.sendRequest("http://localhost:8000/job", request);
+        String requestResponse = RequestSenderWithMessage.sendRequest("http://localhost:8080/request", request);
     }
 }

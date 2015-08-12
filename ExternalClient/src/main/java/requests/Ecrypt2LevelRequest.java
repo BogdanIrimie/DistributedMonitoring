@@ -1,7 +1,7 @@
 package requests;
 
 import datamodel.Request;
-import httpserver.RequestSender;
+import httpserver.RequestSenderWithMessage;
 
 public class Ecrypt2LevelRequest implements Runnable {
     public void run() {
@@ -13,7 +13,7 @@ public class Ecrypt2LevelRequest implements Runnable {
         request.setResponseAddress("http://localhost:8008/jobFinished");
         request.setProcessors(new String[]{"processors.XmlToJsonConverter", "processors.TlsCiphersuitesFilter","processors.TlsEcrypt2Level"});
         request.setAdapter("adapters.EventHubAdapter");
-        String requestResponse = RequestSender.sendRequest("http://localhost:8000/job", request);
+        String requestResponse = RequestSenderWithMessage.sendRequest("http://localhost:8080/request", request);
     }
 }
 
