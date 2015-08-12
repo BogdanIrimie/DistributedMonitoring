@@ -1,4 +1,4 @@
-package httpmanager;
+package httpserver;
 
 import converters.JsonConverter;
 import datamodel.Request;

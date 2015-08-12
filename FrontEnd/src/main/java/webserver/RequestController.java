@@ -29,6 +29,5 @@ public class RequestController {
         else {
             return new ResponseEntity<Job>(new Job("-1"), HttpStatus.BAD_REQUEST);
         }
-        
     }
 }
