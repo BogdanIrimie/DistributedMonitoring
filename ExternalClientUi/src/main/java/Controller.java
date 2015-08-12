@@ -1,6 +1,5 @@
-import converters.JsonConverter;
 import datamodel.Request;
-import httpserver.RequestSender;
+import httpmanager.RequestSenderWithMessage;
 import httpserver.WebServer;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -36,9 +35,8 @@ public class Controller {
                 request.setProcessors(new String[] {"processors.XmlToJsonConverter","processors.TlsCiphersuitesFilter","processors.TlsEcrypt2Level"});
                 request.setAdapter("adapters.EventHubAdapter");
 
-                String requestJsonString = JsonConverter.objectToJsonString(request);
-
-                String requestResponse = RequestSender.sendRequest("http://localhost:8000/job", request);
+                //String requestResponse = RequestSender.sendRequest("http://localhost:8000/job", request);
+                String requestResponse = RequestSenderWithMessage.sendRequest("http://localhost:8080/request", request);
                 Platform.runLater(new Runnable() {
                     public void run() {
                         response.setText(requestResponse);
