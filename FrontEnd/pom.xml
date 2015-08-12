@@ -8,6 +8,7 @@
     <artifactId>FrontEnd</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
     <properties>
         <jarName>FrontEnd</jarName>
         <jacksonVersion>2.5.0</jacksonVersion>
@@ -19,6 +20,7 @@
         <mavenCompilationPlugin>3.3</mavenCompilationPlugin>
         <javaVersion>1.8</javaVersion>
         <mavenShadePluginVersion>2.3</mavenShadePluginVersion>
+        <springBootVersion>1.2.5.RELEASE</springBootVersion>
     </properties>
 
 
@@ -87,6 +89,13 @@
         </dependency>
         <!-- End of LOGBack -->
 
+        <!-- Spring is used for REST interface -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${springBootVersion}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -119,7 +128,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>Client</mainClass>
+                                    <mainClass>webserver.Client</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
