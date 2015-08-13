@@ -8,6 +8,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * Send POST HTTP request
+ */
 public class RequestSenderWithMessage {
 
     private static final Logger logger = LoggerFactory.getLogger(RequestSenderWithMessage.class);
