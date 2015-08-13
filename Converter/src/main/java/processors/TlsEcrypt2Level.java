@@ -9,10 +9,16 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Compute the Ecrypt 2 level from the list of cipher suites.
+ */
 public class TlsEcrypt2Level implements Processor {
     public static final Logger logger = LoggerFactory.getLogger(TlsEcrypt2Level.class);
     private List<Ciphersuite> ciphersuites;
 
+    /**
+     * Construct the list of existing cipher suites from the ciphersuites.csv file
+     */
     public TlsEcrypt2Level() {
         ClassLoader classLoader = getClass().getClassLoader();
         BufferedReader br = null;
