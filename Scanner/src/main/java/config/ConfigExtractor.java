@@ -18,6 +18,10 @@ public class ConfigExtractor {
     private static Properties configProp;
     private static ConfigExtractor configInstance = null;
 
+    /**
+     * Use the config file from /etc,
+     * if there is non then use the standard config file
+     */
     private ConfigExtractor() {
         String configFile = "../etc/conf.properties";
         String configFileFallback = "/conf.properties";

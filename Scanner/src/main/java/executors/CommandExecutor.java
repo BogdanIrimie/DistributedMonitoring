@@ -45,9 +45,14 @@ public class CommandExecutor {
         return commandOutput.toString();
     }
 
+    /**
+     * Process the command and add or remove arguments.
+     * @param command that will be processed.
+     */
     private void processCommand(Command command) {
         ResultFormat format = ResultFormat.STANDARD;
 
+        // if the command is a nmap command than add the argument to get results as XML
         if (command.getCommand().matches("^nmap.*")) {
             format = ResultFormat.XML;
         }
