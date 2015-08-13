@@ -11,13 +11,17 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 /**
- * Extract configuration/properties  from conf.properties
+ * Extract configuration/properties from conf.properties
  */
 public class ConfigExtractor {
     private static final Logger logger = LoggerFactory.getLogger(ConfigExtractor.class);
     private static Properties configProp;
     private static ConfigExtractor configInstance = null;
 
+    /**
+     * Use the config file from /etc,
+     * if there is non then use the standard config file
+     */
     private ConfigExtractor() {
         String configFile = "../etc/conf.properties";
         String configFileFallback = "/conf.properties";
