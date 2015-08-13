@@ -20,6 +20,9 @@ public class Sender {
     private Connection connection;
     private Channel channel;
 
+    /**
+     * Initialize send queue.
+     */
     public Sender() {
         RabbitMqConfig rmq = new RabbitMqConfig();
         String hostName = rmq.getHost();

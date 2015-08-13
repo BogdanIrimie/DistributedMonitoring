@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-
+/**
+ * send Job to the next queue
+ */
 public class Sender {
     private static final Logger logger = LoggerFactory.getLogger(Sender.class);
     private final String presenterQueueName;
@@ -20,6 +22,9 @@ public class Sender {
     private Channel channel;
     private static final String EXCHANGE_NAME = "presentAndRemediate";
 
+    /**
+     * Initialize send queue.
+     */
     public Sender() {
         RabbitMqConfig rmq = new RabbitMqConfig();
         String hostName = rmq.getHost();
