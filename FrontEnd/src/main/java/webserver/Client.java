@@ -9,7 +9,6 @@ public class Client {
 
     public static void main(String[] args) {
         MDC.put("pid", getPid());
-        //WebServer ws = new WebServer();
         SpringApplication.run(Client.class, args);
         MDC.clear();
     }
