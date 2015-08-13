@@ -49,7 +49,12 @@ public class Sender {
 
     }
 
-    public void Send(Job job) {
+    /**
+     * send job over the queue
+     *
+     * @param job contains details about the job
+     */
+    public void send(Job job) {
 
         try {
             channel.basicPublish(EXCHANGE_NAME, "",
@@ -61,6 +66,9 @@ public class Sender {
 
     }
 
+    /**
+     * Close queue connection
+     */
     public void closeConnection() {
 
         try {

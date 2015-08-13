@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- * Send Job to the next queue
+ * send Job to the next queue
  */
 public class Sender {
     private static final Logger logger = LoggerFactory.getLogger(Sender.class);
@@ -45,11 +45,11 @@ public class Sender {
     }
 
     /**
-     * Send job over the queue
+     * send job over the queue
      *
      * @param job contains details about the job
      */
-    public void Send(Job job) {
+    public void send(Job job) {
         try {
             channel.basicPublish("", queueName,
                     MessageProperties.PERSISTENT_TEXT_PLAIN,

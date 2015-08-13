@@ -88,7 +88,7 @@ public class Receiver {
                 mm.updateJsonWithId(job.getId(), "processedResult", processedString);
 
                 // send job over the queue
-                sender.Send(job);
+                sender.send(job);
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 logger.info("Sent message over queue.");
