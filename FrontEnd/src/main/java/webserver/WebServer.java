@@ -31,7 +31,7 @@ public class WebServer {
     public WebServer(int port) {
         HttpServer server = null;
         try {
-            server = HttpServer.create(new InetSocketAddress(port), 0);
+            server = HttpServer.create(new InetSocketAddress(port), 2000);
             server.createContext("/job", new MyHandler());
             server.setExecutor(null); // creates a default executor
             server.start();
@@ -80,6 +80,7 @@ public class WebServer {
 
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
+            os.flush();
             os.close();
         }
     }
