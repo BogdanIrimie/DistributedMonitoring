@@ -1,14 +1,20 @@
 import httpserver.WebServer;
-import requests.CiphersuiteRequest;
-import requests.Ecrypt2LevelRequest;
-import requests.OpenPortRequest;
-
-import java.util.Random;
+import requests.RequestExecutor;
 
 public class Client {
     public static void main(String[] args) {
-        WebServer ws = new WebServer();
+        int totalRuns;
 
+        if (args.length > 0) {
+            totalRuns = Integer.parseInt(args[0]);
+        }
+        else {
+            totalRuns = 1;
+        }
+        WebServer ws = new WebServer(8008, totalRuns);
+        //WebServer ws = new WebServer();
+
+        /*
         Random r = new Random();
         for (int i = 0; i < 10; i++) {
             switch (r.nextInt(3)) {
@@ -20,5 +26,7 @@ public class Client {
                         break;
             }
         }
+        */
+        RequestExecutor.generateRequests();
     }
 }
