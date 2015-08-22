@@ -17,7 +17,7 @@ public class RequestSender {
     public RequestSender() {
     }
 
-    public static String sendRequest(String url, Request request) {
+    public String sendRequest(String url, Request request) {
         String charset = StandardCharsets.UTF_8.name();
         String requestJsonString = JsonConverter.objectToJsonString(request);
         String requestParameter = "request=" + requestJsonString;
@@ -27,6 +27,7 @@ public class RequestSender {
             String encodedRequest = URLEncoder.encode(requestParameter, charset);
 
             URLConnection connection = new URL(url + "?" + encodedRequest).openConnection();
+            connection.setConnectTimeout(64000); // timeout set to 64 seconds
             connection.setRequestProperty("Accept-Charset", charset);
 
             InputStream response = connection.getInputStream();
@@ -36,6 +37,7 @@ public class RequestSender {
             while ((line = br.readLine()) != null) {
                 responseString.append(line);
             }
+            response.close();
             // System.out.println(responseString.toString());
             return responseString.toString();
 
