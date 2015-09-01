@@ -1,2 +1,2 @@
 language: java
-script: mvn -f /FrontEnd/ test
+script: cd FrontEnd && mvn test
