@@ -1,2 +1,2 @@
 language: java
-script: FrontEnd/mvn test
+script: mvn test
