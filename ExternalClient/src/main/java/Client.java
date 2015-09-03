@@ -1,36 +1,18 @@
 import httpserver.WebServer;
-import requests.CiphersuiteRequest;
-import requests.Ecrypt2LevelRequest;
-import requests.OpenPortRequest;
+import requests.RequestExecutor;
 
 public class Client {
     public static void main(String[] args) {
-        WebServer ws = new WebServer();
+        int totalRuns;
 
-        /*
-        Random r = new Random();
-        for (int i = 0; i < 10; i++) {
-            switch (r.nextInt(3)) {
-                case 0: new Thread(new CiphersuiteRequest()).start();
-                        break;
-                case 1: new Thread(new Ecrypt2LevelRequest()).start();
-                        break;
-                case 2: new Thread(new OpenPortRequest()).start();
-                        break;
-            }
+        if (args.length > 0) {
+            totalRuns = Integer.parseInt(args[0]);
         }
-        */
-
-        for (int i = 0; i < 4; i++ ) {
-            new Thread(new CiphersuiteRequest()).start();
+        else {
+            totalRuns = 1;
         }
 
-        for (int i = 0; i < 3; i++) {
-            new Thread(new Ecrypt2LevelRequest()).start();
-        }
-
-        for(int i = 0; i < 3; i++ ) {
-            new Thread(new OpenPortRequest()).start();
-        }
+        WebServer ws = new WebServer(8008, totalRuns);
+        RequestExecutor.generateRequests();
     }
 }
