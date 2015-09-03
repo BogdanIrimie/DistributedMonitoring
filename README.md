@@ -2,8 +2,6 @@
 
 We propose a fault tolerant distributed monitoring system based on Nmap, and possible other tools, for scanning target hosts and networks. The system will also store the result for later retrieval, audit and statistics purposes.
 
-Build Status of main branch: [![Build Status](https://travis-ci.org/IrimieBogdan/DistributedMonitoring.svg?branch=master)](https://travis-ci.org/IrimieBogdan/DistributedMonitoring)
-
 ## Set up
 
 ### Requirements
