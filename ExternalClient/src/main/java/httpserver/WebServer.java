@@ -16,7 +16,7 @@ import java.util.List;
 
 public class WebServer {
 
-    private static final int TOTAL_SCANS = 100;
+    private static final int TOTAL_SCANS = 10;
     private static int TOTAL_RUNS = 5;
     private static int run = 1;
     private static TextArea results = null;
