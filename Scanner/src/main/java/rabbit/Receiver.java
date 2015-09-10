@@ -1,6 +1,6 @@
 package rabbit;
 
-import benchmarking.CpuMonitor;
+import benchmarking.Monitoring;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -77,9 +77,8 @@ public class Receiver {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 
-                // monitoring for CPU usage
-                CpuMonitor cpuMonitor = new CpuMonitor();
-                cpuMonitor.startMonitoring();
+                Monitoring monit = new Monitoring();
+                monit.startMonitoring();
 
                 String message = new String(delivery.getBody());
                 Job job = JsonConverter.jsonStringToObject(message, Job.class);
@@ -98,9 +97,7 @@ public class Receiver {
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
 
-                // monitoring for CPU usage
-                cpuMonitor.stopMonitoring();
-                cpuMonitor.parseForPid(results.getCommadnPid());
+                monit.stopMonitoring();
 
                 logger.info("Sent message over queue.");
                 MDC.remove("jobId");
