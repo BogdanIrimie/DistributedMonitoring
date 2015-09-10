@@ -1,11 +1,13 @@
 package rabbit;
 
+import benchmarking.CpuMonitor;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import converters.JsonConverter;
 import datamodel.Command;
+import datamodel.CommandPidAndResults;
 import datamodel.Job;
 import datamodel.Measurement;
 import executors.CommandExecutor;
@@ -74,6 +76,11 @@ public class Receiver {
         while (true) {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+
+                // monitoring for CPU usage
+                CpuMonitor cpuMonitor = new CpuMonitor();
+                cpuMonitor.startMonitoring();
+
                 String message = new String(delivery.getBody());
                 Job job = JsonConverter.jsonStringToObject(message, Job.class);
                 MDC.put("jobId", job.getId());
@@ -82,13 +89,19 @@ public class Receiver {
                 String measurementString = mm.pullJsonById(job.getId());
 
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
-                String xmlResult = executeCommand(measurement.getCommand());
+                CommandPidAndResults results  = executeCommand(measurement.getCommand());
+                String xmlResult = results.getCommandResults();
                 mm.updateJsonWithId(job.getId(), "rawResult", xmlResult);
 
                 // send job over the queue
                 sender.send(job);
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+
+                // monitoring for CPU usage
+                cpuMonitor.stopMonitoring();
+                cpuMonitor.parseForPid(results.getCommadnPid());
+
                 logger.info("Sent message over queue.");
                 MDC.remove("jobId");
             } catch (InterruptedException e) {
@@ -105,7 +118,7 @@ public class Receiver {
      * @param command terminal command that will be executed
      * @throws InterruptedException
      */
-    private String executeCommand(String command) throws InterruptedException {
+    private CommandPidAndResults executeCommand(String command) throws InterruptedException {
         CommandExecutor cmd = new CommandExecutor();
         return cmd.execute(new Command(command));
     }
