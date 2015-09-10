@@ -1,12 +1,14 @@
 package executors;
 
 import datamodel.Command;
+import datamodel.CommandPidAndResults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 
 /**
  * Executes commands in terminal
@@ -19,30 +21,39 @@ public class CommandExecutor {
      *
      * @return command output
      */
-    public String execute(Command command) {
+    public CommandPidAndResults execute(Command command) {
         String line;
-        Process p;
+        Process process;
+        long commandPid = -1;
         StringBuilder commandOutput = new StringBuilder();
 
         processCommand(command);
 
         try {
-            p = Runtime.getRuntime().exec(command.getCommand());
-            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            process = Runtime.getRuntime().exec(command.getCommand());
+
+            Field pid = process.getClass().getDeclaredField("pid");
+            pid.setAccessible(true);
+            commandPid = pid.getLong(process);
+            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
             while ((line = br.readLine()) != null) {
                 commandOutput.append(line);
             }
-            p.waitFor();
-            p.exitValue();  // throw some error if exit value is incorrect
-            p.destroy();
+            process.waitFor();
+            process.exitValue();  // throw some error if exit value is incorrect
+            process.destroy();
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         } catch (InterruptedException e) {
             logger.error(e.getMessage(), e);
+        } catch (IllegalAccessException e) {
+            logger.error(e.getMessage(), e);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
         }
 
         logger.info("Command output: " + commandOutput.toString());
-        return commandOutput.toString();
+        return new CommandPidAndResults(commandPid, commandOutput.toString());
     }
 
     /**
