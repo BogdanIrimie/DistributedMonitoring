@@ -13,7 +13,7 @@ public class RequestSenderWithMessage {
 
     public RequestSenderWithMessage() {}
 
-    public static String sendRequest(String url, Request request) {
+    public String sendRequest(String url, Request request) {
         try {
             String requestJsonString = JsonConverter.objectToJsonString(request);
             URLConnection connection = new URL(url).openConnection();
@@ -32,11 +32,11 @@ public class RequestSenderWithMessage {
             }
             return responseString.toString();
         } catch (UnsupportedEncodingException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         } catch (MalformedURLException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         } catch (IOException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
         return "...";
     }

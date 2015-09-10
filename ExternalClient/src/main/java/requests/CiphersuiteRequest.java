@@ -27,6 +27,7 @@ public class CiphersuiteRequest implements Runnable {
         request.setResponseAddress("http://" + responseAddress + ":8008/jobFinished");
         request.setProcessors(new String[]{"processors.XmlToJsonConverter", "processors.TlsCiphersuitesFilter"});
         request.setAdapter("adapters.EventHubAdapter");
-        String requestResponse = RequestSenderWithMessage.sendRequest("http://" + sendRequestAddress + ":8080/request", request);
+        RequestSenderWithMessage requestSender = new RequestSenderWithMessage();
+        String requestResponse = requestSender.sendRequest("http://" + sendRequestAddress + ":8080/request", request);
     }
 }

@@ -17,7 +17,7 @@ public class JsonConverter {
      * @param obj object that will be serialized to string.
      * @return string with serialized object.
      */
-    public static String objectToJsonString(Object obj) {
+    public static synchronized String objectToJsonString(Object obj) {
         String objToJson = null;
         try {
             objToJson = mapper.writeValueAsString(obj);
