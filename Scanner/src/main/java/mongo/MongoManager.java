@@ -16,6 +16,7 @@ public class MongoManager {
     private MongoClient mongoClient = null;
     private DBCollection results = null;
     private static MongoDbConfig mongoConfig = new MongoDbConfig();
+    private DB db;
 
     public MongoManager() {
         this(mongoConfig.getIp());
@@ -30,7 +31,7 @@ public class MongoManager {
         try {
             mongoClient = new MongoClient(ip, port);
             logger.info("Connection to DB was established.");
-            DB db = mongoClient.getDB("monitoring");
+            db = mongoClient.getDB("monitoring");
             results = db.getCollection("clientRequest");
         } catch (UnknownHostException e) {
             logger.error(e.getMessage(), e);
@@ -47,6 +48,14 @@ public class MongoManager {
         Object jsonObj = JSON.parse(jsonString);
         DBObject dbObj = (DBObject)jsonObj;
         results.insert(dbObj);
+        return dbObj.get("_id").toString();
+    }
+
+    // TODO add comment
+    public String pushJson(String jsonString, String collectionName) {
+        Object jsonObj = JSON.parse(jsonString);
+        DBObject dbObj = (DBObject)jsonObj;
+        db.getCollection(collectionName).insert(dbObj);
         return dbObj.get("_id").toString();
     }
 
