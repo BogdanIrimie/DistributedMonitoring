@@ -6,10 +6,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import converters.JsonConverter;
-import datamodel.Command;
-import datamodel.CommandPidAndResults;
-import datamodel.Job;
-import datamodel.Measurement;
+import datamodel.*;
 import executors.CommandExecutor;
 import mongo.MongoManager;
 import org.slf4j.Logger;
@@ -98,6 +95,8 @@ public class Receiver {
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
 
                 monit.stopMonitoring();
+                PerformanceSelfMonitoring perfSelf =  monit.getResults(results.getCommadnPid());
+                mm.pushJson(JsonConverter.objectToJsonString(perfSelf));
 
                 logger.info("Sent message over queue.");
                 MDC.remove("jobId");
