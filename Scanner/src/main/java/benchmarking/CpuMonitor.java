@@ -1,10 +1,14 @@
 package benchmarking;
 
+import datamodel.CpuUsageResults;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CpuMonitor {
     private boolean continueMonitoring = true;
@@ -53,10 +57,12 @@ public class CpuMonitor {
         cpuMonit.start();
     }
 
-    public String parseForPid(long pid) {
+    public CpuUsageResults parseForPid(long pid) {
         stopMonitoring();
         String cmdOut = commandOutput.toString();
         StringBuilder parsedResultsAfterPid = new StringBuilder();
+        List<String> cpuPercentEverySecond = new ArrayList<String>();
+
 
         String[] outputLines = cmdOut.split(System.getProperty("line.separator"));
         for (String line : outputLines) {
@@ -65,14 +71,15 @@ public class CpuMonitor {
                 long resultsPid = Long.parseLong(processData[0]);
                 String cpuUsage = processData[1];
                 if (resultsPid == pid) {
-                    parsedResultsAfterPid.append(resultsPid + "," + cpuUsage + "\n");
+                    cpuPercentEverySecond.add(cpuUsage);
+                    //parsedResultsAfterPid.append(resultsPid + "," + cpuUsage + "\n");
                 }
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
         }
 
-        return parsedResultsAfterPid.toString();
+        return new CpuUsageResults(pid, date, cpuPercentEverySecond);
     }
 
     private static String getPid() {
