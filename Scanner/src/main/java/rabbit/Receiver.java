@@ -96,7 +96,7 @@ public class Receiver {
 
                 monit.stopMonitoring();
                 PerformanceSelfMonitoring perfSelf =  monit.getResults(results.getCommadnPid());
-                mm.pushJson(JsonConverter.objectToJsonString(perfSelf));
+                mm.pushJson(JsonConverter.objectToJsonString(perfSelf), "selfPerformance");
 
                 logger.info("Sent message over queue.");
                 MDC.remove("jobId");
