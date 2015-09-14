@@ -29,24 +29,29 @@ public class CpuMonitor {
                 String[] cmd = {
                         "/bin/sh",
                         "-c",
-                        " atop 1 -a | unbuffer -p awk '/" + processPid + "|nmap/ {print $1 \" \" $11}'"
+                        " atop 1 -a"
                 };
 
                 try {
                     process = Runtime.getRuntime().exec(cmd);
+                    process.getOutputStream().write("ratuj3Ilufi\n\r".getBytes());
+
                     Field pid = process.getClass().getDeclaredField("pid");
                     pid.setAccessible(true);
                     BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
-                    while ( continueMonitoring && (line = br.readLine()) != null) {
+                    while (continueMonitoring && (line = br.readLine()) != null) {
                         if (firstAppearance  && line.contains(processPid)) {
                             date = new Date();
                         }
-                        commandOutput.append(line + "\n");
+                        if (line.contains("nmap")) {
+                            commandOutput.append(line + "\n");
+                        }
                     }
-                    process.destroy();
+
+                    process.destroyForcibly();
                 } catch (IOException e) {
-                    System.err.println(e.getStackTrace());
+                    e.printStackTrace();
                 } catch (NoSuchFieldException e) {
                     e.printStackTrace();
                 }
@@ -63,18 +68,21 @@ public class CpuMonitor {
         StringBuilder parsedResultsAfterPid = new StringBuilder();
         List<String> cpuPercentEverySecond = new ArrayList<String>();
 
-
         String[] outputLines = cmdOut.split(System.getProperty("line.separator"));
         for (String line : outputLines) {
-            String[] processData = line.split(" ");
+            if (line.trim().length() == 0) {
+                continue;
+            }
+            String[] processData = line.split("\\s+");
             try {
                 long resultsPid = Long.parseLong(processData[0]);
-                String cpuUsage = processData[1];
+                String cpuUsage = processData[10];
                 if (resultsPid == pid) {
                     cpuPercentEverySecond.add(cpuUsage);
                     //parsedResultsAfterPid.append(resultsPid + "," + cpuUsage + "\n");
                 }
             } catch (NumberFormatException e) {
+                System.out.println("Line is: " + line);
                 e.printStackTrace();
             }
         }
@@ -88,6 +96,11 @@ public class CpuMonitor {
     }
 
     public void stopMonitoring() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         continueMonitoring = false;
     }
 }
