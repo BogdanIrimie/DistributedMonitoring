@@ -92,12 +92,11 @@ public class Receiver {
                 // send job over the queue
                 sender.send(job);
 
-                channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
-
+                // finalize monitoring activities
                 monit.stopMonitoring();
-                PerformanceSelfMonitoring perfSelf =  monit.getResults(results.getCommadnPid());
-                mm.pushJson(JsonConverter.objectToJsonString(perfSelf), "selfPerformance");
+                monit.saveResultsInDb(results.getCommadnPid(), mm);
 
+                channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 logger.info("Sent message over queue.");
                 MDC.remove("jobId");
             } catch (InterruptedException e) {
