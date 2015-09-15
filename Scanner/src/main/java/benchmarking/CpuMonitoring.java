@@ -33,7 +33,6 @@ public class CpuMonitoring implements MonitoringInterface {
     public CpuUsageResults parseForPid(long pid) {
         BufferedReader br = null;
         String line;
-        StringBuilder nmapMonitoring = new StringBuilder();
         List<String> cpuUsageResults = new ArrayList<String>();
         try {
             // wait for 1 second before reading the file so that all data for PID is written in file
@@ -42,6 +41,50 @@ public class CpuMonitoring implements MonitoringInterface {
 
             while ((line = br.readLine()) != null) {
                 String[] splitedLine = line.split("\\s+");
+
+
+                if ((splitedLine.length > 3) &&                                                                         // at least a timestamp, a pid and a %
+                        splitedLine[1].trim().length() > 0 &&                                                           // the PID length is > 0
+                        isNumeric(splitedLine[1].trim()) &&                                                             // the PID is a number
+                        (splitedLine[0].trim().length() > 18)) {                                                        // a valid timestamp (date + time)
+
+                    long resultsPid = Long.parseLong(splitedLine[1]);
+                    if (resultsPid == pid) {
+                        String[] dateAndTime = splitedLine[0].split("_");
+                        String date = dateAndTime[0];
+                        String time = dateAndTime[1];
+
+                        if (date.trim().length() == 0 || time.trim().length() == 0) {
+                            continue;
+                        }
+
+                        String[] dateSplit = date.split("/");
+                        String[] timeSplit = time.split(":");
+
+                        Calendar timeFromLog = Calendar.getInstance();
+
+                        timeFromLog.set(Calendar.SECOND, Integer.parseInt(timeSplit[2]));
+                        timeFromLog.set(Calendar.MINUTE, Integer.parseInt(timeSplit[1]));
+                        timeFromLog.set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeSplit[0]));
+                        timeFromLog.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dateSplit[2]));
+                        timeFromLog.set(Calendar.MONTH, Integer.parseInt(dateSplit[1]) - 1);
+                        timeFromLog.set(Calendar.YEAR, Integer.parseInt(dateSplit[0]));
+
+                        if (timeFromLog.after(startTimeOfMonitoring) && timeFromLog.before(endTimeOfMonitoring)) {
+                            cpuUsageResults.add(splitedLine[2]);                                                        // PID is ok and time is ok
+                        }
+
+                        // it is useless to look after the time the monitoring was stoped
+                        if (timeFromLog.after(endTimeOfMonitoring)) {
+                            break;
+                        }
+
+                        cpuUsageResults.add(splitedLine[2]);
+                    }
+                }
+
+
+
                 if ((splitedLine.length > 2) && (splitedLine[0].trim().length() > 18)) {
                     String[] dateAndTime = splitedLine[0].split("_");
                     String date = dateAndTime[0];
