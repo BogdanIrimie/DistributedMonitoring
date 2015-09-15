@@ -21,6 +21,7 @@ public class CpuMonitoring implements MonitoringInterface {
     @Override
     public void startMonitoring() {
         startTimeOfMonitoring = Calendar.getInstance();
+        startTimeOfMonitoring.add(Calendar.SECOND, -1);
     }
 
     @Override
@@ -36,12 +37,12 @@ public class CpuMonitoring implements MonitoringInterface {
         List<String> cpuUsageResults = new ArrayList<String>();
         try {
             // wait for 1 second before reading the file so that all data for PID is written in file
-            Thread.sleep(1000);
+            Thread.sleep(1300);
             br = new BufferedReader(new FileReader("/tmp/everySecondMonitoring.txt"));
 
-            while ((line = br.readLine()) == null) {
+            while ((line = br.readLine()) != null) {
                 String[] splitedLine = line.split("\\s+");
-                if ((splitedLine.length > 23) && (splitedLine[0].trim().length() > 18)) {
+                if ((splitedLine.length > 2) && (splitedLine[0].trim().length() > 18)) {
                     String[] dateAndTime = splitedLine[0].split("_");
                     String date = dateAndTime[0];
                     String time = dateAndTime[1];
