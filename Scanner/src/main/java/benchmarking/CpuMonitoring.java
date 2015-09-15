@@ -92,7 +92,7 @@ public class CpuMonitoring implements MonitoringInterface {
 
         try {
             // wait for 1 second before reading the file so that all data for PID is written in file
-            Thread.sleep(1300);
+            Thread.sleep(1500);
             br = new BufferedReader(new FileReader("/tmp/everySecondMonitoring.txt"));
 
             while ((line = br.readLine()) != null) {
