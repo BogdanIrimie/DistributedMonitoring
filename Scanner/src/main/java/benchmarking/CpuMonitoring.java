@@ -5,9 +5,7 @@ import org.apache.commons.io.input.ReversedLinesFileReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -40,9 +38,9 @@ public class CpuMonitoring implements MonitoringInterface {
         try {
             Thread.sleep(1500);
             String strpath="/tmp/everySecondMonitoring.txt";
-            ReversedLinesFileReader fr = new ReversedLinesFileReader(new File(strpath));;
+            ReversedLinesFileReader reverseFileReader = new ReversedLinesFileReader(new File(strpath));;
             do {
-                line = fr.readLine();
+                line = reverseFileReader.readLine();
                 if (line == null) {
                     continue;
                 }
@@ -86,16 +84,22 @@ public class CpuMonitoring implements MonitoringInterface {
                     }
                 }
             } while (line != null);
-            fr.close();
+            reverseFileReader.close();
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         } catch (InterruptedException e) {
             logger.error(e.getMessage(), e);
         }
+
         Collections.reverse(cpuUsageResults);
+        return new CpuUsageResults(pid, startTimeOfMonitoring, cpuUsageResults);
+    }
 
+    public CpuUsageResults parseForPidFromFileHead(long pid) {
+        BufferedReader br = null;
+        String line;
+        List<String> cpuUsageResults = new ArrayList<String>();
 
-/*
         try {
             // wait for 1 second before reading the file so that all data for PID is written in file
             Thread.sleep(1500);
@@ -153,8 +157,14 @@ public class CpuMonitoring implements MonitoringInterface {
             logger.error(e.getMessage(), e);
         } catch (InterruptedException e) {
             logger.error(e.getMessage(), e);
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+            }
         }
-*/
+
         return new CpuUsageResults(pid, startTimeOfMonitoring, cpuUsageResults);
     }
 
