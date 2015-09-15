@@ -35,14 +35,11 @@ public class CpuMonitoring implements MonitoringInterface {
         StringBuilder nmapMonitoring = new StringBuilder();
         List<String> cpuUsageResults = new ArrayList<String>();
         try {
+            // wait for 1 second before reading the file so that all data for PID is written in file
+            Thread.sleep(1000);
             br = new BufferedReader(new FileReader("/tmp/everySecondMonitoring.txt"));
 
-
-            while (true) {
-                if ((line = br.readLine()) == null) {
-                    Thread.sleep(100);
-                    continue;
-                }
+            while ((line = br.readLine()) == null) {
                 String[] splitedLine = line.split("\\s+");
                 if ((splitedLine.length > 23) && (splitedLine[0].trim().length() > 18)) {
                     String[] dateAndTime = splitedLine[0].split("_");
@@ -89,7 +86,7 @@ public class CpuMonitoring implements MonitoringInterface {
         } catch (ArrayIndexOutOfBoundsException e) {
             logger.error(e.getMessage(), e);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
 
         return new CpuUsageResults(pid, startTimeOfMonitoring, cpuUsageResults);
