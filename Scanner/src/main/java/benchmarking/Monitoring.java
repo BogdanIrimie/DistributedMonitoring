@@ -8,7 +8,6 @@ import mongo.MongoManager;
 public class Monitoring {
     CpuMonitoring cpuMonitor = new CpuMonitoring();
     long startTime = -1, endTime = -1, totalTime = -1;
-    private PerformanceSelfMonitoring perfSelf = new PerformanceSelfMonitoring();
 
     public void startMonitoring() {
         cpuMonitor.startMonitoring();
@@ -22,6 +21,7 @@ public class Monitoring {
     }
 
     public PerformanceSelfMonitoring getResults(long pid) {
+        PerformanceSelfMonitoring perfSelf = new PerformanceSelfMonitoring();
         perfSelf.setCpuUsageResults(cpuMonitor.parseForPid(pid));
         perfSelf.setExecutionTime(totalTime);
 
@@ -32,6 +32,7 @@ public class Monitoring {
         Thread writeRestuls = new Thread(new Runnable() {
             @Override
             public void run() {
+                PerformanceSelfMonitoring perfSelf = new PerformanceSelfMonitoring();
                 perfSelf.setCpuUsageResults(cpuMonitor.parseForPid(pid));
                 perfSelf.setExecutionTime(totalTime);
                 mm.pushJson(JsonConverter.objectToJsonString(perfSelf), "selfPerformance");            }
