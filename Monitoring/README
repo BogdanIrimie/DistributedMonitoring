@@ -1,0 +1,21 @@
+For the monitoring module to work, the following dependencies must be satisfied:
+
+- awk
+- atop 2.2-3 (+ libncurses-dev, make)
+- unbuffer
+- netatop 0.6 (+ linux-headers-generic, zlib1g-dev, make)
+
+
+The following commands can be run to install the dependencies on Ubuntu 14.04:
+
+sudo apt-get install linux-headers-generic 
+sudo apt-get install zlib1g-dev
+sudo apt-get install make
+
+<path to netatop> make
+<patht o netatop> make install
+sudo service netatop start
+
+
+sudo apt-get install libncurses-dev
+<path to atop> make sysvinstall (or systemdinstall for systemd)
