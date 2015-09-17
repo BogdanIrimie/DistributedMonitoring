@@ -48,7 +48,6 @@ public class CpuMonitoring implements MonitoringInterface {
                 String[] splitedLine = line.split("\\s+");
 
                 if ((splitedLine.length >= 6) &&                                                                         // at least a timestamp, a pid and a %
-                        splitedLine[1].trim().length() > 0 &&                                                           // the PID length is > 0
                         (splitedLine[0].trim().length() > 18)) {                                                        // a valid timestamp (date + time)
 
                     String[] dateAndTime = splitedLine[0].split("_");
