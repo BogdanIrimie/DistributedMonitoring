@@ -37,7 +37,7 @@ public class CpuMonitoring implements MonitoringInterface {
 
         try {
             Thread.sleep(1500);
-            String strpath="/tmp/everySecondMonitoring.txt";
+            String strpath="/tmp/performanceMonitoring.log";
             ReversedLinesFileReader reverseFileReader = new ReversedLinesFileReader(new File(strpath));;
             do {
                 line = reverseFileReader.readLine();
