@@ -3,12 +3,30 @@ package datamodel.monitoring;
 import java.util.Calendar;
 import java.util.List;
 
-public class ComponentResults {
+public class ComponentPerformance {
+    private String vmIp;
+    private String jobId;
     private String name;
     private long pid;
     private Calendar jobStartTime;
     private Calendar jobEndTime;
     private List<MonitoringResult> monitoringResults;
+
+    public String getVmIp() {
+        return vmIp;
+    }
+
+    public void setVmIp(String vmIp) {
+        this.vmIp = vmIp;
+    }
+
+    public String getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(String jobId) {
+        this.jobId = jobId;
+    }
 
     public String getName() {
         return name;

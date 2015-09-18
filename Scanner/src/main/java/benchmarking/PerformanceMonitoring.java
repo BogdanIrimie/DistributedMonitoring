@@ -1,6 +1,5 @@
 package benchmarking;
 
-import datamodel.monitoring.ComponentResults;
 import datamodel.monitoring.MonitoringResult;
 import org.apache.commons.io.input.ReversedLinesFileReader;
 import org.slf4j.Logger;
@@ -15,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class PerformanceMonitoring implements Monitorable {
-    private final static Logger logger = LoggerFactory.getLogger(CpuMonitoring.class);
+    private final static Logger logger = LoggerFactory.getLogger(PerformanceMonitoring.class);
 
     private Calendar startTimeOfMonitoring;
     private Calendar endTimeOfMonitoring;
@@ -32,10 +31,9 @@ public class PerformanceMonitoring implements Monitorable {
         endTimeOfMonitoring.add(Calendar.SECOND, 1);
     }
 
-    public ComponentResults parseForPid(long pid) {
+    public List<MonitoringResult> parseForPid(long pid) {
         BufferedReader br = null;
         String line;
-        List<String> cpuUsageResults = new ArrayList<String>();
         List<MonitoringResult> monitoringResults = new ArrayList<MonitoringResult>();
 
         try {
@@ -104,15 +102,7 @@ public class PerformanceMonitoring implements Monitorable {
         }
 
         Collections.reverse(monitoringResults);
-
-        ComponentResults componentResults = new ComponentResults();
-        componentResults.setJobStartTime(startTimeOfMonitoring);
-        componentResults.setJobEndTime(endTimeOfMonitoring);
-        componentResults.setMonitoringResults(monitoringResults);
-        componentResults.setPid(pid);
-        componentResults.setName("???");
-
-        return componentResults;
+        return monitoringResults;
     }
 
     private boolean isNumeric(String str) {

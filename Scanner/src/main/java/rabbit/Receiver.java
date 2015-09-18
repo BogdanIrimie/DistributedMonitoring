@@ -73,10 +73,6 @@ public class Receiver {
         while (true) {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
-
-                Monitoring monit = new Monitoring();
-                monit.startMonitoring();
-
                 String message = new String(delivery.getBody());
                 Job job = JsonConverter.jsonStringToObject(message, Job.class);
                 MDC.put("jobId", job.getId());
@@ -85,16 +81,22 @@ public class Receiver {
                 String measurementString = mm.pullJsonById(job.getId());
 
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
+
+                // start monitoring activities
+                Monitoring monit = new Monitoring();
+                monit.startMonitoring();
+
                 CommandPidAndResults results  = executeCommand(measurement.getCommand());
+
+                // finalize monitoring activities
+                monit.stopMonitoring();
+                monit.saveResultsInDb(job.getId(), results.getCommadnPid(), mm, "nmap");
+
                 String xmlResult = results.getCommandResults();
                 mm.updateJsonWithId(job.getId(), "rawResult", xmlResult);
 
                 // send job over the queue
                 sender.send(job);
-
-                // finalize monitoring activities
-                monit.stopMonitoring();
-                monit.saveResultsInDb(results.getCommadnPid(), mm);
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 logger.info("Sent message over queue.");
