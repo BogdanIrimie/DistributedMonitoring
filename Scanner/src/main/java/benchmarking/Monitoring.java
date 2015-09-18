@@ -2,7 +2,7 @@ package benchmarking;
 
 
 import converters.JsonConverter;
-import datamodel.PerformanceSelfMonitoring;
+import datamodel.monitoring.PerformanceMonitoringResults;
 import mongo.MongoManager;
 
 public class Monitoring {
@@ -20,22 +20,14 @@ public class Monitoring {
         totalTime = endTime - startTime;
     }
 
-    public PerformanceSelfMonitoring getResults(long pid) {
-        PerformanceSelfMonitoring perfSelf = new PerformanceSelfMonitoring();
-        perfSelf.setCpuUsageResults(performanceMonitoring.parseForPid(pid));
-        perfSelf.setExecutionTime(totalTime);
-
-        return perfSelf;
-    }
-
     public void saveResultsInDb (long pid, MongoManager mm) {
         Thread writeRestuls = new Thread(new Runnable() {
             @Override
             public void run() {
-                PerformanceSelfMonitoring perfSelf = new PerformanceSelfMonitoring();
-                perfSelf.setCpuUsageResults(performanceMonitoring.parseForPid(pid));
-                perfSelf.setExecutionTime(totalTime);
-                mm.pushJson(JsonConverter.objectToJsonString(perfSelf), "selfPerformance");            }
+                PerformanceMonitoringResults performanceMonitoringResults = new PerformanceMonitoringResults();
+                performanceMonitoringResults.setSubcomponents(performanceMonitoring.parseForPid(pid));
+                mm.pushJson(JsonConverter.objectToJsonString(performanceMonitoringResults), "selfPerformanceMonitoring");
+            }
         });
         writeRestuls.start();
     }
