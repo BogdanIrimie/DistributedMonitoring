@@ -1,4 +1,4 @@
 package datamodel.monitoring;
 
-public class Subcomponent extends Component{
+public class Subcomponent extends ComponentResults {
 }

@@ -1,18 +1,16 @@
 package datamodel.monitoring;
 
-import java.util.List;
-
 public class PerformanceMonitoringResults {
     private String vmIp;
     private String jobId;
-    private Component component;
-    private List<Subcomponent> subcomponents;
+    private ComponentResults componentResults;
+    private ComponentResults subcomponents;
 
-    public List<Subcomponent> getSubcomponents() {
+    public ComponentResults getSubcomponents() {
         return subcomponents;
     }
 
-    public void setSubcomponents(List<Subcomponent> subcomponents) {
+    public void setSubcomponents(ComponentResults subcomponents) {
         this.subcomponents = subcomponents;
     }
 
@@ -32,11 +30,11 @@ public class PerformanceMonitoringResults {
         this.jobId = jobId;
     }
 
-    public Component getComponent() {
-        return component;
+    public ComponentResults getComponentResults() {
+        return componentResults;
     }
 
-    public void setComponent(Component component) {
-        this.component = component;
+    public void setComponentResults(ComponentResults componentResults) {
+        this.componentResults = componentResults;
     }
 }

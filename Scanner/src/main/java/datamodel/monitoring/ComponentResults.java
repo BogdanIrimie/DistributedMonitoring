@@ -3,7 +3,7 @@ package datamodel.monitoring;
 import java.util.Calendar;
 import java.util.List;
 
-public class Component {
+public class ComponentResults {
     private String name;
     private long pid;
     private Calendar jobStartTime;
