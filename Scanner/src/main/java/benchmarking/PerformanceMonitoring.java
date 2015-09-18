@@ -1,6 +1,7 @@
 package benchmarking;
 
-import datamodel.CpuUsageResults;
+import datamodel.monitoring.ComponentResults;
+import datamodel.monitoring.MonitoringResult;
 import org.apache.commons.io.input.ReversedLinesFileReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +32,11 @@ public class PerformanceMonitoring implements Monitorable {
         endTimeOfMonitoring.add(Calendar.SECOND, 1);
     }
 
-    public CpuUsageResults parseForPid(long pid) {
+    public ComponentResults parseForPid(long pid) {
         BufferedReader br = null;
         String line;
         List<String> cpuUsageResults = new ArrayList<String>();
+        List<MonitoringResult> monitoringResults = new ArrayList<MonitoringResult>();
 
         try {
             Thread.sleep(1500);
@@ -46,12 +48,12 @@ public class PerformanceMonitoring implements Monitorable {
                     continue;
                 }
 
-                String[] splitedLine = line.split("\\s+");
+                String[] logLine = line.split("\\s+");
 
-                if ((splitedLine.length >= 6) &&                                                                         // at least a timestamp, a pid and a %
-                        (splitedLine[0].trim().length() > 18)) {                                                        // a valid timestamp (date + time)
+                if ((logLine.length >= 6) &&                                                                        // at least a timestamp, a pid and a %
+                        (logLine[0].trim().length() > 18)) {                                                        // a valid timestamp (date + time)
 
-                    String[] dateAndTime = splitedLine[0].split("_");
+                    String[] dateAndTime = logLine[0].split("_");
                     String date = dateAndTime[0];
                     String time = dateAndTime[1];
 
@@ -71,10 +73,20 @@ public class PerformanceMonitoring implements Monitorable {
                     timeFromLog.set(Calendar.MONTH, Integer.parseInt(dateSplit[1]) - 1);
                     timeFromLog.set(Calendar.YEAR, Integer.parseInt(dateSplit[0]));
 
-                    if (timeFromLog.after(startTimeOfMonitoring) && timeFromLog.before(endTimeOfMonitoring) && isNumeric(splitedLine[1].trim())) {
-                        long resultsPid = Long.parseLong(splitedLine[1]);
+                    if (timeFromLog.after(startTimeOfMonitoring) && timeFromLog.before(endTimeOfMonitoring) && isNumeric(logLine[1].trim())) {
+                        long resultsPid = Long.parseLong(logLine[1]);
                         if (resultsPid == pid) {
-                            cpuUsageResults.add(splitedLine[2]);                                                    // PID is ok and time is ok
+                            String cpu = logLine[2];
+                            String memory = logLine[3];
+                            String networkIn = logLine[4];
+                            String networkOut = logLine[5];
+
+                            MonitoringResult monitoringResult = new MonitoringResult();
+                            monitoringResult.setCpu(cpu);
+                            monitoringResult.setMemory(memory);
+                            monitoringResult.setNetworkIn(networkIn);
+                            monitoringResult.setNetworkOut(networkOut);
+                            monitoringResults.add(monitoringResult);
                         }
                     }
 
@@ -91,8 +103,16 @@ public class PerformanceMonitoring implements Monitorable {
             logger.error(e.getMessage(), e);
         }
 
-        Collections.reverse(cpuUsageResults);
-        return new CpuUsageResults(pid, startTimeOfMonitoring, cpuUsageResults);
+        Collections.reverse(monitoringResults);
+
+        ComponentResults componentResults = new ComponentResults();
+        componentResults.setJobStartTime(startTimeOfMonitoring);
+        componentResults.setJobEndTime(endTimeOfMonitoring);
+        componentResults.setMonitoringResults(monitoringResults);
+        componentResults.setPid(pid);
+        componentResults.setName("???");
+
+        return componentResults;
     }
 
     private boolean isNumeric(String str) {
