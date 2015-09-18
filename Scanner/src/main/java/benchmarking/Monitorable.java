@@ -1,6 +1,6 @@
 package benchmarking;
 
-public interface MonitoringInterface {
+public interface Monitorable {
     public void startMonitoring();
     public void stopMonitoring();
 }

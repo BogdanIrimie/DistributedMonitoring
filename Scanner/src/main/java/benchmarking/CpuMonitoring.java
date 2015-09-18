@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-public class CpuMonitoring implements MonitoringInterface {
+public class CpuMonitoring implements Monitorable {
     private final static Logger logger = LoggerFactory.getLogger(CpuMonitoring.class);
 
     private Calendar startTimeOfMonitoring;

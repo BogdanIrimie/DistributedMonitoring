@@ -2,7 +2,7 @@ package datamodel.monitoring;
 
 import java.util.List;
 
-public class PerformanceMonitoring {
+public class PerformanceMonitoringResults {
     private String vmIp;
     private String jobId;
     private Component component;
