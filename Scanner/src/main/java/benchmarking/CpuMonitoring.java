@@ -34,7 +34,6 @@ public class CpuMonitoring implements MonitoringInterface {
         String line;
         List<String> cpuUsageResults = new ArrayList<String>();
 
-
         try {
             Thread.sleep(1500);
             String strpath="/tmp/performanceMonitoring.log";
