@@ -1,10 +1,21 @@
 package datamodel.monitoring;
 
+import java.util.Calendar;
+
 public class MonitoringResult {
+    private Calendar timeFromLog;
     private String cpu;
     private String memory;
     private String networkIn;
     private String networkOut;
+
+    public Calendar getTimeFromLog() {
+        return timeFromLog;
+    }
+
+    public void setTimeFromLog(Calendar timeFromLog) {
+        this.timeFromLog = timeFromLog;
+    }
 
     public String getCpu() {
         return cpu;

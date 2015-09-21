@@ -80,6 +80,7 @@ public class PerformanceMonitoring implements Monitorable {
                             String networkOut = logLine[5];
 
                             MonitoringResult monitoringResult = new MonitoringResult();
+                            monitoringResult.setTimeFromLog(timeFromLog);
                             monitoringResult.setCpu(cpu);
                             monitoringResult.setMemory(memory);
                             monitoringResult.setNetworkIn(networkIn);
