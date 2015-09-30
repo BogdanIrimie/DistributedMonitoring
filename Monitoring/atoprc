@@ -1,0 +1,11 @@
+flags         Caf
+interval      1
+linelen       200
+maxlinecpu    0
+maxlinelvm    0
+maxlinemdd    0
+maxlinedisk   0
+maxlinenfsm   0
+maxlineintf   0
+maxlinecont   0
+ownprocline   PID:5 SORTITEM:5 RSIZE:5 TCPRCV:5 TCPRASZ:5 UDPRCV:5 UDPRASZ:5 TCPSND:5 TCPSASZ:5 UDPSND:5 UDPSASZ:5 CMD:5

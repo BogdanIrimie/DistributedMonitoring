@@ -19,3 +19,6 @@ sudo service netatop start
 
 sudo apt-get install libncurses-dev
 <path to atop> make sysvinstall (or systemdinstall for systemd)
+
+
+"atoprc" should be placed in /etc/ in order to be used by "atop" tool.
