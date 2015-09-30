@@ -21,4 +21,4 @@ sudo apt-get install libncurses-dev
 <path to atop> make sysvinstall (or systemdinstall for systemd)
 
 
-"atoprc" should be placed in /etc/ in order to be used by "atop" tool.
+"atoprc" should be placed in /etc/ in order to be used by "atoprc" tool.
