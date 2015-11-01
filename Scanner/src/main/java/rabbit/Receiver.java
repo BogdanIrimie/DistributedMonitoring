@@ -72,8 +72,8 @@ public class Receiver {
         Sender sender = new Sender();
         while (true) {
             try {
-                Monitoring scannerMonit = new Monitoring();
-                scannerMonit.startMonitoring();
+                //Monitoring scannerMonit = new Monitoring();
+                //scannerMonit.startMonitoring();
 
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
                 String message = new String(delivery.getBody());
@@ -86,22 +86,22 @@ public class Receiver {
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
 
                 // start monitoring activities
-                Monitoring nmapMonit = new Monitoring();
-                nmapMonit.startMonitoring();
+                //Monitoring nmapMonit = new Monitoring();
+                //nmapMonit.startMonitoring();
 
                 CommandPidAndResults results  = executeCommand(measurement.getCommand());
 
                 // finalize monitoring activities
-                nmapMonit.stopMonitoring();
-                nmapMonit.saveResultsInDb(job.getId(), results.getCommadnPid(), mm, "nmap");
+                //nmapMonit.stopMonitoring();
+                //nmapMonit.saveResultsInDb(job.getId(), results.getCommadnPid(), mm, "nmap");
 
                 String xmlResult = results.getCommandResults();
                 mm.updateJsonWithId(job.getId(), "rawResult", xmlResult);
 
                 // send job over the queue
                 sender.send(job);
-                scannerMonit.stopMonitoring();
-                scannerMonit.saveResultsInDb(job.getId(), Long.parseLong(getPid()), mm, "scanner");
+                //scannerMonit.stopMonitoring();
+                //scannerMonit.saveResultsInDb(job.getId(), Long.parseLong(getPid()), mm, "scanner");
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 logger.info("Sent message over queue.");
