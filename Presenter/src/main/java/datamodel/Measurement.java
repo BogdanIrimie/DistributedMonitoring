@@ -7,7 +7,7 @@ public class Measurement {
     private MongoId _id;
     private String clientId;
     private String clientIp;
-    private String command;
+    private String userCommand;
     private String responseAddress;
     private String[] processors;
     private String adapter;
@@ -16,16 +16,16 @@ public class Measurement {
 
     public Measurement() {}
 
-    public Measurement(String clientId, String command, String responseAddress) {
+    public Measurement(String clientId, String userCommand, String responseAddress) {
         this.clientId = clientId;
-        this.command = command;
+        this.userCommand = userCommand;
         this.responseAddress = responseAddress;
     }
 
-    public Measurement(String clientId, String clientIp, String command, String responseAddress, String[] processors, String adapter) {
+    public Measurement(String clientId, String clientIp, String userCommand, String responseAddress, String[] processors, String adapter) {
         this.clientId = clientId;
         this.clientIp = clientIp;
-        this.command = command;
+        this.userCommand = userCommand;
         this.responseAddress = responseAddress;
         this.processors = processors;
         this.adapter = adapter;
@@ -56,12 +56,12 @@ public class Measurement {
         this.clientIp = clientIp;
     }
 
-    public String getCommand() {
-        return command;
+    public String getUserCommand() {
+        return userCommand;
     }
 
-    public void setCommand(String command) {
-        this.command = command;
+    public void setUserCommand(String userCommand) {
+        this.userCommand = userCommand;
     }
 
     public String getResponseAddress() {
