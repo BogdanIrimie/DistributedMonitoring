@@ -14,3 +14,4 @@ target/
 #Deplyment
 *.pid
 deployment/specs_monitoring_nmap_*/etc/*
+deployment/*.tar.gz

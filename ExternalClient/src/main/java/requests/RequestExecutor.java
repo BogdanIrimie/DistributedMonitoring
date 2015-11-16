@@ -4,8 +4,8 @@ public class RequestExecutor {
 
     public static void generateRequests() {
 
-        final String responseAddress = "localhost";
-        final String sendRequestAddress = "localhost";
+        final String responseAddress = "104.155.61.52";
+        final String sendRequestAddress = "104.155.61.159";
         final String scanTargetAddress = "google.com";
         final String scanTargetAddress2 = "";
 
