@@ -26,7 +26,7 @@ public class EventHubAdapter implements Adapter {
      * @return
      */
     public String adaptMessage(String filteredJson, Measurement measurement) {
-        String command = measurement.getCommand();
+        String command = measurement.getUserCommand();
         String usedTool = command.substring(0, command.indexOf(' '));
 
         ObjectMapper mapper = new ObjectMapper();

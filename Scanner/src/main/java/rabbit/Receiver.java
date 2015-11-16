@@ -1,6 +1,5 @@
 package rabbit;
 
-import benchmarking.Monitoring;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -89,7 +88,11 @@ public class Receiver {
                 //Monitoring nmapMonit = new Monitoring();
                 //nmapMonit.startMonitoring();
 
-                CommandPidAndResults results  = executeCommand(measurement.getCommand());
+
+                CommandCreator commandCreator = new CommandCreator();
+                String commandToExecute = commandCreator.createCommand(measurement.getUserCommand());
+                CommandPidAndResults results  = executeCommand(commandToExecute);
+
 
                 // finalize monitoring activities
                 //nmapMonit.stopMonitoring();
