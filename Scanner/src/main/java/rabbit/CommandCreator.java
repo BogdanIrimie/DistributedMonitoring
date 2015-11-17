@@ -6,8 +6,6 @@ public class CommandCreator {
         String[] tokens =  userCommand.split("\\s+");
 
         switch(tokens[0]) {
-            case "availability":
-                return "nmap -sV " + tokens[1];
             case "security":
                 switch (tokens[1]) {
                     case "tls":
