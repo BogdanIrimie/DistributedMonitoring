@@ -126,8 +126,8 @@ public class Receiver {
         String[] tocUserCommand = userCommand.split("\\s+");
         if (tocUserCommand[0].equals("availability")) {
             HttpRequestExecutor httpRequestExecutor = new HttpRequestExecutor();
-            String httpStatus =  httpRequestExecutor.checkStatus(tocUserCommand[1]);
-            return new CommandPidAndResults(-1, httpStatus);
+            HttpResponseForAvailability httpResponseForAvailability =  httpRequestExecutor.checkStatus(tocUserCommand[1]);
+            return new CommandPidAndResults(-1, JsonConverter.objectToJsonString(httpResponseForAvailability));
         }
 
         CommandCreator commandCreator = new CommandCreator();

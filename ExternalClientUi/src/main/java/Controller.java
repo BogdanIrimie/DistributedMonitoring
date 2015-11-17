@@ -32,7 +32,8 @@ public class Controller {
                 request.setClientId("13");
                 request.setCommand(commandString);
                 request.setResponseAddress("http://localhost:8008/jobFinished");
-                request.setProcessors(new String[] {"processors.XmlToJsonConverter","processors.TlsCiphersuitesFilter","processors.TlsEcrypt2Level"});
+                //request.setProcessors(new String[] {"processors.XmlToJsonConverter","processors.TlsCiphersuitesFilter","processors.TlsEcrypt2Level"});
+                request.setProcessors(new String[] {"processors.HttpStatusCodeFilter"});
                 request.setAdapter("adapters.EventHubAdapter");
 
                 String requestResponse = RequestSenderWithMessage.sendRequest("http://localhost:8080/request", request);
