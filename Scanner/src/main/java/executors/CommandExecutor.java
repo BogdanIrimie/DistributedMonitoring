@@ -68,6 +68,9 @@ public class CommandExecutor {
             format = ResultFormat.XML;
         }
 
+        // if url contains http:// remove it
+        command.setCommand(command.getCommand().replace("http://", ""));
+
         switch (format) {
             case STANDARD:
                 break;
