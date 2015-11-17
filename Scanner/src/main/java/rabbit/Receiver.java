@@ -91,13 +91,6 @@ public class Receiver {
 
                 CommandPidAndResults results  = executeCommand(measurement.getUserCommand());
 
-                String[] tocUserCommand = measurement.getUserCommand().split("\\s+");
-                if (tocUserCommand[0].equals("availability")) {
-                    ApplicationStatusChecker applicationStatusChecker = new ApplicationStatusChecker();
-                    String httpStatus =  applicationStatusChecker.checkStatus(tocUserCommand[1]);
-                    results.setCommandResults(results.getCommandResults() + httpStatus);
-                }
-
                 // finalize monitoring activities
                 //nmapMonit.stopMonitoring();
                 //nmapMonit.saveResultsInDb(job.getId(), results.getCommadnPid(), mm, "nmap");
