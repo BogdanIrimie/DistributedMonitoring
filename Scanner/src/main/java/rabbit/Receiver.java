@@ -11,6 +11,7 @@ import mongo.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
 
@@ -91,8 +92,15 @@ public class Receiver {
 
                 CommandCreator commandCreator = new CommandCreator();
                 String commandToExecute = commandCreator.createCommand(measurement.getUserCommand());
+
                 CommandPidAndResults results  = executeCommand(commandToExecute);
 
+                String[] tocUserCommand = measurement.getUserCommand().split("\\s+");
+                if (tocUserCommand[0].equals("availability")) {
+                    ApplicationStatusChecker applicationStatusChecker = new ApplicationStatusChecker();
+                    HttpStatus httpStatus =  applicationStatusChecker.checkStatus(tocUserCommand[1]);
+                    results.setCommandResults(results.getCommandResults() + "HttpStatus : " + httpStatus);
+                }
 
                 // finalize monitoring activities
                 //nmapMonit.stopMonitoring();
