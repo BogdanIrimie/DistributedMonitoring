@@ -1,8 +1,10 @@
+package rabbit;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-public class CheckStatus {
+public class ApplicationStatusChecker {
 
     public HttpStatus checkStatus(String url) {
         RestTemplate restTemplate = new RestTemplate();
