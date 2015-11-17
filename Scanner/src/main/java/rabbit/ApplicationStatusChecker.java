@@ -6,9 +6,10 @@ import org.springframework.web.client.RestTemplate;
 
 public class ApplicationStatusChecker {
 
-    public HttpStatus checkStatus(String url) {
+    public String checkStatus(String url) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<?> response = restTemplate.getForEntity(url, null);
-        return response.getStatusCode();
+        ResponseEntity<?> response = restTemplate.getForEntity(url, String.class);
+        return "statusCode: " + response.getStatusCode() +"\nbody: " + response.getBody();
     }
+
 }
