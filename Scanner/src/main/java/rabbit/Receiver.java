@@ -6,12 +6,13 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import converters.JsonConverter;
 import datamodel.*;
+import executors.HttpRequestExecutor;
+import executors.CommandCreator;
 import executors.CommandExecutor;
 import mongo.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
-import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
 
@@ -124,8 +125,8 @@ public class Receiver {
 
         String[] tocUserCommand = userCommand.split("\\s+");
         if (tocUserCommand[0].equals("availability")) {
-            ApplicationStatusChecker applicationStatusChecker = new ApplicationStatusChecker();
-            String httpStatus =  applicationStatusChecker.checkStatus(tocUserCommand[1]);
+            HttpRequestExecutor httpRequestExecutor = new HttpRequestExecutor();
+            String httpStatus =  httpRequestExecutor.checkStatus(tocUserCommand[1]);
             return new CommandPidAndResults(-1, httpStatus);
         }
 

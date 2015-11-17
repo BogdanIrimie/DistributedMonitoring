@@ -1,4 +1,4 @@
-package rabbit;
+package executors;
 
 public class CommandCreator {
 
