@@ -1,6 +1,5 @@
 package executors;
 
-import datamodel.Command;
 import datamodel.CommandPidAndResults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +20,16 @@ public class CommandExecutor {
      *
      * @return command output
      */
-    public CommandPidAndResults execute(Command command) {
+    public CommandPidAndResults execute(String command) {
         String line;
         Process process;
         long commandPid = -1;
         StringBuilder commandOutput = new StringBuilder();
 
-        processCommand(command);
+        command = processCommand(command);
 
         try {
-            process = Runtime.getRuntime().exec(command.getCommand());
+            process = Runtime.getRuntime().exec(command);
 
             Field pid = process.getClass().getDeclaredField("pid");
             pid.setAccessible(true);
@@ -60,27 +59,28 @@ public class CommandExecutor {
      * Process the command and add or remove arguments.
      * @param command that will be processed.
      */
-    private void processCommand(Command command) {
+    private String processCommand(String command) {
         ResultFormat format = ResultFormat.STANDARD;
 
         // if the command is a nmap command than add the argument to get results as XML
-        if (command.getCommand().matches("^nmap.*")) {
+        if (command.matches("^nmap.*")) {
             format = ResultFormat.XML;
         }
 
         // if url contains http:// remove it
-        command.setCommand(command.getCommand().replace("http://", ""));
+        command = command.replace("http://", "");
 
         switch (format) {
             case STANDARD:
                 break;
             case XML:
-                if (!command.getCommand().contains("-oX -")) {
-                    String newCommand = command.getCommand() + " -oX -";
-                    command.setCommand(newCommand);
+                if (!command.contains("-oX -")) {
+                    String newCommand = command + " -oX -";
+                    command = newCommand;
                 }
                 break;
         }
+        return command;
     }
 
 }

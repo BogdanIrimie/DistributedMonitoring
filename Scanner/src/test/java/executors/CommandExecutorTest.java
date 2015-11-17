@@ -1,6 +1,5 @@
 package executors;
 
-import datamodel.Command;
 import datamodel.CommandPidAndResults;
 import org.junit.Test;
 
@@ -14,7 +13,7 @@ public class CommandExecutorTest {
     @Test
     public void executeCommandsTest() {
         CommandExecutor ce = new CommandExecutor();
-        Command command = new Command("echo This is it");
+        String command = "echo This is it";
         CommandPidAndResults result = ce.execute(command);
         assertTrue(result.getCommandResults().equals("This is it"));
     }

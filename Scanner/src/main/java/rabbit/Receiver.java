@@ -140,7 +140,7 @@ public class Receiver {
         String commandToExecute = commandCreator.createCommand(userCommand);
 
         CommandExecutor cmd = new CommandExecutor();
-        return cmd.execute(new Command(commandToExecute));
+        return cmd.execute(commandToExecute);
     }
 
     /**
