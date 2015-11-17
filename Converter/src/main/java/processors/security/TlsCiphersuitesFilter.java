@@ -1,7 +1,8 @@
-package processors;
+package processors.security;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import processors.Processor;
 
 /**
  * Extract the list of cipher suites.

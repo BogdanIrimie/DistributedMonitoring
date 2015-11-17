@@ -1,8 +1,9 @@
-package processors;
+package processors.availability;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import converters.JsonConverter;
 import datamodel.HttpResponseForAvailability;
+import processors.Processor;
 
 public class HttpStatusCodeFilter implements Processor {
 
