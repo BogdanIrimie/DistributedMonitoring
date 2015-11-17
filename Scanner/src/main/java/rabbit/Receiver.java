@@ -89,17 +89,13 @@ public class Receiver {
                 //Monitoring nmapMonit = new Monitoring();
                 //nmapMonit.startMonitoring();
 
-
-                CommandCreator commandCreator = new CommandCreator();
-                String commandToExecute = commandCreator.createCommand(measurement.getUserCommand());
-
-                CommandPidAndResults results  = executeCommand(commandToExecute);
+                CommandPidAndResults results  = executeCommand(measurement.getUserCommand());
 
                 String[] tocUserCommand = measurement.getUserCommand().split("\\s+");
                 if (tocUserCommand[0].equals("availability")) {
                     ApplicationStatusChecker applicationStatusChecker = new ApplicationStatusChecker();
-                    HttpStatus httpStatus =  applicationStatusChecker.checkStatus(tocUserCommand[1]);
-                    results.setCommandResults(results.getCommandResults() + "HttpStatus : " + httpStatus);
+                    String httpStatus =  applicationStatusChecker.checkStatus(tocUserCommand[1]);
+                    results.setCommandResults(results.getCommandResults() + httpStatus);
                 }
 
                 // finalize monitoring activities
@@ -126,14 +122,25 @@ public class Receiver {
     }
 
     /**
-     * Start a command with received message
+     * Start a userCommand with received message
      *
-     * @param command terminal command that will be executed
+     * @param userCommand terminal userCommand that will be executed
      * @throws InterruptedException
      */
-    private CommandPidAndResults executeCommand(String command) throws InterruptedException {
+    private CommandPidAndResults executeCommand(String userCommand) throws InterruptedException {
+
+        String[] tocUserCommand = userCommand.split("\\s+");
+        if (tocUserCommand[0].equals("availability")) {
+            ApplicationStatusChecker applicationStatusChecker = new ApplicationStatusChecker();
+            String httpStatus =  applicationStatusChecker.checkStatus(tocUserCommand[1]);
+            return new CommandPidAndResults(-1, httpStatus);
+        }
+
+        CommandCreator commandCreator = new CommandCreator();
+        String commandToExecute = commandCreator.createCommand(userCommand);
+
         CommandExecutor cmd = new CommandExecutor();
-        return cmd.execute(new Command(command));
+        return cmd.execute(new Command(commandToExecute));
     }
 
     /**
