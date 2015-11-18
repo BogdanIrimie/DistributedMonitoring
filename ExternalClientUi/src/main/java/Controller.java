@@ -32,8 +32,29 @@ public class Controller {
                 request.setClientId("13");
                 request.setCommand(commandString);
                 request.setResponseAddress("http://localhost:8008/jobFinished");
-                //request.setProcessors(new String[] {"processors.XmlToJsonConverter","processors.TlsCiphersuitesFilter","processors.TlsEcrypt2Level"});
-                request.setProcessors(new String[] {"availability.HttpStatusCodeFilter"});
+
+                String[] tocCommandString = commandString.split("\\s+");
+                switch (tocCommandString[0]) {
+                    case "availability": request.setProcessors(new String[] {"availability.HttpStatusCodeFilter"});
+                                         break;
+                    case "security":
+                        switch (tocCommandString[1]) {
+                            case "tls": request.setProcessors(new String[] {
+                                    "XmlToJsonConverter",
+                                    "security.TlsCiphersuitesFilter"});
+                                    break;
+                            case "ecrypt2lvl": request.setProcessors(new String[] {
+                                    "XmlToJsonConverter",
+                                    "security.TlsCiphersuitesFilter",
+                                    "security.TlsEcrypt2Level"});
+                                    break;
+                            case "open_ports": request.setProcessors(new String[]{"XmlToJsonConverter"});
+                                              break;
+                        }
+                        break;
+                    default: request.setProcessors(new String[]{});
+                }
+
                 request.setAdapter("adapters.EventHubAdapter");
 
                 String requestResponse = RequestSenderWithMessage.sendRequest("http://localhost:8080/request", request);
