@@ -18,15 +18,12 @@ public class HttpStatusCodeFilter implements Processor {
         HttpResponseForAvailability httpResponseForAvailability =
                 JsonConverter.jsonStringToObject(textToProcess, HttpResponseForAvailability.class);
 
-
         ObjectMapper mapper = new ObjectMapper();
         String[] ignorableFieldNames = { "body"};
         FilterProvider filters = new SimpleFilterProvider()
                 .addFilter("httpFilter",SimpleBeanPropertyFilter.serializeAllExcept(ignorableFieldNames));
         ObjectWriter writer = mapper.writer(filters);
-        String filteredJson = writer.writeValueAsString(httpResponseForAvailability);
-
-        return filteredJson;
+        return writer.writeValueAsString(httpResponseForAvailability);
     }
 
 }
