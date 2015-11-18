@@ -11,7 +11,7 @@ public class CommandCreator {
                     case "tls":
                         return "nmap --script ssl-enum-ciphers -p 443 " + tokens[2];
                     case "ecrypt2lvl":
-                        return "nmap --script ssl-enum-ciphers -p 443" + tokens[2];
+                        return "nmap --script ssl-enum-ciphers -p 443 " + tokens[2];
                     case "open_ports":
                         return "nmap " + tokens[2];
                     default :
