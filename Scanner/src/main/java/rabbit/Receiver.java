@@ -126,6 +126,10 @@ public class Receiver {
         String[] tocUserCommand = userCommand.split("\\s+");
         if (tocUserCommand[0].equals("availability")) {
             HttpRequestExecutor httpRequestExecutor = new HttpRequestExecutor();
+            if (!(tocUserCommand[1].contains("http://") || tocUserCommand[1].contains("https://"))) {
+                tocUserCommand[1] = "http://" + tocUserCommand[1];
+            }
+
             HttpResponseForAvailability httpResponseForAvailability =  httpRequestExecutor.checkStatus(tocUserCommand[1]);
             return new CommandPidAndResults(-1, JsonConverter.objectToJsonString(httpResponseForAvailability));
         }
