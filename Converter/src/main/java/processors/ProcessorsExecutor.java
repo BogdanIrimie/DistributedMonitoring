@@ -24,9 +24,10 @@ public class ProcessorsExecutor {
     public String executeProcesses(String result ,Measurement measurement) {
         String[] processors = measurement.getProcessors();
         if (processors != null) {
-            for (String process : processors) {
+            for (String processor : processors) {
                 try {
-                    Class<?> cls = Class.forName(process);
+                    processor = "processors." + processor;
+                    Class<?> cls = Class.forName(processor);
                     Method method = cls.getDeclaredMethod("process", new Class[]{String.class, JsonNode.class});
                     Object obj = cls.newInstance();
                     result = (String) method.invoke(obj, new Object[]{result, null});
