@@ -1,23 +1,36 @@
 package datamodel;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+
+@JsonFilter("httpFilter")
 public class HttpResponseForAvailability {
 
-    private String statusCode;
+    private String url;
+    private String httpStatusCode;
     private String body;
 
     public HttpResponseForAvailability() {};
 
-    public HttpResponseForAvailability(String statusCode, String body) {
-        this.statusCode = statusCode;
+    public HttpResponseForAvailability(String url, String httpStatusCode, String body) {
+        this.url = url;
+        this.httpStatusCode = httpStatusCode;
         this.body = body;
     }
 
-    public String getStatusCode() {
-        return statusCode;
+    public String getUrl() {
+        return url;
     }
 
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getHttpStatusCode() {
+        return httpStatusCode;
+    }
+
+    public void setHttpStatusCode(String httpStatusCode) {
+        this.httpStatusCode = httpStatusCode;
     }
 
     public String getBody() {
