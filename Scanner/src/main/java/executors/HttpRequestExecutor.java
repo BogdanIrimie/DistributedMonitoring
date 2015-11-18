@@ -9,7 +9,7 @@ public class HttpRequestExecutor {
     public HttpResponseForAvailability checkStatus(String url) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<?> response = restTemplate.getForEntity(url, String.class);
-        HttpResponseForAvailability httpResponseForAvailability = new HttpResponseForAvailability(response.getStatusCode().toString(), response.getBody().toString());
+        HttpResponseForAvailability httpResponseForAvailability = new HttpResponseForAvailability(url, response.getStatusCode().toString(), response.getBody().toString());
 
 
         return httpResponseForAvailability;
