@@ -64,15 +64,15 @@ mongoHost = 192.168.56.101
 mongoPort = 27017
 ```
 
-If the environment variables are set, simply run `/bin/run.sh` for each component (this will create the configuration files and will start the component, more info can be found on https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Deployment)
+If the environment variables are set, simply run `/bin/run.sh` for each component (this will create the configuration files and will start the component, more info can be found on the [deployment page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Deployment).
 
 ##Test/Stress the system
 
-Fallow the guide on the [test page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Testing)
+Fallow the guide on the [test page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Testing).
 
 ##Interacting with the monitoring system
 
-Jobs can be submitted by making a HTTP POST request `http://<ip>:8080/request` with a json body. More details about the request body can be found on [request model page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Requests)
+Jobs can be submitted by making a HTTP POST request `http://<ip>:8080/request` with a json body. More details about the request body can be found on [request model page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Requests).
 
 clientResponse is a JSON with the following fields:
 * `clientId` - the id the client provide, it can be used to retrieve all the jobs for a client
