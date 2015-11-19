@@ -68,7 +68,7 @@ If the environment variables are set, simply run `/bin/run.sh` for each componen
 
 ##Test/Stress the system
 
-Fallow the guide on https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Testing
+Fallow the guide on the [test page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Testing)
 
 ##Interacting with the monitoring system
 
