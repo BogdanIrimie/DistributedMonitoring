@@ -20,7 +20,7 @@ Install Maven (https://maven.apache.org/download.cgi)
 
 Install JDK 1.8 (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-For every module (FrontEnd, Scanner, Converter and Presenter), navigate to the pom.xml and run mvn `mvn -Dmaven.test.skip=true package` (this will create the jar withought running unit tests)
+For every module (FrontEnd, Scanner, Converter and Presenter), navigate to the pom.xml and run mvn `mvn -Dmaven.test.skip=true package` (this will create the jar without running unit tests)
 
 ### Configuration
 
@@ -29,24 +29,24 @@ Each of the four components (FrontEnd, Scanner, Converter and Presenter) has the
 ### Using the deployment
 
 As an alternative to manually building the project and creating the config files, the deployment directory can be used. The directory contain the latest stable jars and a directory structure that is easy to deploy and manage.
-In order to use the depoyment the following environment variables should be set:
+In order to use the deployment the following environment variables should be set:
 
 * `rabbitHost` IP of the machine hosting RabbitMQ (on all machines hosting `FrontEnd`, `Scanner`, `Converter` and `Presenter` components)
 * `feRabbitSendQueue` name of the queue used to send messages by the `FrontEnd` component (on machines hosting FrontEnd components)
 * `scRabbitSendQueue` name of the queue used to send messages by the `Scanner` component (on machines hosting Scanner components)
 * `scRabbitReceiveQueue` name of the queue used to receive messages by the `Scanner` component (on machines hosting Scanner components)
-* `coRabbitSendQueue` name of the queue used to send messages by thge `Converter` component (on machines hosting Converter components)
+* `coRabbitSendQueue` name of the queue used to send messages by the `Converter` component (on machines hosting Converter components)
 * `coRabbitReceiveQueue` name of the queue used to receive messages by the `Converter` component (on machines hosting Converter components)
-* `prRabbitReceiveQueue` name of the queu used to receive messages by the `Presenter` component (on machines hosting Presenter components)
+* `prRabbitReceiveQueue` name of the queue used to receive messages by the `Presenter` component (on machines hosting Presenter components)
 * `rabbitUser` credentials for RabbitMQ (on all machines hosting FrontEnd, Scanner, Converter and Presenter components)
 * `rabbitPassword` credentials for RabbitMQ (on all machines hosting FrontEnd, Scanner, Converter and Presenter components)
-* `mongoHost` IP of the machine hsoting MongoDB (on all machines hosting FrontEnd, Scanner, Converter and Presenter components)
+* `mongoHost` IP of the machine hosting MongoDB (on all machines hosting FrontEnd, Scanner, Converter and Presenter components)
 * `mongoPort` port on which MongoDB is running (on all machines hosting FrontEnd, Scanner, Converter and Presenter components)
 
-As the relation between components is `FrontEnd`-`Scanner`-`Converter`-`Presenter`, the pair: 
+As the relation between components is `FrontEnd`-`Scanner`-`Converter`-`Presenter` \| `Remediator`, the pairs:
 ```
-feRabbitSendQueue - scRabbitReceiveQueue; 
-scRabbitSendQueue - coRabbitReceiveQueue; 
+feRabbitSendQueue - scRabbitReceiveQueue;
+scRabbitSendQueue - coRabbitReceiveQueue;
 coRabbitSendQueue - prRabbitReceiveQueue;
 ```
 should have identical names.
@@ -72,7 +72,7 @@ Fallow the guide on https://github.com/IrimieBogdan/DistributedMonitoring/wiki/T
 
 ##Interacting with the monitoring system
 
-Jobs can be submited by making a HTTP request:
+Jobs can be submitted by making a HTTP request:
 ```
 http://<ip>:8000/job?request=<clientRequest>
 ```
@@ -92,7 +92,7 @@ clientResponse is a JSON with the following fields:
 curl -G "http://localhost:8000/job" --data-urlencode 'request=
 {
 	"clientId" : "13",
-	"command" : "nmap 192.168.56.105",
+	"command" : "security ecrypt2lvl 192.168.56.105",
 	"responseAddress" : "http://192.168.56.101:8008/jobFinished",
 	"processors" :[
 		"processors.XmlToJsonConverter",
@@ -102,13 +102,3 @@ curl -G "http://localhost:8000/job" --data-urlencode 'request=
 	"adapter" : "adapters.EventHubAdapter"
 }
 ```
-
-###Nmap commands
-
-Scan target for open ports:`nmap http://scanme.nmap.org/`
-
-Scan a class of ips: `nmap 192.168.1.0/24` 
-
-Scan for OS detection: `nmap -A http://scanme.nmap.org`
-
-Detect TLS ciphersuite: `nmap --script ssl-enum-ciphers -p 443 google.com`
