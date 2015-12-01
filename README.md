@@ -80,22 +80,3 @@ clientResponse is a JSON with the following fields:
 * `responseAddress` - is the address where the results will be sent
 * `processors` - used for filtering and processing of the raw results
 * `adapter` - used for adapting the results for a specific system
-
-
-##Examples
-
-###HTTP request
-```json
-curl -G "http://localhost:8000/job" --data-urlencode 'request=
-{
-	"clientId" : "13",
-	"command" : "security ecrypt2lvl 192.168.56.105",
-	"responseAddress" : "http://192.168.56.101:8008/jobFinished",
-	"processors" :[
-		"processors.XmlToJsonConverter",
-		"processors.TlsCiphersuitesFilter",
-		"processors.TlsEcrypt2Level"
-	],
-	"adapter" : "adapters.EventHubAdapter"
-}
-```
