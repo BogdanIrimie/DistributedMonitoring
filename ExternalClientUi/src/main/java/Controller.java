@@ -31,7 +31,7 @@ public class Controller {
                 Request request = new Request();
                 request.setClientId("13");
                 request.setCommand(commandString);
-                request.setResponseAddress("http://localhost:8008/jobFinished");
+                request.setResponseAddress("http://192.168.56.1:8008/jobFinished");
 
                 String[] tocCommandString = commandString.split("\\s+");
                 switch (tocCommandString[0]) {
@@ -57,7 +57,7 @@ public class Controller {
 
                 request.setAdapter("adapters.EventHubAdapter");
 
-                String requestResponse = RequestSenderWithMessage.sendRequest("http://localhost:8080/request", request);
+                String requestResponse = RequestSenderWithMessage.sendRequest("http://192.168.56.107:8080/request", request);
                 Platform.runLater(new Runnable() {
                     public void run() {
                         response.setText(requestResponse);
