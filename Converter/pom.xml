@@ -19,7 +19,7 @@
         <logBackVersion>1.1.2</logBackVersion>
         <openCsvVersion>3.3</openCsvVersion>
         <mavenCompilationPlugin>3.3</mavenCompilationPlugin>
-        <javaVersion>1.8</javaVersion>
+        <java.version>1.8</java.version>
         <mavenShadePluginVersion>2.3</mavenShadePluginVersion>
     </properties>
 

@@ -18,7 +18,7 @@
         <slf4jVersion>1.7.10</slf4jVersion>
         <logBackVersion>1.1.2</logBackVersion>
         <mavenCompilationPlugin>3.3</mavenCompilationPlugin>
-        <javaVersion>1.8</javaVersion>
+        <java.version>1.8</java.version>
         <mavenShadePluginVersion>2.3</mavenShadePluginVersion>
     </properties>
 
