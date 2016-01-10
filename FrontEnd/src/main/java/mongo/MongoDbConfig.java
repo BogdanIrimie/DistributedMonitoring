@@ -14,7 +14,7 @@ public class MongoDbConfig {
     private int port;
 
     /**
-     * read configuration data for mongoDB
+     * Read configuration data for mongoDB
      */
     public MongoDbConfig() {
         ip = ConfigExtractor.getProperty("mongoHost");

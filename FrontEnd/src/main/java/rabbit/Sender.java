@@ -16,7 +16,7 @@ import org.slf4j.MDC;
 import java.io.IOException;
 
 /**
- * send messages over queue
+ * Send messages over queue and DB
  */
 public class Sender {
     private static final Logger logger = LoggerFactory.getLogger(Sender.class);
@@ -24,6 +24,7 @@ public class Sender {
     private Connection connection;
     private Channel channel;
     private MongoManager mm;
+
     /**
      * Set parameters for RabbitMQ sender
      */

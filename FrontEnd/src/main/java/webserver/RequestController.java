@@ -24,6 +24,12 @@ public class RequestController {
         sender = new Sender();
     }
 
+    /**
+     * Wait for HTTP POST request at /request
+     * @param requestBody
+     * @param httpRequest
+     * @return HTTP response with message if request was accepted or rejected
+     */
     @RequestMapping(value = "/request", method = RequestMethod.POST)
     public ResponseEntity<Job> jobRequest(@RequestBody String requestBody, HttpServletRequest httpRequest) {
         Request request = JsonConverter.jsonStringToObject(requestBody, Request.class);

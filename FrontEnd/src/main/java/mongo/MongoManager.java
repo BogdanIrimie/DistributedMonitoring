@@ -26,6 +26,12 @@ public class MongoManager {
         this(ip, mongoConfig.getPort());
     }
 
+    /**
+     * Specify the Ip and the port for communicating with MongoDB
+     *
+     * @param ip used by MongoDB
+     * @param port used by MongoDB
+     */
     public MongoManager(String ip, int port) {
         try {
             mongoClient = new MongoClient(ip, port);
