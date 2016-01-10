@@ -19,13 +19,13 @@ public class CiphersuiteRequest implements Runnable {
     }
 
     public void run() {
-        String commandString = "nmap --host-timeout 8s --script ssl-enum-ciphers -p 443 " + scanTargetAddress;
+        String commandString = "security tls " + scanTargetAddress;
 
         Request request = new Request();
         request.setClientId("13");
         request.setCommand(commandString);
         request.setResponseAddress("http://" + responseAddress + ":8008/jobFinished");
-        request.setProcessors(new String[]{"processors.XmlToJsonConverter", "processors.TlsCiphersuitesFilter"});
+        request.setProcessors(new String[]{"XmlToJsonConverter", "security.TlsCiphersuitesFilter"});
         request.setAdapter("adapters.EventHubAdapter");
         RequestSenderWithMessage requestSender = new RequestSenderWithMessage();
         String requestResponse = requestSender.sendRequest("http://" + sendRequestAddress + ":8080/request", request);
