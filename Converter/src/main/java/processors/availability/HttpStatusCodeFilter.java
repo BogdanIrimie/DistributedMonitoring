@@ -10,7 +10,9 @@ import converters.JsonConverter;
 import datamodel.HttpResponseForAvailability;
 import processors.Processor;
 
-
+/**
+ * Extract status code form HTTP request.
+ */
 public class HttpStatusCodeFilter implements Processor {
 
     @Override

@@ -10,6 +10,9 @@ import converters.JsonConverter;
 import datamodel.HttpResponseForAvailability;
 import processors.Processor;
 
+/**
+ * Extract body message from HTTP request.
+ */
 public class HttpBodyFilter implements Processor {
 
     @Override
