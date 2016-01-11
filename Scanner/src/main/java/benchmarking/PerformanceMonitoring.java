@@ -13,6 +13,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Obtain performance metrics for a given PID
+ */
 public class PerformanceMonitoring implements Monitorable {
     private final static Logger logger = LoggerFactory.getLogger(PerformanceMonitoring.class);
 
@@ -22,15 +25,22 @@ public class PerformanceMonitoring implements Monitorable {
     @Override
     public void startMonitoring() {
         startTimeOfMonitoring = Calendar.getInstance();
+        // Subtract 1 second from the beginning time to round time
         startTimeOfMonitoring.add(Calendar.SECOND, -1);
     }
 
     @Override
     public void stopMonitoring() {
         endTimeOfMonitoring = Calendar.getInstance();
+        // Add 1 second to the end time to round time
         endTimeOfMonitoring.add(Calendar.SECOND, 1);
     }
 
+    /**
+     * Parse logs and extract metrics
+     * @param pid of the process we want to extract monitoring data
+     * @return list with monitoring results with 1 second resolution
+     */
     public List<MonitoringResult> parseForPid(long pid) {
         BufferedReader br = null;
         String line;
@@ -106,6 +116,11 @@ public class PerformanceMonitoring implements Monitorable {
         return monitoringResults;
     }
 
+    /**
+     * Verify if the string only contains digits
+     * @param str string that should be verified
+     * @return if the string is a number or not
+     */
     private boolean isNumeric(String str) {
         if (str == null) {
             return false;

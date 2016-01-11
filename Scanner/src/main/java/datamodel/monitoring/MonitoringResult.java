@@ -2,6 +2,9 @@ package datamodel.monitoring;
 
 import java.util.Calendar;
 
+/**
+ * Performance data for the monitored process
+ */
 public class MonitoringResult {
     private Calendar timeFromLog;
     private String cpu;

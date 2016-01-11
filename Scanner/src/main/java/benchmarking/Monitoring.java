@@ -1,6 +1,5 @@
 package benchmarking;
 
-
 import converters.JsonConverter;
 import datamodel.monitoring.ComponentPerformance;
 import mongo.MongoManager;
@@ -11,21 +10,38 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Calendar;
 
+
+/**
+ * Start timer and save monitoring data to DB
+ */
 public class Monitoring {
     private final static Logger logger = LoggerFactory.getLogger(Monitoring.class);
     PerformanceMonitoring performanceMonitoring = new PerformanceMonitoring();
     Calendar startTime, endTime;
 
+    /**
+     * Set start time of monitoring
+     */
     public void startMonitoring() {
         performanceMonitoring.startMonitoring();
         startTime = Calendar.getInstance();
     }
 
+    /**
+     * Set end time of monitoring
+     */
     public void stopMonitoring() {
         performanceMonitoring.stopMonitoring();
         endTime = Calendar.getInstance();
     }
 
+    /**
+     * Save monitoring results to DB
+     * @param jobId of the monitored job
+     * @param pid of the monitored process
+     * @param mm object for database writing
+     * @param componentName of the monitored component
+     */
     public void saveResultsInDb (String jobId, long pid, MongoManager mm,String componentName) {
         Thread writeRestuls = new Thread(new Runnable() {
             @Override

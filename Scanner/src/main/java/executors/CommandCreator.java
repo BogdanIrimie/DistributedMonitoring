@@ -1,5 +1,8 @@
 package executors;
 
+/**
+ * Transform user commands in Nmap commands
+ */
 public class CommandCreator {
 
     public String createCommand(String userCommand) {

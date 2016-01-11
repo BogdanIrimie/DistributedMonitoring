@@ -1,5 +1,8 @@
 package datamodel;
 
+/**
+ * Response from a availability test
+ */
 public class HttpResponseForAvailability {
 
     private String url;

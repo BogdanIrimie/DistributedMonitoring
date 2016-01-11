@@ -1,21 +1,23 @@
 package datamodel;
 
-
+/**
+ * Data model used to store command and PID
+ */
 public class CommandPidAndResults {
-    private long commadnPid;
+    private long commandPid;
     private String commandResults;
 
-    public CommandPidAndResults(long commadnPid, String commandResults) {
-        this.commadnPid = commadnPid;
+    public CommandPidAndResults(long commandPid, String commandResults) {
+        this.commandPid = commandPid;
         this.commandResults = commandResults;
     }
 
-    public long getCommadnPid() {
-        return commadnPid;
+    public long getCommandPid() {
+        return commandPid;
     }
 
-    public void setCommadnPid(long commadnPid) {
-        this.commadnPid = commadnPid;
+    public void setCommandPid(long commandPid) {
+        this.commandPid = commandPid;
     }
 
     public String getCommandResults() {

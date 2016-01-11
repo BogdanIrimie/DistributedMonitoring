@@ -3,6 +3,9 @@ package datamodel.monitoring;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Data about the job that is monitored
+ */
 public class ComponentPerformance {
     private String vmIp;
     private String jobId;

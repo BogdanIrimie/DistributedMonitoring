@@ -94,7 +94,7 @@ public class Receiver {
 
                 // finalize monitoring activities
                 //nmapMonit.stopMonitoring();
-                //nmapMonit.saveResultsInDb(job.getId(), results.getCommadnPid(), mm, "nmap");
+                //nmapMonit.saveResultsInDb(job.getId(), results.getCommandPid(), mm, "nmap");
 
                 String xmlResult = results.getCommandResults();
                 mm.updateJsonWithId(job.getId(), "rawResult", xmlResult);

@@ -8,7 +8,7 @@ public class Client {
 
     public static void main(String[] args) {
         MDC.put("pid", getPid());
-        logger.info("Scaner is started!");
+        logger.info("Scanner is started!");
         Receiver rec = new Receiver();
         rec.startReceiving();
         MDC.clear();
