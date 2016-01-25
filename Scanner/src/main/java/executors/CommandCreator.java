@@ -20,6 +20,8 @@ public class CommandCreator {
                     default :
                         return null;
                 }
+            case "availability2":
+                return "curl +X GET " + tokens[1];
             default :
                 return null;
         }
