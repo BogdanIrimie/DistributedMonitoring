@@ -9,7 +9,6 @@ public class RabbitMqConfig {
     private String host = null;
     private String receiveQueue = null;
     private String preseneterSendQueue = null;
-    private String remediatorSendQueue = null;
     private String username = null;
     private String password = null;
 
@@ -17,7 +16,6 @@ public class RabbitMqConfig {
         host = ConfigExtractor.getProperty("rabbitHost");
         receiveQueue = ConfigExtractor.getProperty("rabbitReceiveQueue");
         preseneterSendQueue = ConfigExtractor.getProperty("rabbitSendQueue");
-        remediatorSendQueue = ConfigExtractor.getProperty("rabbitSendQueue2");
         username = ConfigExtractor.getProperty("rabbitUser");
         password = ConfigExtractor.getProperty("rabbitPassword");
     }
@@ -30,12 +28,8 @@ public class RabbitMqConfig {
         return receiveQueue;
     }
 
-    public String getPreseneterSendQueue() {
+    public String getSendQueue() {
         return preseneterSendQueue;
-    }
-
-    public String getRemediatorSendQueue() {
-        return remediatorSendQueue;
     }
 
     public String getUsername() {

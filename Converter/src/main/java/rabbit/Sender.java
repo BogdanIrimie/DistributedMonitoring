@@ -16,11 +16,10 @@ import java.io.IOException;
  */
 public class Sender {
     private static final Logger logger = LoggerFactory.getLogger(Sender.class);
-    private final String presenterQueueName;
-    private final String remediatorqQueueName;
+    private final String presenterQueue;
     private Connection connection;
     private Channel channel;
-    private static final String EXCHANGE_NAME = "presentAndRemediate";
+    private static final String EXCHANGE_NAME = "present";
 
     /**
      * Initialize send queue.
@@ -30,8 +29,7 @@ public class Sender {
         String hostName = rmq.getHost();
         String userName = rmq.getUsername();
         String password = rmq.getPassword();
-        presenterQueueName = rmq.getPreseneterSendQueue();
-        remediatorqQueueName = rmq.getRemediatorSendQueue();
+        presenterQueue = rmq.getSendQueue();
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(hostName);
@@ -44,10 +42,8 @@ public class Sender {
             boolean durable = true;
 
             channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-            channel.queueDeclare(presenterQueueName, durable, false, false, null);
-            channel.queueDeclare(remediatorqQueueName, durable, false, false, null);
-            channel.queueBind(presenterQueueName, EXCHANGE_NAME, "");
-            channel.queueBind(remediatorqQueueName, EXCHANGE_NAME, "");
+            channel.queueDeclare(presenterQueue, durable, false, false, null);
+            channel.queueBind(presenterQueue, EXCHANGE_NAME, "");
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }

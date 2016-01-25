@@ -22,7 +22,7 @@ public class RabbitMqConfigTest {
     @Test
     public void retrieveSendQueue() {
         RabbitMqConfig rmqConf = new RabbitMqConfig();
-        String queue = rmqConf.getPreseneterSendQueue();
+        String queue = rmqConf.getSendQueue();
         assertTrue(queue.length() > 0);
     }
 
