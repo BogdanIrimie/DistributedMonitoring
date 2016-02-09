@@ -34,7 +34,7 @@ rm -rf $projectPath/deployment/specs_monitoring_nmap_converter/var/*
 rm -rf $projectPath/deployment/specs_monitoring_nmap_presenter/var/*
 
 # Create deployment archives for all components.
-tar -cf $projectPath/deployment/specs_monitoring_nmap_frontend.tar.gz $projectPath/deployment/specs_monitoring_nmap_frontend
-tar -cf $projectPath/deployment/specs_monitoring_nmap_scanner.tar.gz $projectPath/deployment/specs_monitoring_nmap_scanner
-tar -cf $projectPath/deployment/specs_monitoring_nmap_converter.tar.gz $projectPath/deployment/specs_monitoring_nmap_converter
-tar -cf $projectPath/deployment/specs_monitoring_nmap_presenter.tar.gz $projectPath/deployment/specs_monitoring_nmap_presenter
+tar -czf deployment/specs_monitoring_nmap_frontend.tar.gz -C $projectPath/deployment ./specs_monitoring_nmap_frontend
+tar -czf deployment/specs_monitoring_nmap_scanner.tar.gz -C $projectPath/deployment ./specs_monitoring_nmap_scanner
+tar -czf deployment/specs_monitoring_nmap_converter.tar.gz -C $projectPath/deployment ./specs_monitoring_nmap_converter
+tar -czf deployment/specs_monitoring_nmap_presenter.tar.gz -C $projectPath/deployment ./specs_monitoring_nmap_presenter
