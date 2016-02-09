@@ -21,9 +21,11 @@ mvn -Dmaven.test.skip=true package -f $projectPath/Presenter;
 echo ------ Finish Presenter component build ------
 
 cp $projectPath/FrontEnd/target/FrontEnd.jar $projectPath/deployment/specs_monitoring_nmap_frontend/lib
-
 cp $projectPath/Scanner/target/Scanner.jar $projectPath/deployment/specs_monitoring_nmap_scanner/lib
-
 cp $projectPath/Converter/target/Converter.jar $projectPath/deployment/specs_monitoring_nmap_converter/lib
-
 cp $projectPath/Presenter/target/Presenter.jar $projectPath/deployment/specs_monitoring_nmap_presenter/lib
+
+tar -cf $projectPath/deployment/specs_monitoring_nmap_frontend.tar.gz $projectPath/deployment/specs_monitoring_nmap_frontend
+tar -cf $projectPath/deployment/specs_monitoring_nmap_scanner.tar.gz $projectPath/deployment/specs_monitoring_nmap_scanner
+tar -cf $projectPath/deployment/specs_monitoring_nmap_converter.tar.gz $projectPath/deployment/specs_monitoring_nmap_converter
+tar -cf $projectPath/deployment/specs_monitoring_nmap_presenter.tar.gz $projectPath/deployment/specs_monitoring_nmap_presenter
