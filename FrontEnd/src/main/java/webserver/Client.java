@@ -1,5 +1,9 @@
 package webserver;
 
+import helpers.CommandLineArgumentParser;
+import helpers.PidManipulation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,14 +11,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Client {
 
+    private static final Logger logger = LoggerFactory.getLogger(Client.class);
+
     public static void main(String[] args) {
-        MDC.put("pid", getPid());
+        MDC.put("pid", PidManipulation.getPid());
+
+        new CommandLineArgumentParser(args).parse();
+
         SpringApplication.run(Client.class, args);
         MDC.clear();
-    }
-
-    private static String getPid() {
-        String processName = java.lang.management.ManagementFactory.getRuntimeMXBean().getName();
-        return processName.split("@")[0];
     }
 }
