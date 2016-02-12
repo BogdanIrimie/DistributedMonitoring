@@ -45,7 +45,7 @@ public class CommandLineArgumentParser {
                 }
             }
             else {
-                PidManipulation.writeOwnPidToFile("../var/specs_monitoring_nmap_scanner.pid");
+                PidManipulation.writeOwnPidToFile("../var/specs_monitoring_nmap_presenter.pid");
             }
 
         } catch (ParseException e) {
@@ -58,7 +58,7 @@ public class CommandLineArgumentParser {
      */
     private void help() {
         HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("java -jar scanner.jar [arguments] [file]", options);
+        formatter.printHelp("java -jar presenter.jar [arguments] [file]", options);
         System.exit(0);
     }
 }

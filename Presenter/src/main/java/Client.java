@@ -1,3 +1,4 @@
+import helpers.CommandLineArgumentParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -9,6 +10,7 @@ public class Client {
     public static void main(String[] args) {
         MDC.put("pid", getPid());
         logger.info("Presenter is started!");
+        new CommandLineArgumentParser(args).parse();
         Receiver rec = new Receiver();
         rec.startReceiving();
         MDC.clear();
