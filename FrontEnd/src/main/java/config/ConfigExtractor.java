@@ -1,5 +1,6 @@
 package config;
 
+import helpers.ProgramArguments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +24,7 @@ public class ConfigExtractor {
      * if there is non then use the standard config file
      */
     private ConfigExtractor() {
-        String configFile = "../etc/conf.properties";
+        String configFile = ProgramArguments.getConfigFile();
         String configFileFallback = "/conf.properties";
 
         File conf = new File(configFile);

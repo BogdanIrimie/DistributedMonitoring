@@ -19,9 +19,9 @@ public class CommandLineArgumentParser {
      */
     public CommandLineArgumentParser(String[] args) {
         this.args = args;
-        options.addOption("h", "help", false, "Show help");
+        options.addOption("h", "help", false, "Show help.");
         options.addOption("p", "pidFile", true, "Set file to store PID.");
-        options.addOption("c", "configFile", true, "Set file to be used to extract config data.");
+        options.addOption("c", "configFile", true, "Set config file.");
         options.addOption("l", "logPath", true, "Set path to log files.");
     }
 
