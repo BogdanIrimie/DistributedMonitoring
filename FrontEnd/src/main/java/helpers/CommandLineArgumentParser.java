@@ -21,6 +21,8 @@ public class CommandLineArgumentParser {
         this.args = args;
         options.addOption("h", "help", false, "Show help");
         options.addOption("p", "pidFile", true, "Set file to store PID.");
+        options.addOption("c", "configFile", true, "Set file to be used to extract config data.");
+        options.addOption("l", "logPath", true, "Set path to log files.");
     }
 
     /**
@@ -40,16 +42,31 @@ public class CommandLineArgumentParser {
             String pidFile = null;
             if (cmd.hasOption("p")) {
                 pidFile = cmd.getOptionValue("p");
-                if (pidFile.length() > 0) {
-                    PidManipulation.writeOwnPidToFile(pidFile);
-                }
+                ProgramArguments.setPidFile(pidFile);
             }
             else {
-                PidManipulation.writeOwnPidToFile("../var/specs_monitoring_nmap_frontend.pid");
+                ProgramArguments.setPidFile("../var/specs_monitoring_nmap_frontend.pid");
             }
 
+            String configFile = null;
+            if (cmd.hasOption("c")) {
+                configFile =  cmd.getOptionValue("c");
+                ProgramArguments.setConfigFile(configFile);
+            }
+            else {
+                ProgramArguments.setConfigFile("../etc/conf.properties");
+            }
+
+            String logPath = null;
+            if (cmd.hasOption("l")) {
+                logPath = cmd.getOptionValue("l");
+                ProgramArguments.setLogPath(logPath);
+            }
+            else {
+                ProgramArguments.setLogPath("../var/");
+            }
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 

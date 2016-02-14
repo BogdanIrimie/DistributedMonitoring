@@ -2,6 +2,7 @@ package webserver;
 
 import helpers.CommandLineArgumentParser;
 import helpers.PidManipulation;
+import helpers.ProgramArguments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -17,6 +18,7 @@ public class Client {
         MDC.put("pid", PidManipulation.getPid());
 
         new CommandLineArgumentParser(args).parse();
+        PidManipulation.writeOwnPidToFile(ProgramArguments.getPidFile());
 
         SpringApplication.run(Client.class, args);
         MDC.clear();
