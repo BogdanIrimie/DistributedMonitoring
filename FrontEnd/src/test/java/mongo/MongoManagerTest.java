@@ -1,7 +1,8 @@
 package mongo;
 
-import converters.JsonConverter;
-import datamodel.Measurement;
+import dmon.core.commons.converters.JsonConverter;
+import dmon.core.commons.datamodel.Measurement;
+import dmon.core.commons.mongo.MongoManager;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

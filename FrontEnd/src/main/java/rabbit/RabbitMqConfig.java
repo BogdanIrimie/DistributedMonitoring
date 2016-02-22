@@ -1,6 +1,6 @@
 package rabbit;
 
-import config.ConfigExtractor;
+import dmon.core.commons.config.ConfigExtractor;
 
 /**
  * Extract configuration data for RabbitMQ

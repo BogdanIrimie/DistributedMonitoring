@@ -1,8 +1,8 @@
 package webserver;
 
-import converters.JsonConverter;
-import datamodel.Job;
-import datamodel.Request;
+import dmon.core.commons.converters.JsonConverter;
+import dmon.core.commons.datamodel.Job;
+import dmon.core.commons.datamodel.Request;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

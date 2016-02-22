@@ -1,8 +1,8 @@
 package webserver;
 
-import helpers.CommandLineArgumentParser;
-import helpers.PidManipulation;
-import helpers.ProgramArguments;
+import dmon.core.commons.helpers.CommandLineArgumentParser;
+import dmon.core.commons.helpers.PidManipulation;
+import dmon.core.commons.helpers.ProgramArguments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -18,7 +18,13 @@ public class Client {
         MDC.put("pid", PidManipulation.getPid());
 
         new CommandLineArgumentParser(args).parse();
-        PidManipulation.writeOwnPidToFile(ProgramArguments.getPidFile());
+
+        if (ProgramArguments.getPidFile() != null) {
+            PidManipulation.writeOwnPidToFile(ProgramArguments.getPidFile());
+        }
+        else {
+            PidManipulation.writeOwnPidToFile("../var/specs_monitoring_nmap_frontend.pid");
+        }
 
         SpringApplication.run(Client.class, args);
         MDC.clear();

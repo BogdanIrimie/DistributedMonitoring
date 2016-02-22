@@ -1,5 +1,6 @@
 package mongo;
 
+import dmon.core.commons.mongo.MongoDbConfig;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

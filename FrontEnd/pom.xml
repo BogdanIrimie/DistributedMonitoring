@@ -105,6 +105,11 @@
             <version>${apacheCommonCLI}</version>
         </dependency>
 
+        <dependency>
+            <groupId>dmon-core-commons</groupId>
+            <artifactId>dmon-core-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
