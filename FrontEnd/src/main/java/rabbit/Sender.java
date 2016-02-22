@@ -9,6 +9,7 @@ import dmon.core.commons.datamodel.Measurement;
 import dmon.core.commons.datamodel.Job;
 import dmon.core.commons.datamodel.Request;
 import dmon.core.commons.mongo.MongoManager;
+import dmon.core.commons.rabbit.RabbitMqConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -33,7 +34,7 @@ public class Sender {
         String hostName = rmq.getHost();
         String userName = rmq.getUsername();
         String password = rmq.getPassword();
-        queueName = rmq.getQueue();
+        queueName = rmq.getSendQueue();
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(hostName);

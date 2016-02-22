@@ -1,5 +1,6 @@
 package rabbit;
 
+import dmon.core.commons.rabbit.RabbitMqConfig;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -22,7 +23,7 @@ public class RabbitMqConfigTest {
     @Test
     public void retrieveQueue() {
         RabbitMqConfig rmqConf = new RabbitMqConfig();
-        String queue = rmqConf.getQueue();
+        String queue = rmqConf.getSendQueue();
         assertTrue(queue.length() > 0);
     }
 
