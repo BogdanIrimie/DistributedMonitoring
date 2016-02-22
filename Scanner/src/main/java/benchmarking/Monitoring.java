@@ -1,8 +1,8 @@
 package benchmarking;
 
-import converters.JsonConverter;
 import datamodel.monitoring.ComponentPerformance;
-import mongo.MongoManager;
+import dmon.core.commons.converters.JsonConverter;
+import dmon.core.commons.mongo.MongoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +42,7 @@ public class Monitoring {
      * @param mm object for database writing
      * @param componentName of the monitored component
      */
-    public void saveResultsInDb (String jobId, long pid, MongoManager mm,String componentName) {
+    public void saveResultsInDb (String jobId, long pid, MongoManager mm, String componentName) {
         Thread writeRestuls = new Thread(new Runnable() {
             @Override
             public void run() {

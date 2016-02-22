@@ -4,8 +4,9 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
-import converters.JsonConverter;
-import datamodel.Job;
+import dmon.core.commons.converters.JsonConverter;
+import dmon.core.commons.datamodel.Job;
+import dmon.core.commons.rabbit.RabbitMqConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
