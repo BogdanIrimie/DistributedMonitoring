@@ -106,6 +106,7 @@
             <version>${apacheCommonCLI}</version>
         </dependency>
 
+        <!-- Common code among components -->
         <dependency>
             <groupId>dmon-core-commons</groupId>
             <artifactId>dmon-core-commons</artifactId>

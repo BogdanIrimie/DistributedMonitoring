@@ -1,7 +1,7 @@
 package processors;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import datamodel.Measurement;
+import dmon.core.commons.datamodel.Measurement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +21,7 @@ public class ProcessorsExecutor {
      * @param measurement contains the processors list and the adapter
      * @return processed results
      */
-    public String executeProcesses(String result ,Measurement measurement) {
+    public String executeProcesses(String result, Measurement measurement) {
         String[] processors = measurement.getProcessors();
         if (processors != null) {
             for (String processor : processors) {

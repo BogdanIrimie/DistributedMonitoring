@@ -2,7 +2,7 @@ package processors.security;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.opencsv.CSVReader;
-import converters.JsonConverter;
+import dmon.core.commons.converters.JsonConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import processors.Processor;

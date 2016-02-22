@@ -2,9 +2,9 @@ package adapters;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import converters.JsonConverter;
 import datamodel.EventHubMessage;
-import datamodel.Measurement;
+import dmon.core.commons.converters.JsonConverter;
+import dmon.core.commons.datamodel.Measurement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

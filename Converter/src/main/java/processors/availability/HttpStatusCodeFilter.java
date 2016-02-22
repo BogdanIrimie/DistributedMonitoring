@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import converters.JsonConverter;
 import datamodel.HttpResponseForAvailability;
+import dmon.core.commons.converters.JsonConverter;
 import processors.Processor;
 
 /**
