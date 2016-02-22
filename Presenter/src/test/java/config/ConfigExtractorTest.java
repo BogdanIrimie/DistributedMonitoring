@@ -1,5 +1,6 @@
 package config;
 
+import dmon.core.commons.config.ConfigExtractor;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -112,6 +112,7 @@
             <artifactId>dmon-core-commons</artifactId>
             <version>${dmonCoreCommons}</version>
         </dependency>
+
     </dependencies>
 
     <build>

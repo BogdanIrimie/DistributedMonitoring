@@ -1,7 +1,7 @@
 package converter;
 
-import converters.JsonConverter;
-import datamodel.Job;
+import dmon.core.commons.converters.JsonConverter;
+import dmon.core.commons.datamodel.Job;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

@@ -1,5 +1,6 @@
 package rabbit;
 
+import dmon.core.commons.rabbit.RabbitMqConfig;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
