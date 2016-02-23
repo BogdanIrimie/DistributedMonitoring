@@ -21,11 +21,16 @@
         <!-- in order for SPRING to package for java 1.8 -->
         <java.version>1.8</java.version>
         <mavenShadePluginVersion>2.3</mavenShadePluginVersion>
-        <springBootVersion>1.3.1.RELEASE</springBootVersion>
+        <springBootVersion>1.3.2.RELEASE</springBootVersion>
         <apacheCommonCLI>1.3.1</apacheCommonCLI>
         <dmonCoreCommons>1.0-SNAPSHOT</dmonCoreCommons>
     </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.3.2.RELEASE</version>
+    </parent>
 
     <dependencies>
 
@@ -98,6 +103,18 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${springBootVersion}</version>
         </dependency>
+
+        <!-- Spring dependencies to resolve debug errors -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+        </dependency>
+        <!-- End of Spring dependencies -->
 
         <!-- Apache Common-CLI for argument parsing -->
         <dependency>
