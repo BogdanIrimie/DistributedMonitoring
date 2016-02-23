@@ -1,6 +1,5 @@
-package converter;
+package processors;
 
-import processors.XmlToJsonConverter;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
