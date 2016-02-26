@@ -11,6 +11,12 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 @EnableWebSecurity
 public class WebSecurityConfigDisable extends WebSecurityConfigurerAdapter {
 
+    /**
+     * Disable CSRF token.
+     *
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
