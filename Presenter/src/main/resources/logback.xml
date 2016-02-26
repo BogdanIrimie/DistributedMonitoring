@@ -2,7 +2,7 @@
 
 <configuration>
     <timestamp key="dateByDay"  datePattern="dd_MM_yyyy"/>
-    <property name="pattern" value="[Presenter] %d{HH:mm:ss.SSS} %-5level %logger{5} %mdc - %msg%n" />
+    <property name="pattern" value="[specs_monitoring_nmap_presenter] %d{HH:mm:ss.SSS} %-5level %logger{5} %mdc - %msg%n" />
     <property name="componentName" value="specs_monitoring_nmap_presenter" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
