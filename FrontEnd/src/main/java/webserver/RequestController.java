@@ -1,8 +1,12 @@
 package webserver;
 
+import config.SpringConfig;
 import dmon.core.commons.converters.JsonConverter;
 import dmon.core.commons.datamodel.Job;
 import dmon.core.commons.datamodel.Request;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +20,7 @@ import javax.annotation.PreDestroy;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@Import(SpringConfig.class)
 public class RequestController {
     private Sender sender;
 
