@@ -8,6 +8,8 @@ For the monitoring module to work, the following dependencies must be satisfied:
 
 The following commands can be run to install the dependencies on Ubuntu 14.04:
 
+sudo apt-get install expect-dev
+
 sudo apt-get install linux-headers-generic 
 sudo apt-get install zlib1g-dev
 sudo apt-get install make
