@@ -73,6 +73,7 @@ public class Receiver {
      * Listen for messages
      */
     public void startReceiving() {
+        Sender sender = new Sender();
         while (true) {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
@@ -87,6 +88,7 @@ public class Receiver {
 
                 if (measurement.getResponseAddress() != null && measurement.getResponseAddress().trim().length() > 0) {
                     RequestSenderWithMessage.sendRequest(measurement.getResponseAddress(), measurement.getProcessedResult());
+                    sender.send(job);
                     logger.info("Results were sent to: " + measurement.getResponseAddress());
                 }
                 else {
