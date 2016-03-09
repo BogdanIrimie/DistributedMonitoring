@@ -91,9 +91,9 @@ public class MongoManager {
     }
 
     /**
-     * Update a given field for a record with a given id
+     * Update a given field for a record with a given id.
      *
-     * @param id of the record that will be updated
+     * @param id of the document that will be updated
      * @param field that will be updated
      * @param value new value for field
      */
@@ -105,6 +105,18 @@ public class MongoManager {
         updateDocument.append("$set", new BasicDBObject().append(field, value));
 
         results.update(query, updateDocument);
+    }
+
+    /**
+     * Update document with given id.
+     *
+     * @param id of the document that will be updated.
+     * @param document new document
+     */
+    public void updateJsonWithId(String id, String document) {
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(id));
+        results.update(query, (DBObject)JSON.parse(document));
     }
 
     /**
