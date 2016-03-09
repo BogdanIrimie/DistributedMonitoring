@@ -16,14 +16,12 @@ import java.util.Calendar;
  */
 public class Monitoring {
     private final static Logger logger = LoggerFactory.getLogger(Monitoring.class);
-    PerformanceMonitoring performanceMonitoring = new PerformanceMonitoring();
     Calendar startTime, endTime;
 
     /**
      * Set start time of monitoring
      */
     public void startMonitoring() {
-        performanceMonitoring.startMonitoring();
         startTime = Calendar.getInstance();
     }
 
@@ -31,7 +29,6 @@ public class Monitoring {
      * Set end time of monitoring
      */
     public void stopMonitoring() {
-        performanceMonitoring.stopMonitoring();
         endTime = Calendar.getInstance();
     }
 
@@ -57,7 +54,7 @@ public class Monitoring {
                 componentPerformance.setName(componentName);
                 componentPerformance.setJobStartTime(startTime);
                 componentPerformance.setJobEndTime(endTime);
-                componentPerformance.setMonitoringResults(performanceMonitoring.parseForPid(pid));
+                //componentPerformance.setMonitoringResults(performanceMonitoring.parseForPid(pid));
                 mm.pushJson(JsonConverter.objectToJsonString(componentPerformance), "selfPerformanceMonitoring");
             }
         });

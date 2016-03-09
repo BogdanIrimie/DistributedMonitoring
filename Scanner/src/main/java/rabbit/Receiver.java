@@ -1,5 +1,6 @@
 package rabbit;
 
+import benchmarking.Monitoring;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -90,14 +91,14 @@ public class Receiver {
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
 
                 // start monitoring activities
-                //Monitoring nmapMonit = new Monitoring();
-                //nmapMonit.startMonitoring();
+                Monitoring nmapMonit = new Monitoring();
+                nmapMonit.startMonitoring();
 
                 CommandPidAndResults results  = executeCommand(measurement.getUserCommand());
 
                 // finalize monitoring activities
-                //nmapMonit.stopMonitoring();
-                //nmapMonit.saveResultsInDb(job.getId(), results.getCommandPid(), mm, "nmap");
+                nmapMonit.stopMonitoring();
+                nmapMonit.saveResultsInDb(job.getId(), results.getCommandPid(), mm, "nmap");
 
                 String xmlResult = results.getCommandResults();
                 mm.updateJsonWithId(job.getId(), "rawResult", xmlResult);
