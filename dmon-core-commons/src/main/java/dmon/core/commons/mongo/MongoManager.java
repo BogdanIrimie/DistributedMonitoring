@@ -112,7 +112,7 @@ public class MongoManager {
      */
     public String pullPerformanceMonitoringJob(String field, String value, String collectionName) {
         BasicDBObject query = new BasicDBObject();
-        query.put(field, new ObjectId(value));
+        query.put(field, value);
         DBObject dbObj = db.getCollection(collectionName).findOne(query);
         return dbObj.toString();
     }
@@ -144,6 +144,19 @@ public class MongoManager {
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(id));
         results.update(query, (DBObject)JSON.parse(document));
+    }
+
+    /**
+     * Update document from givven collection.
+     *
+     * @param id of the document
+     * @param document that will be inserted
+     * @param collectionName storing the document
+     */
+    public void updateJsonFromCollectionWithId(String id, String document, String collectionName) {
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(id));
+        db.getCollection(collectionName).update(query, (DBObject)JSON.parse(document));
     }
 
     /**
