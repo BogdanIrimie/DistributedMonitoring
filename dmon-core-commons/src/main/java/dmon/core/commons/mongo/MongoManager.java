@@ -6,8 +6,6 @@ import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.UnknownHostException;
-
 /**
  * Manage interactions with DB
  */
@@ -87,6 +85,35 @@ public class MongoManager {
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(id));
         DBObject dbObj = results.findOne(query);
+        return dbObj.toString();
+    }
+
+    /**
+     * Query for a Json in specific collection using id.
+     *
+     * @param id id of the record in db
+     * @param collectionName where to save the document
+     * @return Json with the db data for the provided id
+     */
+    public String pullJsonById(String id, String collectionName) {
+        BasicDBObject query = new BasicDBObject();
+        query.put("_id", new ObjectId(id));
+        DBObject dbObj = db.getCollection(collectionName).findOne(query);
+        return dbObj.toString();
+    }
+
+    /**
+     * Search by custom field.
+     *
+     * @param field field to be used
+     * @param value value of field
+     * @param collectionName that will be used to search for document
+     * @return resulting document
+     */
+    public String pullPerformanceMonitoringJob(String field, String value, String collectionName) {
+        BasicDBObject query = new BasicDBObject();
+        query.put(field, new ObjectId(value));
+        DBObject dbObj = db.getCollection(collectionName).findOne(query);
         return dbObj.toString();
     }
 
