@@ -88,7 +88,7 @@ public class Receiver {
 
                 if (measurement.getResponseAddress() != null && measurement.getResponseAddress().trim().length() > 0) {
                     RequestSenderWithMessage.sendRequest(measurement.getResponseAddress(), measurement.getProcessedResult());
-                    sender.send(job);
+                    // sender.send(job);
                     logger.info("Results were sent to: " + measurement.getResponseAddress());
                 }
                 else {
