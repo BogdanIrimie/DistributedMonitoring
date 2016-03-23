@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Reload profile if it exists.
-if [ -f /etc/profileT ];
+if [ -f /etc/profile ];
 then
     echo "Reload profile data"
     source /etc/profile
