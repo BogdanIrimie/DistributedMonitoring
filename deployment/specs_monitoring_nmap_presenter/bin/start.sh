@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Reload profile if it exists.
-if [ -f /etc/profileT ];
+if [ -f /etc/profile ];
 then
     echo "Reload profile data"
     source /etc/profile
@@ -14,5 +14,5 @@ then
     $JAVA_HOME/bin/java -jar ../lib/Presenter.jar -p specs_monitoring_nmap_presenter.pid
 else
     # JAVA_HOME is NOT set.
-    java -jar ../lib/Presenter.jar -p specs_monitoring_nmap_presenter.pid 
+    java -jar ../lib/Presenter.jar -p specs_monitoring_nmap_presenter.pid
 fi
