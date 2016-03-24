@@ -1,7 +1,5 @@
 package dmon.core.commons.datamodel;
 
-import java.util.Arrays;
-
 /**
  * Request that wil be sent to the PaaS monitoring systems.
  */
