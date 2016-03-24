@@ -147,7 +147,7 @@ public class MongoManager {
     }
 
     /**
-     * Update document from givven collection.
+     * Update document from given collection.
      *
      * @param id of the document
      * @param document that will be inserted
