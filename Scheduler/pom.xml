@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>Scheduler</groupId>
+    <artifactId>Scheduler</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <jarName>Scheduler</jarName>
+        <rabbitMqVersion>3.4.3</rabbitMqVersion>
+        <!-- in order for SPRING to package for java 1.8 -->
+        <java.version>1.8</java.version>
+        <dmonCoreCommons>1.0.0</dmonCoreCommons>
+    </properties>
+
+    <dependencies>
+        <!-- message queue -->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>${rabbitMqVersion}</version>
+        </dependency>
+
+        <!-- Common code among components -->
+        <dependency>
+            <groupId>dmon-core-commons</groupId>
+            <artifactId>dmon-core-commons</artifactId>
+            <version>${dmonCoreCommons}</version>
+        </dependency>
+    </dependencies>
+</project>

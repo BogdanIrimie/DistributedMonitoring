@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <timestamp key="dateByDay"  datePattern="dd_MM_yyyy"/>
+    <property name="pattern" value="[specs_monitoring_nmap_scheduler] %d{HH:mm:ss.SSS} %-5level %logger{5} %mdc - %msg%n"/>
+    <property name="componentName" value="specs_monitoring_nmap_scheduler" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>pid</key>
+            <defaultValue>null</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+                <file>../var/${componentName}_${pid}_${dateByDay}.log</file>
+                <encoder>
+                    <pattern>${pattern}</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="SIFT" />
+    </root>
+
+</configuration>
