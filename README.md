@@ -6,7 +6,7 @@ We propose a fault tolerant distributed monitoring system based on Nmap, and pos
 
 ### Requirements
 
-Install RabbitMQ server - V3.4.4 or newer (http://www.rabbitmq.com/download.html)
+Install RabbitMQ server - V3.5.3 or newer (http://www.rabbitmq.com/download.html)
 
 Install MongoDB - V2.6.3 or newer (http://www.mongodb.org/downloads)
 
