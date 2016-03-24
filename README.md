@@ -6,19 +6,19 @@ We propose a fault tolerant distributed monitoring system based on Nmap, and pos
 
 ### Requirements
 
-Install RabbitMQ server - V3.5.3 or newer (http://www.rabbitmq.com/download.html)
+Install RabbitMQ server - V3.5.3 or [newer](http://www.rabbitmq.com/download.html)
 
-Install MongoDB - V2.6.3 or newer (http://www.mongodb.org/downloads)
+Install MongoDB - V2.6.3 or [newer](http://www.mongodb.org/downloads)
 
-Install Nmap - V6.40 or newer (https://nmap.org/download.html) on every machine that runs a `Scanner` component.
+Install Nmap - V6.40 or [newer](https://nmap.org/download.html) on every machine that runs a `Scanner` component.
 
-Install JRE 1.8 (http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) on all the machines that run one of the four components (FrontEnd, Scanner, Converter, Presenter).
+Install JRE [1.8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) on all the machines that run one of the four components (FrontEnd, Scanner, Converter, Presenter).
 
 ### Building the project manually
 
-Install Maven (https://maven.apache.org/download.cgi)
+Install [Maven](https://maven.apache.org/download.cgi)
 
-Install JDK 1.8 (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+Install [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 For every module (FrontEnd, Scanner, Converter and Presenter), navigate to the pom.xml and run mvn `mvn -Dmaven.test.skip=true package` (this will create the jar without running unit tests)
 
