@@ -6,6 +6,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import dmon.core.commons.converters.JsonConverter;
 import dmon.core.commons.datamodel.Job;
+import dmon.core.commons.datamodel.Measurement;
 import dmon.core.commons.mongo.MongoManager;
 import dmon.core.commons.rabbit.RabbitMqConfig;
 import org.slf4j.Logger;
@@ -68,7 +69,7 @@ public class Receiver {
      * Listen for messages
      */
     public void startReceiving() {
-        Sender sender = new Sender();
+        SenderWithDelay sender = new SenderWithDelay();
         while (true) {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
@@ -77,10 +78,14 @@ public class Receiver {
                 MDC.put("jobId", job.getId());
                 logger.info("Received message over the queue");
 
+                String measurementString = mm.pullJsonById(job.getId());
+                Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
+
+                measurement.get
                 // TODO Add scheduling policies.
 
                 // send job over the queue
-                sender.send(job, 5);
+                sender.send(job, 60);
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 logger.info("Sent message over queue.");
