@@ -124,7 +124,7 @@ public class MongoManager {
      * @param field that will be updated
      * @param value new value for field
      */
-    public void updateJsonWithId(String id, String field,  String value) {
+    public void updateJsonWithId(String id, String field,  Object value) {
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(id));
 
