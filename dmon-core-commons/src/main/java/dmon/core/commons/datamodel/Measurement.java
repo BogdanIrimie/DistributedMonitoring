@@ -11,6 +11,8 @@ public class Measurement {
     private String clientIp;
     private String userCommand;
     private String responseAddress;
+    private int repetitions;
+    private int repetitionInterval;
     private String[] processors;
     private String adapter;
     private String rawResult;
@@ -18,17 +20,14 @@ public class Measurement {
 
     public Measurement() {}
 
-    public Measurement(String clientId, String userCommand, String responseAddress) {
-        this.clientId = clientId;
-        this.userCommand = userCommand;
-        this.responseAddress = responseAddress;
-    }
-
-    public Measurement(String clientId, String clientIp, String userCommand, String responseAddress, String[] processors, String adapter) {
+    public Measurement(String clientId, String clientIp, String userCommand, String responseAddress,
+                       int repetitions, int repetitionInterval, String[] processors, String adapter) {
         this.clientId = clientId;
         this.clientIp = clientIp;
         this.userCommand = userCommand;
         this.responseAddress = responseAddress;
+        this.repetitions = repetitions;
+        this.repetitionInterval = repetitionInterval;
         this.processors = processors;
         this.adapter = adapter;
     }
@@ -72,6 +71,22 @@ public class Measurement {
 
     public void setResponseAddress(String responseAddress) {
         this.responseAddress = responseAddress;
+    }
+
+    public int getRepetitions() {
+        return repetitions;
+    }
+
+    public void setRepetitions(int repetitions) {
+        this.repetitions = repetitions;
+    }
+
+    public int getRepetitionInterval() {
+        return repetitionInterval;
+    }
+
+    public void setRepetitionInterval(int repetitionInterval) {
+        this.repetitionInterval = repetitionInterval;
     }
 
     public String[] getProcessors() {

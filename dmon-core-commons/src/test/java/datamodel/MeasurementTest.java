@@ -12,8 +12,7 @@ public class MeasurementTest {
     @Test
     public void createMeasurementObjects() {
         Measurement measurement = new Measurement();
-        new Measurement("13", "security tls 192.168.56.110", "192.168.56.102");
-        new Measurement("13", "192.168.56.100", "security tls 192.168.56.110", "192.168.56.102",
+        new Measurement("13", "192.168.56.100", "security tls 192.168.56.110", "192.168.56.102", 1, 0,
                 new String[]{
                         "XmlToJsonConverter",
                         "security.TlsCiphersuitesFilter",
