@@ -62,7 +62,8 @@ public class Sender {
     public String send(Request request, String clientIp) {
         Measurement measurement =
                 new Measurement(request.getClientId(), clientIp, request.getCommand(),
-                        request.getResponseAddress(), request.getProcessors(), request.getAdapter());
+                        request.getResponseAddress(),request.getRepetitions(), request.getRepetitionInterval(),
+                        request.getProcessors(), request.getAdapter());
         String measurementString = JsonConverter.objectToJsonString(measurement);
 
         //put data in DB
