@@ -69,7 +69,9 @@ public class Receiver {
      * Listen for messages
      */
     public void startReceiving() {
-        SenderWithDelay sender = new SenderWithDelay();
+        SenderWithDelay delayedSender = new SenderWithDelay();
+        Sender sender = new Sender();
+
         while (true) {
             try {
                 QueueingConsumer.Delivery delivery = consumer.nextDelivery();
@@ -81,11 +83,35 @@ public class Receiver {
                 String measurementString = mm.pullJsonById(job.getId());
                 Measurement measurement = JsonConverter.jsonStringToObject(measurementString, Measurement.class);
 
-                measurement.get
+                int repetitions  = measurement.getRepetitions();
+
+                if (repetitions > 0) {
+                    repetitions--;
+                    measurement.setRepetitions(repetitions );
+
+                    if (repetitions > 0) {
+                        sender.send(job);
+                        delayedSender.send(job, measurement.getRepetitionInterval());
+                    }
+                    else {
+                        sender.send(job);
+                    }
+
+                    mm.updateJsonWithId(job.getId(), "repetitions", repetitions);
+                }
+
+                if (measurement.getRepetitions() < 0) {
+                    delayedSender.send(job, measurement.getRepetitionInterval());
+                }
+
+                /*
+                measurement.getRepetitions();
+                measurement.getRepetitionInterval();
                 // TODO Add scheduling policies.
 
                 // send job over the queue
-                sender.send(job, 60);
+                delayedSender.send(job, 60);
+                */
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 logger.info("Sent message over queue.");
