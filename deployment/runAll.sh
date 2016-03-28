@@ -6,6 +6,9 @@ echo $deploymentPath
 java -jar $deploymentPath/specs_monitoring_nmap_frontend/lib/FrontEnd.jar &
 disown
 
+java -jar $deploymentPath/specs_monitoring_nmap_scheduler/lib/Scheduler.jar &
+disown
+
 java -jar $deploymentPath/specs_monitoring_nmap_scanner/lib/Scanner.jar &
 disown
 
