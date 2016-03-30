@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- project coordinates -->
-    <groupId>dmon</groupId>
-    <artifactId>dmon</artifactId>
+    <groupId>dmon-test</groupId>
+    <artifactId>dmon-test</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
