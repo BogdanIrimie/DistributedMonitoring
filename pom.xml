@@ -11,13 +11,13 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>dmon-core-commons</module>
 <!--
+        <module>dmon-core-commons</module>
+-->
         <module>FrontEnd</module>
         <module>Scanner</module>
         <module>Converter</module>
         <module>Presenter</module>
--->
     </modules>
 
     <build>
