@@ -7,7 +7,7 @@
     <!-- project coordinates -->
     <groupId>specs-core-monitoring-dmon</groupId>
     <artifactId>specs-core-monitoring-dmon</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>

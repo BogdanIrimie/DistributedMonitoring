@@ -6,7 +6,7 @@
 
     <groupId>dmon-core-commons</groupId>
     <artifactId>dmon-core-commons</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
         <mongoDbVersion>3.2.2</mongoDbVersion>

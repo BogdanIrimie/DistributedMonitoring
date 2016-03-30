@@ -6,7 +6,7 @@
 
     <groupId>eu.specs-project.monitoring.nmap</groupId>
     <artifactId>Presenter</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
