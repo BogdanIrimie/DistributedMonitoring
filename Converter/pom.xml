@@ -22,7 +22,7 @@
         <openCsvVersion>3.3</openCsvVersion>
         <!-- in order for SPRING to package for java 1.8 -->
         <java.version>1.8</java.version>
-        <dmonCoreCommons>1.0.0</dmonCoreCommons>
+        <dmonCoreCommons>1.0.1-SNAPSHOT</dmonCoreCommons>
     </properties>
 
 

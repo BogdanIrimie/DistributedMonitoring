@@ -16,7 +16,7 @@
         <!-- in order for SPRING to package for java 1.8 -->
         <java.version>1.8</java.version>
         <springBootVersion>1.3.2.RELEASE</springBootVersion>
-        <dmonCoreCommons>1.0.0</dmonCoreCommons>
+        <dmonCoreCommons>1.0.1-SNAPSHOT</dmonCoreCommons>
     </properties>
 
     <parent>
