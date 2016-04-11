@@ -27,8 +27,10 @@ fi
 if [ ! -z "$JAVA_HOME" ];
 then
     # JAVA_HOME is set, use it.
-    $JAVA_HOME/bin/java -jar $component_home/../lib/FrontEnd.jar -p $component_home/../var/specs_monitoring_nmap_frontend.pid
+    $JAVA_HOME/bin/java -jar $component_home/../lib/FrontEnd.jar -p $component_home/../var/specs_monitoring_nmap_frontend.pid &
+    disown
 else
     # JAVA_HOME is NOT set.
-    java -jar $component_home/../lib/FrontEnd.jar -p $component_home/../var/specs_monitoring_nmap_frontend.pid
+    java -jar $component_home/../lib/FrontEnd.jar -p $component_home/../var/specs_monitoring_nmap_frontend.pid &
+    disown
 fi
