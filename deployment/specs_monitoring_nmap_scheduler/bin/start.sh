@@ -3,8 +3,24 @@
 # Reload profile if it exists.
 if [ -f /etc/profile ];
 then
-    echo "Reload profile data"
+    echo "Reload profile data."
     source /etc/profile
+fi
+
+# Load config file if it exists.
+if [ -f /etc/sysconfig/scheduler_config ];
+then
+  echo "Load config."
+  source /etc/sysconfig/scheduler_config
+fi
+
+if [ ! -z "$SCHEDULER_HOME" ];
+then
+  # FRONTEND_HOME is set, us it.
+  component_home=$SCHEDULER_HOME
+else
+  # FRONTEND_HOME is not set.
+  component_home=$(pwd)/..
 fi
 
 # Use JAVA_HOME if it is set.
