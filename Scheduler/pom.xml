@@ -6,7 +6,7 @@
 
     <groupId>Scheduler</groupId>
     <artifactId>Scheduler</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,7 +19,7 @@
         <rabbitMqVersion>3.4.3</rabbitMqVersion>
         <!-- in order for SPRING to package for java 1.8 -->
         <java.version>1.8</java.version>
-        <dmonCoreCommons>1.0.0</dmonCoreCommons>
+        <dmonCoreCommons>1.0.1-SNAPSHOT</dmonCoreCommons>
     </properties>
 
     <dependencies>
