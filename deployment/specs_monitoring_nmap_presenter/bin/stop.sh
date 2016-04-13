@@ -1,6 +1,22 @@
 #!/bin/sh
 
-PID_FILE="../var/specs_monitoring_nmap_presenter.pid"
+# Load config file if it exists.
+if [ -f /etc/sysconfig/presenter_config ];
+then
+  echo "Load config."
+  source /etc/sysconfig/presenter_config
+fi
+
+if [ ! -z "$PRESENTER_HOME" ];
+then
+  # PRESENTER_HOME is set, us it.
+  component_home=$PRESENTER_HOME
+else
+  # PRESENTER_HOME is not set.
+  component_home=$(pwd)/..
+fi
+
+PID_FILE="$component_home/var/specs_monitoring_nmap_presenter.pid"
 
 # Check if PID file exists.
 if [ ! -f $PID_FILE ];
