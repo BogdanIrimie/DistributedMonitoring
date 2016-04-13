@@ -27,8 +27,10 @@ fi
 if [ ! -z "$JAVA_HOME" ];
 then
     # JAVA_HOME is set, use it.
-    $JAVA_HOME/bin/java -jar ../lib/Scheduler.jar -p specs_monitoring_nmap_scheduler.pid
+    $JAVA_HOME/bin/java -jar $component_home/lib/Scheduler.jar -p $component_home/var/specs_monitoring_nmap_scheduler.pid &
+    disown
 else
     # JAVA_HOME is NOT set.
-    java -jar ../lib/Scheduler.jar -p specs_monitoring_nmap_scheduler.pid
+    java -jar $component_home/lib/Scheduler.jar -p $component_home/var/specs_monitoring_nmap_scheduler.pid &
+    disown
 fi
