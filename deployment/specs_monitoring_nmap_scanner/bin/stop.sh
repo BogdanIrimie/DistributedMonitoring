@@ -1,6 +1,22 @@
 #!/bin/sh
 
-PID_FILE="../var/specs_monitoring_nmap_scanner.pid"
+# Load config file if it exists.
+if [ -f /etc/sysconfig/scanner_config ];
+then
+  echo "Load config."
+  source /etc/sysconfig/scanner_config
+fi
+
+if [ ! -z "$SCANNER_HOME" ];
+then
+  # SCANNER_HOME is set, us it.
+  component_home=$SCANNER_HOME
+else
+  # SCANNER_HOME is not set.
+  component_home=$(pwd)/..
+fi
+
+PID_FILE="$component_home/var/specs_monitoring_nmap_scanner.pid"
 
 # Check if PID file exists.
 if [ ! -f $PID_FILE ];

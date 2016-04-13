@@ -16,10 +16,10 @@ fi
 
 if [ ! -z "$SCHEDULER_HOME" ];
 then
-  # FRONTEND_HOME is set, us it.
+  # SCHEDULER_HOME is set, us it.
   component_home=$SCHEDULER_HOME
 else
-  # FRONTEND_HOME is not set.
+  # SCHEDULER_HOME is not set.
   component_home=$(pwd)/..
 fi
 

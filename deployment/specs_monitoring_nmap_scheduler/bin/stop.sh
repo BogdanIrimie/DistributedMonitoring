@@ -1,18 +1,18 @@
 #!/bin/sh
 
 # Load config file if it exists.
-if [ -f /etc/sysconfig/frontend_config ];
+if [ -f /etc/sysconfig/scheduler_config ];
 then
   echo "Load config."
-  source /etc/sysconfig/frontend_config
+  source /etc/sysconfig/scheduler_config
 fi
 
 if [ ! -z "$SCHEDULER_HOME" ];
 then
-  # FRONTEND_HOME is set, us it.
+  # SCHEDULER_HOME is set, us it.
   component_home=$SCHEDULER_HOME
 else
-  # FRONTEND_HOME is not set.
+  # SCHEDULER_HOME is not set.
   component_home=$(pwd)/..
 fi
 
