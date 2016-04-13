@@ -3,6 +3,29 @@
 # Reload profile if it exists.
 if [ -f /etc/profile ];
 then
+    echo "Reload profile data."
+    source /etc/profile
+fi
+
+# Load config file if it exists.
+if [ -f /etc/sysconfig/converter_config ];
+then
+  echo "Load config."
+  source /etc/sysconfig/converter_config
+fi
+
+if [ ! -z "$CONVERTER_HOME" ];
+then
+  # CONVERTER_HOME is set, us it.
+  component_home=$CONVERTER_HOME
+else
+  # CONVERTER_HOME is not set.
+  component_home=$(pwd)/..
+fi
+
+# Reload profile if it exists.
+if [ -f /etc/profile ];
+then
     echo "Reload profile data"
     source /etc/profile
 fi

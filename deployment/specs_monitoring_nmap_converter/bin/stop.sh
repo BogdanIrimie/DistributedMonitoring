@@ -1,6 +1,22 @@
 #!/bin/sh
 
-PID_FILE="../var/specs_monitoring_nmap_converter.pid"
+# Load config file if it exists.
+if [ -f /etc/sysconfig/converter_config ];
+then
+  echo "Load config."
+  source /etc/sysconfig/converter_config
+fi
+
+if [ ! -z "$CONVERTER_HOME" ];
+then
+  # CONVERTER_HOME is set, us it.
+  component_home=$CONVERTER_HOME
+else
+  # CONVERTER_HOME is not set.
+  component_home=$(pwd)/..
+fi
+
+PID_FILE="$component_home/var/specs_monitoring_nmap_converter.pid"
 
 # Check if PID file exists.
 if [ ! -f $PID_FILE ];
