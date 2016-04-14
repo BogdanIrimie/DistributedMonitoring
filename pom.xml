@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- project coordinates -->
-    <groupId>specs-core-monitoring-dmon</groupId>
-    <artifactId>specs-core-monitoring-dmon</artifactId>
+    <groupId>dmon</groupId>
+    <artifactId>dmon</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
