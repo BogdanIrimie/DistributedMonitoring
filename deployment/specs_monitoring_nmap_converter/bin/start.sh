@@ -14,6 +14,13 @@ then
   source /etc/sysconfig/converter_config
 fi
 
+# Load config file if it exists on Ubuntu.
+if [ -f /etc/default/converter_config ];
+then
+  echo "Load config."
+  source /etc/default/converter_config
+fi
+
 if [ ! -z "$CONVERTER_HOME" ];
 then
   # CONVERTER_HOME is set, us it.

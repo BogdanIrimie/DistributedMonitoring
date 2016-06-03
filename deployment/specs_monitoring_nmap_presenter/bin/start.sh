@@ -14,6 +14,13 @@ then
   source /etc/sysconfig/presenter_config
 fi
 
+# Load config file if it exists on Ubuntu.
+if [ -f /etc/default/presenter_config ];
+then
+  echo "Load config."
+  source /etc/default/presenter_config
+fi
+
 if [ ! -z "$PRESENTER_HOME" ];
 then
   # PRESENTER_HOME is set, us it.

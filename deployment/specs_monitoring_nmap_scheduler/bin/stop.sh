@@ -7,6 +7,13 @@ then
   source /etc/sysconfig/scheduler_config
 fi
 
+# Load config file if it exists on Ubuntu.
+if [ -f /etc/default/scheduler_config ];
+then
+  echo "Load config."
+  source /etc/default/scheduler_config
+fi
+
 if [ ! -z "$SCHEDULER_HOME" ];
 then
   # SCHEDULER_HOME is set, us it.

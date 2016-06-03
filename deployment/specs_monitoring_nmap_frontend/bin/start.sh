@@ -14,6 +14,13 @@ then
   source /etc/sysconfig/frontend_config
 fi
 
+# Load config file if it exists on Ubuntu.
+if [ -f /etc/default/frontend_config ];
+then
+  echo "Load config."
+  source /etc/default/frontend_config
+fi
+
 if [ ! -z "$FRONTEND_HOME" ];
 then
   # FRONTEND_HOME is set, us it.
