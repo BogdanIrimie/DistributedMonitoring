@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Reload profile if it exists.
 if [ -f /etc/profile ];

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Load config file if it exists.
 if [ -f /etc/sysconfig/converter_config ];
