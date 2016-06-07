@@ -9,6 +9,7 @@ import rabbit.Receiver;
 
 public class Client {
     private static final Logger logger = LoggerFactory.getLogger(Client.class);
+
     public static void main(String[] args) {
         MDC.put("pid", PidManipulation.getPid());
         new CommandLineArgumentParser(args).parse();
@@ -17,7 +18,7 @@ public class Client {
             PidManipulation.writeOwnPidToFile(ProgramArguments.getPidFile());
         }
         else {
-            PidManipulation.writeOwnPidToFile("../var/specs_monitoring_nmap_frontend.pid");
+            PidManipulation.writeOwnPidToFile("../var/specs_monitoring_nmap_converter.pid");
         }
 
         logger.info("Converter is started!");

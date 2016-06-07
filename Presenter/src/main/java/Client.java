@@ -18,7 +18,7 @@ public class Client {
             PidManipulation.writeOwnPidToFile(ProgramArguments.getPidFile());
         }
         else {
-            PidManipulation.writeOwnPidToFile("../var/specs_monitoring_nmap_frontend.pid");
+            PidManipulation.writeOwnPidToFile("../var/specs_monitoring_nmap_presenter.pid");
         }
 
         Receiver rec = new Receiver();
