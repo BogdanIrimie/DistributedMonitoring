@@ -42,7 +42,7 @@ mongoPort = 27017
 ### Using the deployment
 
 Deployment can be done via Chef. Recipes are provided in the deployment directory.
-For test purposes, the chef client can be ran in local mode: `chef-client -z -r "recipe[dmon]"`
+For test purposes, the Chef client can be run in local mode: `chef-client -z -r "recipe[dmon]"`
 
 
 More info can be found on the [deployment page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Deployment).
