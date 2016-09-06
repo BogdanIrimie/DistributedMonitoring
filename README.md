@@ -49,7 +49,7 @@ More info can be found on the [deployment page](https://github.com/IrimieBogdan/
 
 ##Test/Stress the system
 
-Fallow the guide on the [test page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Testing).
+Fallow the guide on the [test page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Performance-Testing).
 
 ##Interacting with the monitoring system
 
