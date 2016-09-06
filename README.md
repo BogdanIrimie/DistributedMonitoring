@@ -20,7 +20,7 @@ Install [Maven](https://maven.apache.org/download.cgi)
 
 Install [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-For every module (FrontEnd, Scanner, Converter and Presenter), navigate to the pom.xml and run mvn `mvn -Dmaven.test.skip=true package` (this will create the jar without running unit tests)
+Navigate to the root directory and run the command `mvn package`, this will run all the tests and generate jar artefacts for all the components.
 
 ### Configuration
 
