@@ -14,6 +14,7 @@
         <module>dmon-core-commons</module>
         <module>FrontEnd</module>
         <module>Scanner</module>
+        <module>Scheduler</module>
         <module>Converter</module>
         <module>Presenter</module>
     </modules>
