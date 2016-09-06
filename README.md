@@ -24,7 +24,7 @@ Navigate to the root directory and run the command `mvn package`, this will run 
 
 ### Configuration
 
-Each of the four components (FrontEnd, Scanner, Converter and Presenter) has their own configuration file (conf.properties). The configuration file contains the ip and port for MongoDB and the ip, queue names and credentials for RabbitMQ.
+Each component has a configuration file `conf.properties`. The file contains details regarding database and queue connection.
 
 Configuration file example for the FrontEnd component:
 ```
