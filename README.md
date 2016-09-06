@@ -54,10 +54,3 @@ Fallow the guide on the [test page](https://github.com/IrimieBogdan/DistributedM
 ##Interacting with the monitoring system
 
 Jobs can be submitted by making a HTTP POST request `http://<ip>:8080/request` with a json body. More details about the request body can be found on [request model page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Requests).
-
-clientResponse is a JSON with the following fields:
-* `clientId` - the id the client provide, it can be used to retrieve all the jobs for a client
-* `command`- the command that will be executed by the system
-* `responseAddress` - is the address where the results will be sent
-* `processors` - used for filtering and processing of the raw results
-* `adapter` - used for adapting the results for a specific system
