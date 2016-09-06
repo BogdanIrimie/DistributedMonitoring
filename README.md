@@ -39,11 +39,9 @@ mongoHost = 192.168.56.101
 mongoPort = 27017
 ```
 
-### Using the deployment
+### Deployment
 
-Deployment can be done via Chef. Recipes are provided in the deployment directory.
-For test purposes, the Chef client can be run in local mode: `chef-client -z -r "recipe[dmon]"`
-
+The system can be deployed manualy, or using the [Chef recipes](https://github.com/IrimieBogdan/DmonDeployment).
 
 More info can be found on the [deployment page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Deployment).
 
