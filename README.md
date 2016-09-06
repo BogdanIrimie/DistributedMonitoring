@@ -26,11 +26,6 @@ For every module (FrontEnd, Scanner, Converter and Presenter), navigate to the p
 
 Each of the four components (FrontEnd, Scanner, Converter and Presenter) has their own configuration file (conf.properties). The configuration file contains the ip and port for MongoDB and the ip, queue names and credentials for RabbitMQ.
 
-### Using the deployment
-
-As an alternative to manually building the project and creating the config files, the deployment directory can be used. The directory contain the latest stable jars and a directory structure that is easy to deploy and manage.
-In order to use the deployment the following environment variables should be set:
-
 Configuration file example for the FrontEnd component:
 ```
 #RabbitMQ connection details
@@ -43,6 +38,12 @@ rabbitPassword = rabbitPassword
 mongoHost = 192.168.56.101
 mongoPort = 27017
 ```
+
+### Using the deployment
+
+Deployment can be done via Chef. Recipes are provided in the deployment directory.
+For test purposes, the chef client can be ran in local mode: `chef-client -z -r "recipe[dmon]"`
+
 
 More info can be found on the [deployment page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Deployment).
 
