@@ -31,26 +31,6 @@ Each of the four components (FrontEnd, Scanner, Converter and Presenter) has the
 As an alternative to manually building the project and creating the config files, the deployment directory can be used. The directory contain the latest stable jars and a directory structure that is easy to deploy and manage.
 In order to use the deployment the following environment variables should be set:
 
-* `rabbitHost` IP of the machine hosting RabbitMQ (on all machines hosting `FrontEnd`, `Scanner`, `Converter` and `Presenter` components)
-* `feRabbitSendQueue` name of the queue used to send messages by the `FrontEnd` component (on machines hosting FrontEnd components)
-* `scRabbitSendQueue` name of the queue used to send messages by the `Scanner` component (on machines hosting Scanner components)
-* `scRabbitReceiveQueue` name of the queue used to receive messages by the `Scanner` component (on machines hosting Scanner components)
-* `coRabbitSendQueue` name of the queue used to send messages by the `Converter` component (on machines hosting Converter components)
-* `coRabbitReceiveQueue` name of the queue used to receive messages by the `Converter` component (on machines hosting Converter components)
-* `prRabbitReceiveQueue` name of the queue used to receive messages by the `Presenter` component (on machines hosting Presenter components)
-* `rabbitUser` credentials for RabbitMQ (on all machines hosting FrontEnd, Scanner, Converter and Presenter components)
-* `rabbitPassword` credentials for RabbitMQ (on all machines hosting FrontEnd, Scanner, Converter and Presenter components)
-* `mongoHost` IP of the machine hosting MongoDB (on all machines hosting FrontEnd, Scanner, Converter and Presenter components)
-* `mongoPort` port on which MongoDB is running (on all machines hosting FrontEnd, Scanner, Converter and Presenter components)
-
-As the relation between components is `FrontEnd`-`Scanner`-`Converter`-`Presenter` \| `Remediator`, the pairs:
-```
-feRabbitSendQueue - scRabbitReceiveQueue;
-scRabbitSendQueue - coRabbitReceiveQueue;
-coRabbitSendQueue - prRabbitReceiveQueue;
-```
-should have identical names.
-
 Configuration file example for the FrontEnd component:
 ```
 #RabbitMQ connection details
@@ -64,7 +44,7 @@ mongoHost = 192.168.56.101
 mongoPort = 27017
 ```
 
-If the environment variables are set, simply run `/bin/run.sh` for each component (this will create the configuration files and will start the component, more info can be found on the [deployment page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Deployment).
+More info can be found on the [deployment page](https://github.com/IrimieBogdan/DistributedMonitoring/wiki/Deployment).
 
 ##Test/Stress the system
 
